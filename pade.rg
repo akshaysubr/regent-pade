@@ -19,12 +19,14 @@ local a10d1 = (17.0/12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
 local c10d1 = (1.0/100.0)/6.0
 
-fspace point {
+fspace coordinates {
   x   : double,
   y   : double,
   z   : double,
+}
+
+fspace point {
   f   : double,
-  df  : double,
   dfx : double,
   dfy : double,
   dfz : double,
@@ -145,7 +147,7 @@ end
 task SolveXLU( points : region(ispace(int3d), point),
                LU     : region(ispace(int1d), LU_struct) )
 where
-  reads writes(points.df), reads(LU)
+  reads writes(points.dfx), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.x + 1
@@ -154,27 +156,27 @@ do
     for k = bounds.lo.z, bounds.hi.z+1 do
 
       -- Step 8
-      points[{1,j,k}].df = points[{1,j,k}].df - LU[1].b*points[{0,j,k}].df
-      var sum1 : double = LU[0].k*points[{0,j,k}].df + LU[1].k*points[{1,j,k}].df
-      var sum2 : double = LU[0].l*points[{0,j,k}].df + LU[1].l*points[{1,j,k}].df
+      points[{1,j,k}].dfx = points[{1,j,k}].dfx - LU[1].b*points[{0,j,k}].dfx
+      var sum1 : double = LU[0].k*points[{0,j,k}].dfx + LU[1].k*points[{1,j,k}].dfx
+      var sum2 : double = LU[0].l*points[{0,j,k}].dfx + LU[1].l*points[{1,j,k}].dfx
 
       -- Step 9
       for i = 2,N-2 do
-        points[{i,j,k}].df = points[{i,j,k}].df - LU[i].b*points[{i-1,j,k}].df - LU[i].eg*points[{i-2,j,k}].df
-        sum1 += LU[i].k*points[{i,j,k}].df
-        sum2 += LU[i].l*points[{i,j,k}].df
+        points[{i,j,k}].dfx = points[{i,j,k}].dfx - LU[i].b*points[{i-1,j,k}].dfx - LU[i].eg*points[{i-2,j,k}].dfx
+        sum1 += LU[i].k*points[{i,j,k}].dfx
+        sum2 += LU[i].l*points[{i,j,k}].dfx
       end
 
       -- Step 10
-      points[{N-2,j,k}].df = points[{N-2,j,k}].df - sum1
-      points[{N-1,j,k}].df = ( points[{N-1,j,k}].df - sum2 - LU[N-2].l*points[{N-2,j,k}].df )*LU[N-1].g
+      points[{N-2,j,k}].dfx = points[{N-2,j,k}].dfx - sum1
+      points[{N-1,j,k}].dfx = ( points[{N-1,j,k}].dfx - sum2 - LU[N-2].l*points[{N-2,j,k}].dfx )*LU[N-1].g
 
       -- Step 11
-      points[{N-2,j,k}].df = ( points[{N-2,j,k}].df - LU[N-2].w*points[{N-1,j,k}].df )*LU[N-2].g
-      points[{N-3,j,k}].df = ( points[{N-3,j,k}].df - LU[N-3].v*points[{N-2,j,k}].df - LU[N-3].w*points[{N-1,j,k}].df )*LU[N-3].g
-      points[{N-4,j,k}].df = ( points[{N-4,j,k}].df - LU[N-4].h*points[{N-3,j,k}].df - LU[N-4].v*points[{N-2,j,k}].df - LU[N-4].w*points[{N-1,j,k}].df )*LU[N-4].g
+      points[{N-2,j,k}].dfx = ( points[{N-2,j,k}].dfx - LU[N-2].w*points[{N-1,j,k}].dfx )*LU[N-2].g
+      points[{N-3,j,k}].dfx = ( points[{N-3,j,k}].dfx - LU[N-3].v*points[{N-2,j,k}].dfx - LU[N-3].w*points[{N-1,j,k}].dfx )*LU[N-3].g
+      points[{N-4,j,k}].dfx = ( points[{N-4,j,k}].dfx - LU[N-4].h*points[{N-3,j,k}].dfx - LU[N-4].v*points[{N-2,j,k}].dfx - LU[N-4].w*points[{N-1,j,k}].dfx )*LU[N-4].g
       for i = N-5,-1,-1 do
-        points[{i,j,k}].df = ( points[{i,j,k}].df - LU[i].h*points[{i+1,j,k}].df - LU[i].ff*points[{i+2,j,k}].df - LU[i].v*points[{N-2,j,k}].df - LU[i].w*points[{N-1,j,k}].df )*LU[i].g
+        points[{i,j,k}].dfx = ( points[{i,j,k}].dfx - LU[i].h*points[{i+1,j,k}].dfx - LU[i].ff*points[{i+2,j,k}].dfx - LU[i].v*points[{N-2,j,k}].dfx - LU[i].w*points[{N-1,j,k}].dfx )*LU[i].g
       end
 
     end
@@ -185,7 +187,7 @@ end
 task SolveYLU( points : region(ispace(int3d), point),
                LU     : region(ispace(int1d), LU_struct) )
 where
-  reads writes(points.df), reads(LU)
+  reads writes(points.dfy), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.y + 1
@@ -194,27 +196,27 @@ do
     for k = bounds.lo.z, bounds.hi.z+1 do
 
       -- Step 8
-      points[{i,1,k}].df = points[{i,1,k}].df - LU[1].b*points[{i,0,k}].df
-      var sum1 : double = LU[0].k*points[{i,0,k}].df + LU[1].k*points[{i,1,k}].df
-      var sum2 : double = LU[0].l*points[{i,0,k}].df + LU[1].l*points[{i,1,k}].df
+      points[{i,1,k}].dfy = points[{i,1,k}].dfy - LU[1].b*points[{i,0,k}].dfy
+      var sum1 : double = LU[0].k*points[{i,0,k}].dfy + LU[1].k*points[{i,1,k}].dfy
+      var sum2 : double = LU[0].l*points[{i,0,k}].dfy + LU[1].l*points[{i,1,k}].dfy
 
       -- Step 9
       for j = 2,N-2 do
-        points[{i,j,k}].df = points[{i,j,k}].df - LU[j].b*points[{i,j-1,k}].df - LU[j].eg*points[{i,j-2,k}].df
-        sum1 += LU[j].k*points[{i,j,k}].df
-        sum2 += LU[j].l*points[{i,j,k}].df
+        points[{i,j,k}].dfy = points[{i,j,k}].dfy - LU[j].b*points[{i,j-1,k}].dfy - LU[j].eg*points[{i,j-2,k}].dfy
+        sum1 += LU[j].k*points[{i,j,k}].dfy
+        sum2 += LU[j].l*points[{i,j,k}].dfy
       end
 
       -- Step 10
-      points[{i,N-2,k}].df = points[{i,N-2,k}].df - sum1
-      points[{i,N-1,k}].df = ( points[{i,N-1,k}].df - sum2 - LU[N-2].l*points[{i,N-2,k}].df )*LU[N-1].g
+      points[{i,N-2,k}].dfy = points[{i,N-2,k}].dfy - sum1
+      points[{i,N-1,k}].dfy = ( points[{i,N-1,k}].dfy - sum2 - LU[N-2].l*points[{i,N-2,k}].dfy )*LU[N-1].g
 
       -- Step 11
-      points[{i,N-2,k}].df = ( points[{i,N-2,k}].df - LU[N-2].w*points[{i,N-1,k}].df )*LU[N-2].g
-      points[{i,N-3,k}].df = ( points[{i,N-3,k}].df - LU[N-3].v*points[{i,N-2,k}].df - LU[N-3].w*points[{i,N-1,k}].df )*LU[N-3].g
-      points[{i,N-4,k}].df = ( points[{i,N-4,k}].df - LU[N-4].h*points[{i,N-3,k}].df - LU[N-4].v*points[{i,N-2,k}].df - LU[N-4].w*points[{i,N-1,k}].df )*LU[N-4].g
+      points[{i,N-2,k}].dfy = ( points[{i,N-2,k}].dfy - LU[N-2].w*points[{i,N-1,k}].dfy )*LU[N-2].g
+      points[{i,N-3,k}].dfy = ( points[{i,N-3,k}].dfy - LU[N-3].v*points[{i,N-2,k}].dfy - LU[N-3].w*points[{i,N-1,k}].dfy )*LU[N-3].g
+      points[{i,N-4,k}].dfy = ( points[{i,N-4,k}].dfy - LU[N-4].h*points[{i,N-3,k}].dfy - LU[N-4].v*points[{i,N-2,k}].dfy - LU[N-4].w*points[{i,N-1,k}].dfy )*LU[N-4].g
       for j = N-5,-1,-1 do
-        points[{i,j,k}].df = ( points[{i,j,k}].df - LU[j].h*points[{i,j+1,k}].df - LU[j].ff*points[{i,j+2,k}].df - LU[j].v*points[{i,N-2,k}].df - LU[j].w*points[{i,N-1,k}].df )*LU[j].g
+        points[{i,j,k}].dfy = ( points[{i,j,k}].dfy - LU[j].h*points[{i,j+1,k}].dfy - LU[j].ff*points[{i,j+2,k}].dfy - LU[j].v*points[{i,N-2,k}].dfy - LU[j].w*points[{i,N-1,k}].dfy )*LU[j].g
       end
 
     end
@@ -225,7 +227,7 @@ end
 task SolveZLU( points : region(ispace(int3d), point),
                LU     : region(ispace(int1d), LU_struct) )
 where
-  reads writes(points.df), reads(LU)
+  reads writes(points.dfz), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.z + 1
@@ -234,27 +236,27 @@ do
     for j = bounds.lo.y, bounds.hi.y+1 do
 
       -- Step 8
-      points[{i,j,1}].df = points[{i,j,1}].df - LU[1].b*points[{i,j,0}].df
-      var sum1 : double = LU[0].k*points[{i,j,0}].df + LU[1].k*points[{i,j,1}].df
-      var sum2 : double = LU[0].l*points[{i,j,0}].df + LU[1].l*points[{i,j,1}].df
+      points[{i,j,1}].dfz = points[{i,j,1}].dfz - LU[1].b*points[{i,j,0}].dfz
+      var sum1 : double = LU[0].k*points[{i,j,0}].dfz + LU[1].k*points[{i,j,1}].dfz
+      var sum2 : double = LU[0].l*points[{i,j,0}].dfz + LU[1].l*points[{i,j,1}].dfz
 
       -- Step 9
       for k = 2,N-2 do
-        points[{i,j,k}].df = points[{i,j,k}].df - LU[k].b*points[{i,j,k-1}].df - LU[k].eg*points[{i,j,k-2}].df
-        sum1 += LU[k].k*points[{i,j,k}].df
-        sum2 += LU[k].l*points[{i,j,k}].df
+        points[{i,j,k}].dfz = points[{i,j,k}].dfz - LU[k].b*points[{i,j,k-1}].dfz - LU[k].eg*points[{i,j,k-2}].dfz
+        sum1 += LU[k].k*points[{i,j,k}].dfz
+        sum2 += LU[k].l*points[{i,j,k}].dfz
       end
 
       -- Step 10
-      points[{i,j,N-2}].df = points[{i,j,N-2}].df - sum1
-      points[{i,j,N-1}].df = ( points[{i,j,N-1}].df - sum2 - LU[N-2].l*points[{i,j,N-2}].df )*LU[N-1].g
+      points[{i,j,N-2}].dfz = points[{i,j,N-2}].dfz - sum1
+      points[{i,j,N-1}].dfz = ( points[{i,j,N-1}].dfz - sum2 - LU[N-2].l*points[{i,j,N-2}].dfz )*LU[N-1].g
 
       -- Step 11
-      points[{i,j,N-2}].df = ( points[{i,j,N-2}].df - LU[N-2].w*points[{i,j,N-1}].df )*LU[N-2].g
-      points[{i,j,N-3}].df = ( points[{i,j,N-3}].df - LU[N-3].v*points[{i,j,N-2}].df - LU[N-3].w*points[{i,j,N-1}].df )*LU[N-3].g
-      points[{i,j,N-4}].df = ( points[{i,j,N-4}].df - LU[N-4].h*points[{i,j,N-3}].df - LU[N-4].v*points[{i,j,N-2}].df - LU[N-4].w*points[{i,j,N-1}].df )*LU[N-4].g
+      points[{i,j,N-2}].dfz = ( points[{i,j,N-2}].dfz - LU[N-2].w*points[{i,j,N-1}].dfz )*LU[N-2].g
+      points[{i,j,N-3}].dfz = ( points[{i,j,N-3}].dfz - LU[N-3].v*points[{i,j,N-2}].dfz - LU[N-3].w*points[{i,j,N-1}].dfz )*LU[N-3].g
+      points[{i,j,N-4}].dfz = ( points[{i,j,N-4}].dfz - LU[N-4].h*points[{i,j,N-3}].dfz - LU[N-4].v*points[{i,j,N-2}].dfz - LU[N-4].w*points[{i,j,N-1}].dfz )*LU[N-4].g
       for k = N-5,-1,-1 do
-        points[{i,j,k}].df = ( points[{i,j,k}].df - LU[k].h*points[{i,j,k+1}].df - LU[k].ff*points[{i,j,k+2}].df - LU[k].v*points[{i,j,N-2}].df - LU[k].w*points[{i,j,N-1}].df )*LU[k].g
+        points[{i,j,k}].dfz = ( points[{i,j,k}].dfz - LU[k].h*points[{i,j,k+1}].dfz - LU[k].ff*points[{i,j,k+2}].dfz - LU[k].v*points[{i,j,N-2}].dfz - LU[k].w*points[{i,j,N-1}].dfz )*LU[k].g
       end
 
     end
@@ -297,28 +299,84 @@ local function make_stencil_pattern(points, index, a10, b10, c10, N, onebydx, di
   return value
 end
 
-local function make_stencil(N, onebydx, a10, b10, c10, dir)
-  local task rhs( points : region(ispace(int3d), point) )
+local function make_stencil_x(N, onebydx, a10, b10, c10)
+  local task rhs_x( points : region(ispace(int3d), point) )
   where
-    reads(points.f), writes(points.df)
+    reads(points.f), writes(points.dfx)
   do
     for i in points do
-      points[i].df = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydx, dir)]
+      points[i].dfx = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydx, 0)]
     end
   end
-  return rhs
+  return rhs_x
 end
 
-local ComputeXRHS = make_stencil(NN, ONEBYDX, a10d1, b10d1, c10d1, 0)
-local ComputeYRHS = make_stencil(NN, ONEBYDY, a10d1, b10d1, c10d1, 1)
-local ComputeZRHS = make_stencil(NN, ONEBYDY, a10d1, b10d1, c10d1, 2)
+local function make_stencil_y(N, onebydy, a10, b10, c10)
+  local task rhs_y( points : region(ispace(int3d), point) )
+  where
+    reads(points.f), writes(points.dfy)
+  do
+    for i in points do
+      points[i].dfy = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydy, 1)]
+    end
+  end
+  return rhs_y
+end
+
+local function make_stencil_z(N, onebydz, a10, b10, c10, dir)
+  local task rhs_z( points : region(ispace(int3d), point) )
+  where
+    reads(points.f), writes(points.dfz)
+  do
+    for i in points do
+      points[i].dfz = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydz, 2)]
+    end
+  end
+  return rhs_z
+end
+
+local ComputeXRHS = make_stencil_x(NN, ONEBYDX, a10d1, b10d1, c10d1)
+local ComputeYRHS = make_stencil_y(NN, ONEBYDY, a10d1, b10d1, c10d1)
+local ComputeZRHS = make_stencil_z(NN, ONEBYDZ, a10d1, b10d1, c10d1)
+
+task ddx( points : region(ispace(int3d), point),
+          LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfx)
+do
+  ComputeXRHS(points)
+  var token = SolveXLU(points,LU)
+  return token
+end
+
+task ddy( points : region(ispace(int3d), point),
+          LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfy)
+do
+  ComputeYRHS(points)
+  var token = SolveYLU(points,LU)
+  return token
+end
+
+task ddz( points : region(ispace(int3d), point),
+          LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfz)
+do
+  ComputeZRHS(points)
+  var token = SolveZLU(points,LU)
+  return token
+end
 
 task initialize( points : region(ispace(int3d), point),
+                 exact  : region(ispace(int3d), point),
+                 coords : region(ispace(int3d), coordinates),
                  dx     : double,
                  dy     : double,
                  dz     : double )
 where
-  reads writes(points.x, points.y, points.z, points.f, points.dfx, points.dfy, points.dfz)
+  reads writes(coords.x, coords.y, coords.z, points.f, exact.dfx, exact.dfy, exact.dfz)
 do
   var bounds = points.ispace.bounds
 
@@ -326,67 +384,51 @@ do
     for j = bounds.lo.y, bounds.hi.y+1 do
       for k = bounds.lo.z, bounds.hi.z+1 do
         var e : int3d = { x = i, y = j, z = k }
-        points[e].x   = i*dx
-        points[e].y   = j*dy
-        points[e].z   = k*dz
-        points[e].f   = cmath.sin(points[e].x) + cmath.sin(points[e].y) + cmath.sin(points[e].z)
-        points[e].dfx = cmath.cos(points[e].x)
-        points[e].dfy = cmath.cos(points[e].y)
-        points[e].dfz = cmath.cos(points[e].z)
+        coords[e].x   = i*dx
+        coords[e].y   = j*dy
+        coords[e].z   = k*dz
+        points[e].f   = cmath.sin(coords[e].x) + cmath.sin(coords[e].y) + cmath.sin(coords[e].z)
+        exact [e].dfx = cmath.cos(coords[e].x)
+        exact [e].dfy = cmath.cos(coords[e].y)
+        exact [e].dfz = cmath.cos(coords[e].z)
       end
     end
   end
   return 0
 end
 
-task ddx( points : region(ispace(int3d), point),
-          dx     : double )
+task get_error_x( points : region(ispace(int3d), point),
+                  exact  : region(ispace(int3d), point) )
 where
-  reads(points.f), writes(points.df)
-do
-  var bounds = points.ispace.bounds
-  var N = bounds.hi.x + 1
-  
-  for i = bounds.lo.x, bounds.hi.x+1 do
-    for j = bounds.lo.y, bounds.hi.y+1 do
-      for k = bounds.lo.z, bounds.hi.z+1 do
-        var e : int3d = { x = i, y = j, z = k }
-        points[ { x = i, y = j, z = k } ].df = ( points[ { x = (i+1+N)%N, y = j, z = k } ].f - points[ { x = (i-1+N)%N, y = j, z = k } ].f ) / (2.0*dx)
-      end
-    end
-  end
-
-end
-
-task get_error_x( points : region(ispace(int3d), point) )
-where
-  reads(points.df, points.dfx)
+  reads(points.dfx, exact.dfx)
 do
   var err : double = 0.0
   for i in points do
-    err = max(err, cmath.fabs(points[i].df - points[i].dfx))
+    err = max(err, cmath.fabs(points[i].dfx - exact[i].dfx))
   end
   return err
 end
 
-task get_error_y( points : region(ispace(int3d), point) )
+task get_error_y( points : region(ispace(int3d), point),
+                  exact  : region(ispace(int3d), point) )
 where
-  reads(points.df, points.dfy)
+  reads(points.dfy, exact.dfy)
 do
   var err : double = 0.0
   for i in points do
-    err = max(err, cmath.fabs(points[i].df - points[i].dfy))
+    err = max(err, cmath.fabs(points[i].dfy - exact[i].dfy))
   end
   return err
 end
 
-task get_error_z( points : region(ispace(int3d), point) )
+task get_error_z( points : region(ispace(int3d), point),
+                  exact  : region(ispace(int3d), point) )
 where
-  reads(points.df, points.dfz)
+  reads(points.dfz, exact.dfz)
 do
   var err : double = 0.0
   for i in points do
-    err = max(err, cmath.fabs(points[i].df - points[i].dfz))
+    err = max(err, cmath.fabs(points[i].dfz - exact[i].dfz))
   end
   return err
 end
@@ -418,48 +460,52 @@ task main()
   get_LU_decomposition(LU_x, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
 
   var grid   = ispace(int3d, { x = N, y = N, z = N })
+  var coords = region(grid, coordinates)
   var points = region(grid, point)
+  var exact  = region(grid, point)
   
   -- Initialize function f
-  var token = initialize(points, dx, dy, dz)
+  var token = initialize(points, exact, coords, dx, dy, dz)
 
   wait_for(token)
   var ts_start = c.legion_get_current_time_in_micros()
   
   -- Get df/dx
-  ComputeXRHS(points)
-  token += SolveXLU(points,LU_x)
+  -- ComputeXRHS(points)
+  -- token += SolveXLU(points,LU_x)
+  token += ddx(points,LU_x)
   
-  wait_for(token)
-  var ts_x = c.legion_get_current_time_in_micros() - ts_start
-  var err_x = get_error_x(points) 
- 
-  wait_for(err_x)
-  ts_start = c.legion_get_current_time_in_micros()
+  -- wait_for(token)
+  -- var ts_x = c.legion_get_current_time_in_micros() - ts_start
+  -- wait_for(ts_x)
+  -- ts_start = c.legion_get_current_time_in_micros()
   
-  ComputeYRHS(points)
-  token += SolveYLU(points,LU_x)
+  -- ComputeYRHS(points)
+  -- token += SolveYLU(points,LU_x)
+  token += ddy(points,LU_x)
   
-  wait_for(token)
-  var ts_y = c.legion_get_current_time_in_micros() - ts_start
-  var err_y = get_error_y(points) 
-
-  wait_for(err_y)
-  ts_start = c.legion_get_current_time_in_micros()
+  -- wait_for(token)
+  -- var ts_y = c.legion_get_current_time_in_micros() - ts_start
+  -- wait_for(ts_y)
+  -- ts_start = c.legion_get_current_time_in_micros()
   
-  ComputeZRHS(points)
-  token += SolveZLU(points,LU_x)
+  -- ComputeZRHS(points)
+  -- token += SolveZLU(points,LU_x)
+  token += ddz(points,LU_x)
   
   wait_for(token)
   var ts_z = c.legion_get_current_time_in_micros() - ts_start
-  var err_z = get_error_z(points) 
+  
+  var err_x = get_error_x(points,exact) 
+  var err_y = get_error_y(points,exact) 
+  var err_z = get_error_z(points,exact) 
 
-  c.printf("Time to get the x derivative: %12.5e\n", (ts_x)*1e-6)
-  c.printf("Maximum error = %12.5e\n", err_x)
-  c.printf("Time to get the y derivative: %12.5e\n", (ts_y)*1e-6)
-  c.printf("Maximum error = %12.5e\n", err_y)
+  -- c.printf("Time to get the x derivative: %12.5e\n", (ts_x)*1e-6)
+  c.printf("Maximum error in x = %12.5e\n", err_x)
+  -- c.printf("Time to get the y derivative: %12.5e\n", (ts_y)*1e-6)
+  c.printf("Maximum error in y = %12.5e\n", err_y)
   c.printf("Time to get the z derivative: %12.5e\n", (ts_z)*1e-6)
-  c.printf("Maximum error = %12.5e\n", err_z)
+  c.printf("Maximum error in z = %12.5e\n", err_z)
 
 end
 

@@ -1,240 +1,411 @@
 level	start	end	color	opacity	title	initiation
 proc_id 2089670227099910144
-5	8000	8165	#2b00ff	1.0	Scheduler	0
-5	8206	8218	#4300ff	1.0	State Analaysis	1
-5	8231	8247	#FFC0CB	1.0	ProfTask	
-5	8254	8355	#ff3500	1.0	Task Physical Dependence Analysis	1
-5	8361	8362	#FFC0CB	1.0	ProfTask <1>	
-5	8363	8367	#FFC0CB	1.0	ProfTask <1>	
-5	8485	8492	#0063ff	1.0	Decrement Pending Task	1
-5	8507	8509	#FFC0CB	1.0	ProfTask <1>	
-5	9097	9145	#2bff00	1.0	Logical Dependence Analysis	3
-5	9145	9151	#2bff00	0.15	Logical Dependence Analysis	3
-5	9151	9153	#2bff00	0.45	Logical Dependence Analysis	3
-5	9153	9418	#2bff00	1.0	Logical Dependence Analysis	3
-5	9430	9448	#2b00ff	1.0	Scheduler	0
-5	9454	9500	#2bff00	1.0	Logical Dependence Analysis	4
-5	9507	9521	#2b00ff	1.0	Scheduler	0
-5	9526	9528	#FFC0CB	1.0	ProfTask <3>	
-5	9529	10282	#ff3500	1.0	Task Physical Dependence Analysis	3
-4	9591	9997	#ff0017	1.0	Mapper Call map_task for get_LU_decomposition <3>
-5	10291	10292	#FFC0CB	1.0	ProfTask	
-5	10294	10294	#FFC0CB	1.0	ProfTask <4>	
-5	10296	10420	#ff3500	1.0	Task Physical Dependence Analysis	4
-5	10420	10798	#ff3500	0.15	Task Physical Dependence Analysis	4
-5	10798	10838	#ff3500	0.45	Task Physical Dependence Analysis	4
-5	10838	10898	#ff3500	1.0	Task Physical Dependence Analysis	4
-4	10787	10815	#0063ff	1.0	Decrement Pending Task	3
-5	10908	10926	#006600	1.0	Post	3
-5	10926	10932	#006600	0.15	Post	3
-5	10932	10942	#006600	0.45	Post	3
-5	10942	11057	#006600	1.0	Post	3
-4	10930	10934	#0063ff	1.0	Decrement Pending Task	4
-5	11065	11067	#FFC0CB	1.0	ProfTask	
-5	11068	11072	#FFC0CB	1.0	ProfTask <3>	
-5	11073	11074	#FFC0CB	1.0	ProfTask <3>	
-5	11075	11075	#FFC0CB	1.0	ProfTask <4>	
-5	11076	11079	#FFC0CB	1.0	ProfTask <3>	
-5	11081	11082	#FFC0CB	1.0	ProfTask <3>	
-5	11083	11084	#FFC0CB	1.0	ProfTask <4>	
-5	11085	11086	#FFC0CB	1.0	ProfTask <4>	
-5	11087	11088	#FFC0CB	1.0	ProfTask <3>	
-5	8734128	8734167	#006600	1.0	Post	4
-5	8734178	8734180	#FFC0CB	1.0	ProfTask <4>	
-5	8734182	8734183	#FFC0CB	1.0	ProfTask <4>	
-5	8734367	8734553	#2bff00	1.0	Logical Dependence Analysis	5
-4	8734548	8734666	#ff00a7	1.0	Mapper Call select_task_options
-5	8734567	8734627	#2b00ff	1.0	Scheduler	0
-5	8734627	8734851	#2b00ff	0.15	Scheduler	0
-5	8734851	8734855	#2b00ff	0.45	Scheduler	0
-5	8734855	8734861	#2b00ff	1.0	Scheduler	0
-5	8734861	8734919	#2b00ff	0.15	Scheduler	0
-5	8734919	8734948	#2b00ff	0.45	Scheduler	0
-5	8734948	8734957	#2b00ff	1.0	Scheduler	0
-3	8734571	8734841	#9700ff	1.0	Mapper Call select_tasks_to_map
-2	8734662	8734672	#ff4d00	1.0	Finish Mapper Continuation	0
-4	8734682	8734803	#2bff00	1.0	Logical Dependence Analysis	6
-4	8734812	8734820	#ff9b00	1.0	Mapper Continuation	9
-4	8734820	8734947	#ff9b00	0.15	Mapper Continuation	9
-4	8734947	8734962	#ff9b00	0.45	Mapper Continuation	9
-2	8734815	8734941	#ff00a7	1.0	Mapper Call select_task_options
-1	8734833	8734846	#ff9b00	1.0	Mapper Continuation	0
-3	8734863	8734877	#2bff00	1.0	Logical Dependence Analysis	7
-3	8734884	8734899	#ff9b00	1.0	Mapper Continuation	9
-3	8734899	8734912	#ff9b00	0.15	Mapper Continuation	9
-3	8734912	8734920	#ff9b00	0.45	Mapper Continuation	9
-3	8734920	8734942	#ff9b00	1.0	Mapper Continuation	9
-1	8734909	8734914	#ff9b00	1.0	Mapper Continuation	0
-5	8734980	8734982	#FFC0CB	1.0	ProfTask <5>	
-5	8734984	8734985	#FFC0CB	1.0	ProfTask	
-5	8734986	8734986	#FFC0CB	1.0	ProfTask <6>	
-5	8734987	8734988	#FFC0CB	1.0	ProfTask	
-5	8734989	8734989	#FFC0CB	1.0	ProfTask <7>	
-5	8734991	8735052	#2bff00	1.0	Logical Dependence Analysis	8
-5	8735066	8735113	#2bff00	1.0	Logical Dependence Analysis	9
-5	8735126	8735146	#2bff00	1.0	Logical Dependence Analysis	10
-5	8735163	8735165	#FFC0CB	1.0	ProfTask	
-5	8735205	8735274	#2bff00	1.0	Logical Dependence Analysis	11
-5	8735293	8735297	#2bff00	1.0	Logical Dependence Analysis	12
-5	8735297	8735303	#2bff00	0.15	Logical Dependence Analysis	12
-5	8735303	8735336	#2bff00	0.45	Logical Dependence Analysis	12
-5	8735336	8735486	#2bff00	1.0	Logical Dependence Analysis	12
-4	8735300	8735303	#FFC0CB	1.0	ProfTask <9>	
-5	8735497	8735511	#2bff00	1.0	Logical Dependence Analysis	13
-5	8735518	8735754	#ff3500	1.0	Task Physical Dependence Analysis	5
-4	8735557	8735657	#ff0017	1.0	Mapper Call map_task for rhs <5>
-5	8735762	8735777	#333399	1.0	Deferred Mapping Trigger	6
-5	8735783	8735798	#2b00ff	1.0	Scheduler	0
-5	8735802	8735804	#FFC0CB	1.0	ProfTask	
-5	8735806	8735806	#FFC0CB	1.0	ProfTask <9>	
-5	8735807	8735808	#FFC0CB	1.0	ProfTask <8>	
-5	8735809	8735810	#FFC0CB	1.0	ProfTask <9>	
-5	8735811	8735812	#FFC0CB	1.0	ProfTask <10>	
-5	8735813	8735813	#FFC0CB	1.0	ProfTask <11>	
-5	8735814	8735815	#FFC0CB	1.0	ProfTask <12>	
-5	8735816	8735817	#FFC0CB	1.0	ProfTask <13>	
-5	8735818	8735818	#FFC0CB	1.0	ProfTask <5>	
-5	8735819	8735820	#FFC0CB	1.0	ProfTask <5>	
-5	8735821	8735823	#FFC0CB	1.0	ProfTask <6>	
-5	8735827	8735829	#0063ff	1.0	Decrement Pending Task	5
-5	8735835	8736273	#ff3500	1.0	Task Physical Dependence Analysis	6
-5	8736283	8736292	#333399	1.0	Deferred Mapping Trigger	7
-5	8736297	8736298	#333399	1.0	Deferred Mapping Trigger	8
-5	8736303	8736321	#2b00ff	1.0	Scheduler	0
-5	8736325	8736326	#FFC0CB	1.0	ProfTask	
-5	8736328	8736329	#FFC0CB	1.0	ProfTask <5>	
-5	8736330	8736330	#FFC0CB	1.0	ProfTask <6>	
-5	8736331	8736332	#FFC0CB	1.0	ProfTask <7>	
-5	8736333	8736334	#FFC0CB	1.0	ProfTask <8>	
-5	8736335	8736683	#ff3500	1.0	Task Physical Dependence Analysis	7
-5	8736693	8736799	#ff3500	1.0	Task Physical Dependence Analysis	8
-5	8736806	8736823	#333399	1.0	Deferred Mapping Trigger	9
-5	8736829	8736844	#2b00ff	1.0	Scheduler	0
-5	8736849	8736850	#FFC0CB	1.0	ProfTask	
-5	8736851	8736852	#FFC0CB	1.0	ProfTask <7>	
-5	8736853	8736854	#FFC0CB	1.0	ProfTask <8>	
-5	8736855	8736855	#FFC0CB	1.0	ProfTask <9>	
-5	8736856	8736968	#ff3500	1.0	Task Physical Dependence Analysis	9
-5	8736975	8736982	#333399	1.0	Deferred Mapping Trigger	10
-5	8736986	8736988	#333399	1.0	Deferred Mapping Trigger	11
-5	8736993	8737010	#2b00ff	1.0	Scheduler	0
-5	8737014	8737022	#FFC0CB	1.0	ProfTask	
-5	8737025	8737026	#FFC0CB	1.0	ProfTask <9>	
-5	8737027	8737028	#FFC0CB	1.0	ProfTask <10>	
-5	8737029	8737029	#FFC0CB	1.0	ProfTask <11>	
-5	8737031	8737066	#ff3500	1.0	Task Physical Dependence Analysis	10
-5	8737072	8737177	#ff3500	1.0	Task Physical Dependence Analysis	11
-5	8737184	8737192	#333399	1.0	Deferred Mapping Trigger	12
-5	8737197	8737211	#2b00ff	1.0	Scheduler	0
-5	8737215	8737216	#FFC0CB	1.0	ProfTask	
-5	8737217	8737218	#FFC0CB	1.0	ProfTask <10>	
-5	8737219	8737220	#FFC0CB	1.0	ProfTask <11>	
-5	8737221	8737221	#FFC0CB	1.0	ProfTask <12>	
-5	8737222	8737334	#ff3500	1.0	Task Physical Dependence Analysis	12
-5	8737341	8737357	#333399	1.0	Deferred Mapping Trigger	13
-5	8737363	8737383	#2b00ff	1.0	Scheduler	0
-5	8737388	8737389	#FFC0CB	1.0	ProfTask	
-5	8737390	8737391	#FFC0CB	1.0	ProfTask <12>	
-5	8737392	8737392	#FFC0CB	1.0	ProfTask <13>	
-5	8737394	8737415	#ff3500	1.0	Task Physical Dependence Analysis	13
-5	8737419	8737420	#FFC0CB	1.0	ProfTask	
-5	8737421	8737422	#FFC0CB	1.0	ProfTask <13>	
-5	9024220	9024223	#0063ff	1.0	Decrement Pending Task	6
-5	9024239	9024272	#006600	1.0	Post	5
-5	9024281	9024286	#FFC0CB	1.0	ProfTask <5>	
-5	9024288	9024289	#FFC0CB	1.0	ProfTask <6>	
-5	9024290	9024291	#FFC0CB	1.0	ProfTask <5>	
-5	9329750	9329755	#0063ff	1.0	Decrement Pending Task	8
-5	9329770	9329818	#006600	1.0	Post	6
-5	9329828	9329830	#FFC0CB	1.0	ProfTask <6>	
-5	9329831	9329832	#FFC0CB	1.0	ProfTask <8>	
-5	9329834	9329835	#FFC0CB	1.0	ProfTask <6>	
-5	9475166	9475247	#0063ff	1.0	Decrement Pending Task	7
-5	9475263	9475265	#0063ff	1.0	Decrement Pending Task	9
-5	9475274	9475309	#006600	1.0	Post	8
-5	9475318	9475332	#006600	1.0	Post	7
-5	9475337	9475339	#FFC0CB	1.0	ProfTask <8>	
-5	9475341	9475342	#FFC0CB	1.0	ProfTask <7>	
-5	9475344	9475345	#FFC0CB	1.0	ProfTask <7>	
-5	9475346	9475347	#FFC0CB	1.0	ProfTask <9>	
-5	9475348	9475348	#FFC0CB	1.0	ProfTask <8>	
-5	9475350	9475350	#FFC0CB	1.0	ProfTask <7>	
-5	9981668	9981672	#0063ff	1.0	Decrement Pending Task	11
-5	9981689	9981730	#006600	1.0	Post	9
-5	9981740	9981742	#FFC0CB	1.0	ProfTask <9>	
-5	9981744	9981745	#FFC0CB	1.0	ProfTask <11>	
-5	9981747	9981748	#FFC0CB	1.0	ProfTask <9>	
-5	10159681	10159691	#0063ff	1.0	Decrement Pending Task	10
-5	10159706	10159708	#0063ff	1.0	Decrement Pending Task	12
-5	10159719	10159753	#006600	1.0	Post	11
-5	10159762	10159775	#006600	1.0	Post	10
-5	10159782	10159783	#FFC0CB	1.0	ProfTask <11>	
-5	10159785	10159786	#FFC0CB	1.0	ProfTask <10>	
-5	10159788	10159789	#FFC0CB	1.0	ProfTask <10>	
-5	10159790	10159790	#FFC0CB	1.0	ProfTask <12>	
-5	10159792	10159792	#FFC0CB	1.0	ProfTask <11>	
-5	10159794	10159794	#FFC0CB	1.0	ProfTask <10>	
-5	11325146	11325183	#006600	1.0	Post	12
-5	11325195	11325197	#FFC0CB	1.0	ProfTask <12>	
-5	11325200	11325201	#FFC0CB	1.0	ProfTask <12>	
-5	11325289	11325293	#0063ff	1.0	Decrement Pending Task	13
-5	11325307	11325336	#006600	1.0	Post	13
-5	11325344	11325346	#FFC0CB	1.0	ProfTask <13>	
-5	11325348	11325349	#FFC0CB	1.0	ProfTask <13>	
-5	11325351	11325352	#FFC0CB	1.0	ProfTask <13>	
-5	11325536	11325575	#2bff00	1.0	Logical Dependence Analysis	14
-5	11325589	11325607	#2b00ff	1.0	Scheduler	0
-5	11325611	11325613	#FFC0CB	1.0	ProfTask <14>	
-5	11325614	11325923	#ff3500	1.0	Task Physical Dependence Analysis	14
-5	11325931	11325933	#FFC0CB	1.0	ProfTask	
-5	11325934	11325935	#FFC0CB	1.0	ProfTask <14>	
-5	11325936	11325937	#FFC0CB	1.0	ProfTask <14>	
-5	11417430	11417435	#FFC0CB	1.0	ProfTask <14>	
-5	11417552	11417556	#0063ff	1.0	Decrement Pending Task	14
-5	11417571	11417572	#FFC0CB	1.0	ProfTask <14>	
-5	11458084	11458118	#006600	1.0	Post	14
-5	11458130	11458132	#FFC0CB	1.0	ProfTask <14>	
-5	11458135	11458136	#FFC0CB	1.0	ProfTask <14>	
-5	11458275	11458421	#006600	1.0	Post	1
-5	11458430	11458432	#FFC0CB	1.0	ProfTask <1>	
-5	11458580	11458581	#FFC0CB	1.0	ProfTask <1>	
-5	11458584	11458609	#0051ff	1.0	Garbage Collection	0
-5	11458616	11458623	#0051ff	1.0	Garbage Collection	0
-5	11458627	11458634	#0051ff	1.0	Garbage Collection	0
-5	11458638	11458652	#0051ff	1.0	Garbage Collection	0
-5	11458675	11458676	#FFC0CB	1.0	ProfTask	
-5	11458677	11458678	#FFC0CB	1.0	ProfTask	
-5	11458679	11458680	#FFC0CB	1.0	ProfTask	
-5	11458681	11458682	#FFC0CB	1.0	ProfTask	
+8	8560	8715	#00ff57	1.0	Scheduler	0
+8	8749	8759	#00ff8d	1.0	State Analaysis	1
+8	8771	8783	#FFC0CB	1.0	ProfTask	
+8	8789	8869	#ff7100	1.0	Task Physical Dependence Analysis	1
+8	8875	8876	#FFC0CB	1.0	ProfTask <1>	
+8	8878	8881	#FFC0CB	1.0	ProfTask <1>	
+8	9016	9025	#c1ff00	1.0	Decrement Pending Task	1
+8	9047	9048	#FFC0CB	1.0	ProfTask <1>	
+8	9609	9893	#0051ff	1.0	Logical Dependence Analysis	3
+8	9904	9920	#00ff57	1.0	Scheduler	0
+8	9925	10000	#0051ff	1.0	Logical Dependence Analysis	4
+8	10006	10026	#00ff57	1.0	Scheduler	0
+8	10032	10033	#FFC0CB	1.0	ProfTask <3>	
+8	10035	10683	#ff7100	1.0	Task Physical Dependence Analysis	3
+7	10095	10430	#ff0029	1.0	Mapper Call map_task for get_LU_decomposition <3>
+8	10691	10699	#FFC0CB	1.0	ProfTask	
+8	10702	10703	#FFC0CB	1.0	ProfTask <4>	
+8	10704	11405	#ff7100	1.0	Task Physical Dependence Analysis	4
+8	11405	11424	#ff7100	0.15	Task Physical Dependence Analysis	4
+8	11424	11454	#ff7100	0.45	Task Physical Dependence Analysis	4
+8	11454	11557	#ff7100	1.0	Task Physical Dependence Analysis	4
+7	10719	11389	#ff0029	1.0	Mapper Call map_task for initialize <4>
+7	11420	11440	#c1ff00	1.0	Decrement Pending Task	3
+8	11566	11603	#006600	1.0	Post	3
+8	11603	11607	#006600	0.15	Post	3
+8	11607	11616	#006600	0.45	Post	3
+8	11616	11692	#006600	1.0	Post	3
+7	11606	11609	#c1ff00	1.0	Decrement Pending Task	4
+8	11699	11701	#FFC0CB	1.0	ProfTask	
+8	11702	11705	#FFC0CB	1.0	ProfTask <3>	
+8	11706	11707	#FFC0CB	1.0	ProfTask <3>	
+8	11708	11708	#FFC0CB	1.0	ProfTask <4>	
+8	11709	11712	#FFC0CB	1.0	ProfTask <3>	
+8	11713	11713	#FFC0CB	1.0	ProfTask <4>	
+8	11714	11714	#FFC0CB	1.0	ProfTask <4>	
+8	11715	11716	#FFC0CB	1.0	ProfTask <3>	
+8	11717	11717	#FFC0CB	1.0	ProfTask <4>	
+8	11720	11721	#FFC0CB	1.0	ProfTask <4>	
+8	11722	11723	#FFC0CB	1.0	ProfTask <3>	
+8	8726985	8727055	#006600	1.0	Post	4
+8	8727069	8727073	#FFC0CB	1.0	ProfTask <4>	
+8	8727076	8727078	#FFC0CB	1.0	ProfTask <4>	
+8	8727155	8727302	#0051ff	1.0	Logical Dependence Analysis	5
+8	8727318	8727369	#00ff57	1.0	Scheduler	0
+8	8727369	8727525	#00ff57	0.15	Scheduler	0
+8	8727525	8727529	#00ff57	0.45	Scheduler	0
+8	8727529	8727562	#00ff57	1.0	Scheduler	0
+7	8727325	8727460	#00cfff	1.0	Mapper Call select_tasks_to_map
+6	8727395	8727442	#0051ff	1.0	Logical Dependence Analysis	6
+6	8727454	8727516	#c7ff00	1.0	Mapper Continuation	0
+8	8727572	8727621	#0051ff	1.0	Logical Dependence Analysis	7
+8	8727632	8727669	#00ff57	1.0	Scheduler	0
+8	8727682	8727687	#FFC0CB	1.0	ProfTask <5>	
+8	8727690	8727691	#FFC0CB	1.0	ProfTask <6>	
+8	8727695	8727696	#FFC0CB	1.0	ProfTask	
+8	8727699	8727783	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8727783	8727785	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8727785	8727806	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8727806	8727811	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8727811	8727816	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8727816	8727822	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8727822	8727890	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8727890	8727937	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8727937	8727998	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8727998	8728039	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728039	8728042	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728042	8728074	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728074	8728089	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728089	8728120	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728120	8728157	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728157	8728169	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728169	8728190	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728190	8728211	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728211	8728249	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728249	8728253	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728253	8728261	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728261	8728267	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728267	8728271	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728271	8728277	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728277	8728284	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728284	8728287	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728287	8728293	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728293	8728301	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728301	8728306	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728306	8728312	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728312	8728411	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728411	8728417	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728417	8728430	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728430	8728437	#ff7100	1.0	Task Physical Dependence Analysis	5
+8	8728437	8728442	#ff7100	0.15	Task Physical Dependence Analysis	5
+8	8728442	8728447	#ff7100	0.45	Task Physical Dependence Analysis	5
+8	8728447	8728599	#ff7100	1.0	Task Physical Dependence Analysis	5
+7	8727756	8728451	#ff0029	1.0	Mapper Call map_task for rhs_z <5>
+6	8727788	8727790	#FFC0CB	1.0	ProfTask	
+6	8727813	8727815	#FFC0CB	1.0	ProfTask <7>	
+6	8727894	8727987	#0051ff	1.0	Logical Dependence Analysis	8
+6	8728043	8728071	#ff7100	1.0	Task Physical Dependence Analysis	6
+6	8728071	8729103	#ff7100	0.15	Task Physical Dependence Analysis	6
+6	8729103	8729119	#ff7100	0.45	Task Physical Dependence Analysis	6
+6	8729119	8729143	#ff7100	1.0	Task Physical Dependence Analysis	6
+6	8729143	8729148	#ff7100	0.15	Task Physical Dependence Analysis	6
+6	8729148	8729368	#ff7100	0.45	Task Physical Dependence Analysis	6
+6	8729368	8729442	#ff7100	1.0	Task Physical Dependence Analysis	6
+5	8728063	8729090	#ff0029	1.0	Mapper Call map_task for rhs_y <6>
+4	8728114	8728154	#ff7100	1.0	Task Physical Dependence Analysis	7
+4	8728154	8729621	#ff7100	0.15	Task Physical Dependence Analysis	7
+4	8729621	8729626	#ff7100	0.45	Task Physical Dependence Analysis	7
+4	8729626	8729719	#ff7100	1.0	Task Physical Dependence Analysis	7
+3	8728145	8729601	#ff0029	1.0	Mapper Call map_task for rhs_x <7>
+2	8728165	8729511	#af00ff	1.0	Mapper Call select_task_options
+1	8728185	8728206	#c7ff00	1.0	Mapper Continuation	6
+1	8728206	8728213	#c7ff00	0.15	Mapper Continuation	6
+1	8728213	8728251	#c7ff00	0.45	Mapper Continuation	6
+1	8728251	8728259	#c7ff00	1.0	Mapper Continuation	6
+1	8728259	8728264	#c7ff00	0.15	Mapper Continuation	6
+1	8728264	8728269	#c7ff00	0.45	Mapper Continuation	6
+1	8728269	8728276	#c7ff00	1.0	Mapper Continuation	6
+1	8728276	8728279	#c7ff00	0.15	Mapper Continuation	6
+1	8728279	8728285	#c7ff00	0.45	Mapper Continuation	6
+1	8728285	8728291	#c7ff00	1.0	Mapper Continuation	6
+1	8728291	8728296	#c7ff00	0.15	Mapper Continuation	6
+1	8728296	8728303	#c7ff00	0.45	Mapper Continuation	6
+1	8728303	8728310	#c7ff00	1.0	Mapper Continuation	6
+1	8728310	8728314	#c7ff00	0.15	Mapper Continuation	6
+1	8728314	8728414	#c7ff00	0.45	Mapper Continuation	6
+1	8728414	8728428	#c7ff00	1.0	Mapper Continuation	6
+1	8728428	8728432	#c7ff00	0.15	Mapper Continuation	6
+1	8728432	8728439	#c7ff00	0.45	Mapper Continuation	6
+1	8728439	8728445	#c7ff00	1.0	Mapper Continuation	6
+1	8728445	8728452	#c7ff00	0.15	Mapper Continuation	6
+1	8728452	8728612	#c7ff00	0.45	Mapper Continuation	6
+1	8728612	8728620	#c7ff00	1.0	Mapper Continuation	6
+1	8728620	8728628	#c7ff00	0.15	Mapper Continuation	6
+1	8728628	8728639	#c7ff00	0.45	Mapper Continuation	6
+1	8728639	8728651	#c7ff00	1.0	Mapper Continuation	6
+1	8728651	8728655	#c7ff00	0.15	Mapper Continuation	6
+1	8728655	8728662	#c7ff00	0.45	Mapper Continuation	6
+1	8728662	8729052	#c7ff00	1.0	Mapper Continuation	6
+1	8729052	8729058	#c7ff00	0.15	Mapper Continuation	6
+1	8729058	8729066	#c7ff00	0.45	Mapper Continuation	6
+1	8729066	8729073	#c7ff00	1.0	Mapper Continuation	6
+1	8729073	8729077	#c7ff00	0.15	Mapper Continuation	6
+1	8729077	8729087	#c7ff00	0.45	Mapper Continuation	6
+1	8729087	8729094	#c7ff00	1.0	Mapper Continuation	6
+8	8728623	8728637	#c7ff00	1.0	Mapper Continuation	7
+8	8728637	8728645	#c7ff00	0.15	Mapper Continuation	7
+8	8728645	8728653	#c7ff00	0.45	Mapper Continuation	7
+8	8728653	8728660	#c7ff00	1.0	Mapper Continuation	7
+8	8728660	8728664	#c7ff00	0.15	Mapper Continuation	7
+8	8728664	8729055	#c7ff00	0.45	Mapper Continuation	7
+8	8729055	8729064	#c7ff00	1.0	Mapper Continuation	7
+8	8729064	8729068	#c7ff00	0.15	Mapper Continuation	7
+8	8729068	8729075	#c7ff00	0.45	Mapper Continuation	7
+8	8729075	8729080	#c7ff00	1.0	Mapper Continuation	7
+8	8729080	8729092	#c7ff00	0.15	Mapper Continuation	7
+8	8729092	8729107	#c7ff00	0.45	Mapper Continuation	7
+8	8729107	8729117	#c7ff00	1.0	Mapper Continuation	7
+8	8729117	8729456	#c7ff00	0.15	Mapper Continuation	7
+8	8729456	8729475	#c7ff00	0.45	Mapper Continuation	7
+8	8729475	8729489	#c7ff00	1.0	Mapper Continuation	7
+8	8729489	8729493	#c7ff00	0.15	Mapper Continuation	7
+8	8729493	8729500	#c7ff00	0.45	Mapper Continuation	7
+8	8729500	8729507	#c7ff00	1.0	Mapper Continuation	7
+8	8729507	8729512	#c7ff00	0.15	Mapper Continuation	7
+8	8729512	8729526	#c7ff00	0.45	Mapper Continuation	7
+8	8729526	8729603	#c7ff00	1.0	Mapper Continuation	7
+7	8729146	8729355	#c1ff00	1.0	Decrement Pending Task	5
+7	8729452	8729472	#c7ff00	1.0	Mapper Continuation	13
+7	8729472	8729477	#c7ff00	0.15	Mapper Continuation	13
+7	8729477	8729491	#c7ff00	0.45	Mapper Continuation	13
+7	8729491	8729498	#c7ff00	1.0	Mapper Continuation	13
+7	8729498	8729503	#c7ff00	0.15	Mapper Continuation	13
+7	8729503	8729508	#c7ff00	0.45	Mapper Continuation	13
+7	8729508	8729514	#c7ff00	1.0	Mapper Continuation	13
+8	8729730	8729751	#333399	1.0	Deferred Mapping Trigger	8
+8	8729760	8729785	#00ff57	1.0	Scheduler	0
+8	8729792	8729794	#FFC0CB	1.0	ProfTask	
+8	8729796	8729798	#FFC0CB	1.0	ProfTask <8>	
+8	8729800	8729819	#0051ff	1.0	Logical Dependence Analysis	9
+8	8729829	8729950	#0051ff	1.0	Logical Dependence Analysis	10
+8	8729960	8729985	#00ff57	1.0	Scheduler	0
+8	8729993	8730018	#0051ff	1.0	Logical Dependence Analysis	11
+8	8730035	8730113	#0051ff	1.0	Logical Dependence Analysis	12
+8	8730123	8730155	#00ff57	1.0	Scheduler	0
+8	8730164	8730165	#FFC0CB	1.0	ProfTask <5>	
+8	8730167	8730169	#FFC0CB	1.0	ProfTask <5>	
+8	8730172	8730172	#FFC0CB	1.0	ProfTask <6>	
+8	8730174	8730175	#FFC0CB	1.0	ProfTask <6>	
+8	8730177	8730179	#FFC0CB	1.0	ProfTask <5>	
+8	8730181	8730182	#FFC0CB	1.0	ProfTask <6>	
+8	8730184	8730186	#FFC0CB	1.0	ProfTask <13>	
+8	8730187	8730188	#FFC0CB	1.0	ProfTask <7>	
+8	8730190	8730191	#FFC0CB	1.0	ProfTask <7>	
+8	8730193	8730194	#FFC0CB	1.0	ProfTask <7>	
+8	8730196	8730197	#FFC0CB	1.0	ProfTask <8>	
+8	8730200	8730414	#ff7100	1.0	Task Physical Dependence Analysis	8
+8	8730424	8730437	#333399	1.0	Deferred Mapping Trigger	9
+8	8730444	8730469	#00ff57	1.0	Scheduler	0
+8	8730476	8730478	#FFC0CB	1.0	ProfTask	
+8	8730480	8730481	#FFC0CB	1.0	ProfTask <9>	
+8	8730484	8730485	#FFC0CB	1.0	ProfTask <10>	
+8	8730487	8730657	#ff7100	1.0	Task Physical Dependence Analysis	10
+8	8730667	8730669	#FFC0CB	1.0	ProfTask	
+8	8730671	8730672	#FFC0CB	1.0	ProfTask <11>	
+8	8730674	8730675	#FFC0CB	1.0	ProfTask <12>	
+8	8730678	8730852	#ff7100	1.0	Task Physical Dependence Analysis	12
+8	8730862	8730864	#FFC0CB	1.0	ProfTask	
+8	8730867	8730876	#FFC0CB	1.0	ProfTask <8>	
+8	8730879	8730880	#FFC0CB	1.0	ProfTask <9>	
+8	8730883	8730925	#ff7100	1.0	Task Physical Dependence Analysis	9
+8	8730934	8730945	#333399	1.0	Deferred Mapping Trigger	11
+8	8730953	8730976	#00ff57	1.0	Scheduler	0
+8	8730983	8730984	#FFC0CB	1.0	ProfTask	
+8	8730987	8730988	#FFC0CB	1.0	ProfTask <10>	
+8	8730990	8730991	#FFC0CB	1.0	ProfTask <12>	
+8	8730993	8730995	#FFC0CB	1.0	ProfTask <9>	
+8	8730997	8730998	#FFC0CB	1.0	ProfTask <11>	
+8	8731000	8731044	#ff7100	1.0	Task Physical Dependence Analysis	11
+8	8731052	8731061	#FFC0CB	1.0	ProfTask	
+8	8731065	8731066	#FFC0CB	1.0	ProfTask <11>	
+8	8923403	8923464	#006600	1.0	Post	5
+8	8923464	8923528	#006600	0.15	Post	5
+8	8923528	8923540	#006600	0.45	Post	5
+8	8923540	8923583	#006600	1.0	Post	5
+7	8923497	8923516	#31ff00	1.0	Add to Dependence Queue	13
+7	8923526	8923532	#c1ff00	1.0	Decrement Pending Task	6
+8	8923592	8923624	#0051ff	1.0	Logical Dependence Analysis	13
+8	8923632	8923664	#00ff57	1.0	Scheduler	0
+8	8923672	8923679	#FFC0CB	1.0	ProfTask <5>	
+8	8923682	8923683	#FFC0CB	1.0	ProfTask <13>	
+8	8923685	8923829	#FFC0CB	1.0	ProfTask <6>	
+8	8923834	8923836	#FFC0CB	1.0	ProfTask <5>	
+8	8923878	8923879	#FFC0CB	1.0	ProfTask <13>	
+8	8923882	8923929	#ff7100	1.0	Task Physical Dependence Analysis	13
+8	8923937	8923938	#FFC0CB	1.0	ProfTask	
+8	8923941	8923942	#FFC0CB	1.0	ProfTask <13>	
+8	9087921	9087939	#006600	1.0	Post	6
+8	9087939	9087983	#006600	0.15	Post	6
+8	9087983	9088320	#006600	0.45	Post	6
+8	9088320	9088373	#006600	1.0	Post	6
+7	9087979	9088306	#c1ff00	1.0	Decrement Pending Task	7
+8	9088383	9088386	#FFC0CB	1.0	ProfTask <6>	
+8	9088389	9088390	#FFC0CB	1.0	ProfTask <7>	
+8	9088393	9088394	#FFC0CB	1.0	ProfTask <6>	
+8	9370443	9370461	#006600	1.0	Post	7
+8	9370461	9370505	#006600	0.15	Post	7
+8	9370505	9370522	#006600	0.45	Post	7
+8	9370522	9370574	#006600	1.0	Post	7
+7	9370501	9370509	#c1ff00	1.0	Decrement Pending Task	12
+8	9370584	9370588	#FFC0CB	1.0	ProfTask <7>	
+8	9370590	9370593	#FFC0CB	1.0	ProfTask <12>	
+8	9370595	9370597	#FFC0CB	1.0	ProfTask <7>	
+8	10489477	10489497	#006600	1.0	Post	12
+8	10489497	10489541	#006600	0.15	Post	12
+8	10489541	10489567	#006600	0.45	Post	12
+8	10489567	10489622	#006600	1.0	Post	12
+7	10489537	10489553	#c1ff00	1.0	Decrement Pending Task	10
+8	10489632	10489636	#FFC0CB	1.0	ProfTask <12>	
+8	10489639	10489640	#FFC0CB	1.0	ProfTask <10>	
+8	10489642	10489644	#FFC0CB	1.0	ProfTask <12>	
+8	10985600	10985619	#006600	1.0	Post	10
+8	10985619	10985663	#006600	0.15	Post	10
+8	10985663	10985689	#006600	0.45	Post	10
+8	10985689	10985733	#006600	1.0	Post	10
+7	10985659	10985675	#c1ff00	1.0	Decrement Pending Task	8
+8	10985742	10985746	#FFC0CB	1.0	ProfTask <10>	
+8	10985749	10985751	#FFC0CB	1.0	ProfTask <8>	
+8	10985753	10985754	#FFC0CB	1.0	ProfTask <10>	
+8	11285167	11285232	#006600	1.0	Post	8
+8	11285245	11285247	#c1ff00	1.0	Decrement Pending Task	9
+8	11285257	11285285	#006600	1.0	Post	9
+8	11285300	11285301	#c1ff00	1.0	Decrement Pending Task	11
+8	11285311	11285339	#006600	1.0	Post	11
+8	11285349	11285350	#c1ff00	1.0	Decrement Pending Task	13
+8	11285359	11285388	#006600	1.0	Post	13
+8	11285397	11285401	#FFC0CB	1.0	ProfTask <8>	
+8	11285404	11285406	#FFC0CB	1.0	ProfTask <8>	
+8	11285408	11285409	#FFC0CB	1.0	ProfTask <9>	
+8	11285411	11285413	#FFC0CB	1.0	ProfTask <9>	
+8	11285415	11285417	#FFC0CB	1.0	ProfTask <9>	
+8	11285418	11285420	#FFC0CB	1.0	ProfTask <11>	
+8	11285422	11285423	#FFC0CB	1.0	ProfTask <11>	
+8	11285426	11285427	#FFC0CB	1.0	ProfTask <11>	
+8	11285429	11285430	#FFC0CB	1.0	ProfTask <13>	
+8	11285432	11285433	#FFC0CB	1.0	ProfTask <13>	
+8	11285436	11285437	#FFC0CB	1.0	ProfTask <13>	
+8	11285482	11285580	#0051ff	1.0	Logical Dependence Analysis	14
+8	11285590	11285620	#00ff57	1.0	Scheduler	0
+8	11285627	11285665	#0051ff	1.0	Logical Dependence Analysis	15
+8	11285673	11285695	#00ff57	1.0	Scheduler	0
+8	11285703	11285774	#0051ff	1.0	Logical Dependence Analysis	16
+8	11285783	11285806	#00ff57	1.0	Scheduler	0
+8	11285813	11285815	#FFC0CB	1.0	ProfTask <14>	
+8	11285817	11286041	#ff7100	1.0	Task Physical Dependence Analysis	14
+8	11286052	11286053	#FFC0CB	1.0	ProfTask	
+8	11286055	11286057	#FFC0CB	1.0	ProfTask <15>	
+8	11286059	11286225	#ff7100	1.0	Task Physical Dependence Analysis	15
+8	11286225	11286254	#ff7100	0.15	Task Physical Dependence Analysis	15
+8	11286254	11286268	#ff7100	0.45	Task Physical Dependence Analysis	15
+8	11286268	11286280	#ff7100	1.0	Task Physical Dependence Analysis	15
+7	11286249	11286257	#c1ff00	1.0	Decrement Pending Task	14
+8	11286288	11286290	#FFC0CB	1.0	ProfTask	
+8	11286292	11286293	#FFC0CB	1.0	ProfTask <16>	
+8	11286296	11286457	#ff7100	1.0	Task Physical Dependence Analysis	16
+8	11286467	11286468	#FFC0CB	1.0	ProfTask	
+8	11286471	11286472	#FFC0CB	1.0	ProfTask <14>	
+8	11286474	11286475	#FFC0CB	1.0	ProfTask <14>	
+8	11286477	11286478	#FFC0CB	1.0	ProfTask <15>	
+8	11286481	11286482	#FFC0CB	1.0	ProfTask <16>	
+8	11331318	11331335	#006600	1.0	Post	14
+8	11331335	11331379	#006600	0.15	Post	14
+8	11331379	11331398	#006600	0.45	Post	14
+8	11331398	11331442	#006600	1.0	Post	14
+7	11331376	11331386	#c1ff00	1.0	Decrement Pending Task	15
+8	11331450	11331455	#FFC0CB	1.0	ProfTask <14>	
+8	11331457	11331458	#FFC0CB	1.0	ProfTask <15>	
+8	11331461	11331471	#FFC0CB	1.0	ProfTask <14>	
+8	11375312	11375364	#006600	1.0	Post	15
+8	11375376	11375378	#c1ff00	1.0	Decrement Pending Task	16
+8	11375386	11375390	#FFC0CB	1.0	ProfTask <15>	
+8	11375392	11375394	#FFC0CB	1.0	ProfTask <15>	
+8	11375396	11375397	#FFC0CB	1.0	ProfTask <16>	
+8	11419791	11419852	#006600	1.0	Post	16
+8	11419865	11419869	#FFC0CB	1.0	ProfTask <16>	
+8	11419871	11419873	#FFC0CB	1.0	ProfTask <16>	
+8	11419894	11420232	#006600	1.0	Post	1
+8	11420242	11420246	#FFC0CB	1.0	ProfTask <1>	
+8	11420416	11420418	#FFC0CB	1.0	ProfTask <1>	
+8	11420422	11420463	#9dff00	1.0	Garbage Collection	0
+8	11420473	11420487	#9dff00	1.0	Garbage Collection	0
+8	11420494	11420507	#9dff00	1.0	Garbage Collection	0
+8	11420515	11420526	#9dff00	1.0	Garbage Collection	0
+8	11420533	11420545	#9dff00	1.0	Garbage Collection	0
+8	11420552	11420565	#9dff00	1.0	Garbage Collection	0
+8	11420572	11420596	#9dff00	1.0	Garbage Collection	0
+8	11420630	11420631	#FFC0CB	1.0	ProfTask	
+8	11420634	11420635	#FFC0CB	1.0	ProfTask	
+8	11420637	11420638	#FFC0CB	1.0	ProfTask	
+8	11420640	11420641	#FFC0CB	1.0	ProfTask	
+8	11420643	11420644	#FFC0CB	1.0	ProfTask	
+8	11420646	11420647	#FFC0CB	1.0	ProfTask	
+8	11420649	11420650	#FFC0CB	1.0	ProfTask	
 proc_id 2089670227099910145
-8	8391	9238	#b500ff	1.0	main <1>	
-8	9238	8734139	#b500ff	0.15	main <1>	
-8	8734139	8734201	#b500ff	0.45	main <1>	
-8	8734201	8734660	#b500ff	1.0	main <1>	
-8	8734660	8734966	#b500ff	0.15	main <1>	
-8	8734966	8735024	#b500ff	0.45	main <1>	
-8	8735024	8735321	#b500ff	1.0	main <1>	
-8	8735321	11325315	#b500ff	0.15	main <1>	
-8	11325315	11325380	#b500ff	0.45	main <1>	
-8	11325380	11325502	#b500ff	1.0	main <1>	
-8	11325502	11458095	#b500ff	0.15	main <1>	
-8	11458095	11458156	#b500ff	0.45	main <1>	
-8	11458156	11458221	#b500ff	1.0	main <1>	
-7	10305	10813	#ff1100	1.0	get_LU_decomposition <3>	
-7	10901	8734076	#ffe300	1.0	initialize <4>	
-7	8735809	9024164	#dfff00	1.0	rhs <5>	
-7	9024186	9329697	#00f9ff	1.0	SolveXLU <6>	
-7	9329718	9475114	#006fff	1.0	rhs <8>	
-7	9475134	9475151	#00ff57	1.0	__binary_int32_int32_ <7>	
-7	9475159	9981617	#7f00ff	1.0	SolveYLU <9>	
-7	9981639	10159629	#37ff00	1.0	rhs <11>	
-7	10159647	10159665	#00ff57	1.0	__binary_int32_int32_ <10>	
-7	10159673	11325095	#00ff3f	1.0	SolveZLU <12>	
-7	11325223	11325257	#00ff57	1.0	__binary_int32_int32_ <13>	
-7	11417467	11458041	#0093ff	1.0	get_error_z <14>	
-chan_id 2089670227099910145
-12	11325943	11417347	#0093ff	1.0	Copy size=268435456	14
-16	10365	11458652	#ffe300	1.0	Instance 0x6000000000000001 Size=896MB Created by='initialize <4>' total=11448287 us created=10365 us destroyed=11458652 us
-14	11325672	11458652	#0093ff	1.0	Instance 0x6000000000000003 Size=256MB Created by='get_error_z <14>' total=132980 us created=11325672 us destroyed=11458652 us
-17	9849	11458652	#ff1100	1.0	Instance 0x6000000000000000 Size=18KB Created by='get_LU_decomposition <3>' total=11448803 us created=9849 us destroyed=11458652 us
-15	8735622	11458652	#dfff00	1.0	Instance 0x6000000000000002 Size=128MB Created by='rhs <5>' total=2723030 us created=8735622 us destroyed=11458652 us
+11	8907	9649	#0093ff	1.0	main <1>	
+11	9649	9653	#0093ff	0.15	main <1>	
+11	9653	9654	#0093ff	0.45	main <1>	
+11	9654	9794	#0093ff	1.0	main <1>	
+11	9794	8727006	#0093ff	0.15	main <1>	
+11	8727006	8727043	#0093ff	0.45	main <1>	
+11	8727043	8727330	#0093ff	1.0	main <1>	
+11	8727330	8727332	#0093ff	0.15	main <1>	
+11	8727332	8727368	#0093ff	0.45	main <1>	
+11	8727368	8727376	#0093ff	1.0	main <1>	
+11	8727376	8727462	#0093ff	0.15	main <1>	
+11	8727462	8727522	#0093ff	0.45	main <1>	
+11	8727522	8727759	#0093ff	1.0	main <1>	
+11	8727759	8727759	#0093ff	0.15	main <1>	
+11	8727759	8727760	#0093ff	0.45	main <1>	
+11	8727760	8727761	#0093ff	1.0	main <1>	
+11	8727761	8727766	#0093ff	0.15	main <1>	
+11	8727766	8727777	#0093ff	0.45	main <1>	
+11	8727777	8727809	#0093ff	1.0	main <1>	
+11	8727809	8727810	#0093ff	0.15	main <1>	
+11	8727810	8727810	#0093ff	0.45	main <1>	
+11	8727810	8727821	#0093ff	1.0	main <1>	
+11	8727821	8727825	#0093ff	0.15	main <1>	
+11	8727825	8727932	#0093ff	0.45	main <1>	
+11	8727932	8727944	#0093ff	1.0	main <1>	
+11	8727944	8728003	#0093ff	0.15	main <1>	
+11	8728003	8728038	#0093ff	0.45	main <1>	
+11	8728038	8728047	#0093ff	1.0	main <1>	
+11	8728047	8728076	#0093ff	0.15	main <1>	
+11	8728076	8728113	#0093ff	0.45	main <1>	
+11	8728113	8728172	#0093ff	1.0	main <1>	
+11	8728172	8729523	#0093ff	0.15	main <1>	
+11	8729523	8923414	#0093ff	0.45	main <1>	
+11	8923414	8923443	#0093ff	1.0	main <1>	
+11	8923443	11285367	#0093ff	0.15	main <1>	
+11	11285367	11285380	#0093ff	0.45	main <1>	
+11	11285380	11285560	#0093ff	1.0	main <1>	
+11	11285560	11331406	#0093ff	0.15	main <1>	
+11	11331406	11375315	#0093ff	0.45	main <1>	
+11	11375315	11375344	#0093ff	1.0	main <1>	
+11	11375344	11419810	#0093ff	0.15	main <1>	
+11	11419810	11419826	#0093ff	0.45	main <1>	
+11	11419826	11419889	#0093ff	1.0	main <1>	
+10	10713	11236	#ff1100	1.0	get_LU_decomposition <3>	
+10	11584	8726973	#ffe300	1.0	initialize <4>	
+10	8727308	8727531	#af00ff	1.0	Mapper Call select_task_options
+10	8727753	8728118	#af00ff	1.0	Mapper Call select_task_options
+10	8728628	8923392	#37ff00	1.0	rhs_z <5>	
+10	8923447	9087906	#006fff	1.0	rhs_y <6>	
+10	9087925	9370429	#dfff00	1.0	rhs_x <7>	
+10	9370447	10489465	#00ff3f	1.0	SolveZLU <12>	
+10	10489481	10985589	#7f00ff	1.0	SolveYLU <10>	
+10	10985607	11285152	#00f9ff	1.0	SolveXLU <8>	
+10	11285221	11285246	#b500ff	1.0	__binary_int32_int32_ <9>	
+10	11285284	11285304	#b500ff	1.0	__binary_int32_int32_ <11>	
+10	11285331	11285348	#b500ff	1.0	__binary_int32_int32_ <13>	
+10	11286075	11331303	#008dff	1.0	get_error_x <14>	
+10	11331321	11375296	#49ff00	1.0	get_error_y <15>	
+10	11375349	11419772	#ffd700	1.0	get_error_z <16>	
+19	10301	11420596	#ff1100	1.0	Instance 0x6000000000000000 Size=18KB Created by='get_LU_decomposition <3>' total=11410295 us created=10301 us destroyed=11420596 us
+18	10771	11420596	#ffe300	1.0	Instance 0x6000000000000001 Size=128MB Created by='initialize <4>' total=11409825 us created=10771 us destroyed=11420596 us
+17	11273	11420596	#ffe300	1.0	Instance 0x6000000000000002 Size=384MB Created by='initialize <4>' total=11409323 us created=11273 us destroyed=11420596 us
+16	11362	11420596	#ffe300	1.0	Instance 0x6000000000000003 Size=384MB Created by='initialize <4>' total=11409234 us created=11362 us destroyed=11420596 us
+15	8728354	11420596	#37ff00	1.0	Instance 0x6000000000000004 Size=128MB Created by='rhs_z <5>' total=2692242 us created=8728354 us destroyed=11420596 us
+14	8729019	11420596	#006fff	1.0	Instance 0x6000000000000005 Size=128MB Created by='rhs_y <6>' total=2691577 us created=8729019 us destroyed=11420596 us
+13	8729563	11420596	#dfff00	1.0	Instance 0x6000000000000006 Size=128MB Created by='rhs_x <7>' total=2691033 us created=8729563 us destroyed=11420596 us
