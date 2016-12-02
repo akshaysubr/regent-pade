@@ -1,0 +1,417 @@
+[0 - 2b1b3460b200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 586659 9 0 0 0 PartitionEqualShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 586659 PartitionEqualShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 555831 10 0 0 0 PartitionByUnionShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 555831 PartitionByUnionShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 582347 11 0 0 0 PartitionByIntersectionShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 582347 PartitionByIntersectionShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 577802 12 0 0 0 PartitionByDifferenceShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 577802 PartitionByDifferenceShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 539418 13 0 0 0 PartitionByFieldShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 539418 PartitionByFieldShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 590467 14 0 0 0 PartitionByImageShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 590467 PartitionByImageShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 509532 15 0 0 0 PartitionByPreimageShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 509532 PartitionByPreimageShim::task
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 1 16 0 1 0 get_LU_decomposition
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 1 get_LU_decomposition
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 2 17 0 1 0 SolveXLU
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 2 SolveXLU
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 3 18 0 1 0 SolveYLU
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 3 SolveYLU
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 4 19 0 1 0 SolveZLU
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 4 SolveZLU
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 5 20 0 1 0 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 5 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 6 21 0 1 0 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 6 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 7 22 0 1 0 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 7 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 8 23 0 1 0 initialize
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 8 initialize
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 9 24 0 1 0 ddx
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 9 ddx
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 10 25 0 1 0 get_error_x
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 10 get_error_x
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 11 26 0 1 0 get_error_y
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 11 get_error_y
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 12 27 0 1 0 get_error_z
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 12 get_error_z
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 13 28 1 0 0 main
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 13 main
+[0 - 2aab44613700] {3}{legion_spy}: Task Variant 14 29 0 1 1 __binary_int32_int32_+
+[0 - 2aab44613700] {3}{legion_spy}: Task ID Name 14 __binary_int32_int32_+
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 2 13 1 main
+[0 - 2aab44613700] {3}{legion_spy}: Processor Kind 3 Utility
+[0 - 2aab44613700] {3}{legion_spy}: Processor 1d00000000000000 3
+[0 - 2aab44613700] {3}{legion_spy}: Processor Kind 2 CPU
+[0 - 2aab44613700] {3}{legion_spy}: Processor 1d00000000000001 2
+[0 - 2aab44613700] {3}{legion_spy}: Memory Kind 1 System
+[0 - 2aab44613700] {3}{legion_spy}: Memory 1e00000000000000 2147483648 1
+[0 - 2aab44613700] {3}{legion_spy}: Memory Kind 8 File
+[0 - 2aab44613700] {3}{legion_spy}: Memory 1e00000000000001 0 8
+[0 - 2aab44613700] {3}{legion_spy}: Memory Kind 0 GASNet
+[0 - 2aab44613700] {3}{legion_spy}: Memory 1e00000000000fff 268435456 0
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000000 1e00000000000000 100 5
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000000 1e00000000000001 5 100
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000000 1e00000000000fff 10 50
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000001 1e00000000000000 100 5
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000001 1e00000000000001 5 100
+[0 - 2aab44613700] {3}{legion_spy}: Processor Memory 1d00000000000001 1e00000000000fff 10 50
+[0 - 2aab44613700] {3}{legion_spy}: Top Task 13 1 main
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 1 28
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 1 0
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 1 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Index Space 1
+[0 - 2aab44613700] {3}{legion_spy}: Index Space Rect 1 1 0 0 0 255 0 0
+[0 - 2aab44613700] {3}{legion_spy}: Index Space Name 1 grid_x
+[0 - 2aab44613700] {3}{legion_spy}: Field Space 1
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 101
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 102
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 103
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 104
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 106
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 107
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 108
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 1 109
+[0 - 2aab44613700] {3}{legion_spy}: Field Space Name 1 LU_struct
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 101 b
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 102 eg
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 103 k
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 104 l
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 105 g
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 106 h
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 107 ff
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 108 v
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 1 109 w
+[0 - 2aab44613700] {3}{legion_spy}: Region 1 1 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 1 0 1 1 1 1 7 0 0 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 108
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 0 109
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 101 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 102 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 103 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 104 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 105 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 106 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 107 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 108 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 0 109 0
+[0 - 2aab44613700] {3}{legion_spy}: Logical Region Name 1 1 1 LU_x
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 0 3
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 1 3 get_LU_decomposition
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 3 0 1 1 1 1 7 0 0 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 108
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 3 0 109
+[0 - 2aab44613700] {3}{legion_spy}: Index Space 2
+[0 - 2aab44613700] {3}{legion_spy}: Index Space Rect 2 3 0 0 0 255 255 255
+[0 - 2aab44613700] {3}{legion_spy}: Index Space Name 2 grid
+[0 - 2aab44613700] {3}{legion_spy}: Field Space 2
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 101
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 102
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 103
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 104
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 105
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 106
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 107
+[0 - 2aab44613700] {3}{legion_spy}: Field Creation 2 108
+[0 - 2aab44613700] {3}{legion_spy}: Field Space Name 2 point
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 101 x
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 102 y
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 103 z
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 104 f
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 105 df
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 106 dfx
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 107 dfy
+[0 - 2aab44613700] {3}{legion_spy}: Field Name 2 108 dfz
+[0 - 2aab44613700] {3}{legion_spy}: Region 2 2 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 1 1 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 1 1 108
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 101 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 102 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 103 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 104 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 105 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 106 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 107 0
+[0 - 2aab44613700] {3}{legion_spy}: Mapping Decision 1 1 108 0
+[0 - 2aab44613700] {3}{legion_spy}: Logical Region Name 2 2 2 points
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 1 4
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 8 4 initialize
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 4 0 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 4 0 108
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance 6000000000000000 1e00000000000000 0
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Region 6000000000000000 1 1 1
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 101
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 102
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 103
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 104
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 105
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 106
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 107
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 108
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000000 109
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creator 6000000000000000 3 1d00000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creation Region 6000000000000000 1 1 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Specialized Constraint 6000000000000000 1 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Memory Constraint 6000000000000000 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint 6000000000000000 1 1 9
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 101
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 102
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 103
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 104
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 105
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 106
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 107
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 108
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000000 109
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint 6000000000000000 1 4
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000000 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000000 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000000 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000000 3
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 101 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 102 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 103 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 104 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 105 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 106 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 107 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 108 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 3 0 109 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 3 16
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 3 0
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 3 1d00000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance 6000000000000001 1e00000000000000 0
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Region 6000000000000001 2 2 2
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 101
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 102
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 103
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 104
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 106
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 107
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000001 108
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creator 6000000000000001 4 1d00000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creation Region 6000000000000001 2 2 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Specialized Constraint 6000000000000001 1 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Memory Constraint 6000000000000001 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint 6000000000000001 1 1 7
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 101
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 102
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 103
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 104
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 106
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 107
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000001 108
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint 6000000000000001 1 4
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000001 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000001 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000001 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000001 3
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 101 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 102 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 103 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 104 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 106 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 107 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 4 0 108 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 4 23
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 4 0
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 4 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 2 5
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 5 5 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 5 0 1 2 2 2 1 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 5 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 5 1 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 5 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 3 6
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 2 6 SolveXLU
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 6 0 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 6 1 1 1 1 1 1 0 0 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 108
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 6 1 109
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 4 7
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 14 7 __binary_int32_int32_+
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 5 8
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 6 8 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 8 0 1 2 2 2 1 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 8 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 8 1 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 8 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 6 9
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 3 9 SolveYLU
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 9 0 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 9 1 1 1 1 1 1 0 0 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 101
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance 6000000000000002 1e00000000000000 0
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Region 6000000000000002 2 2 2
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000002 105
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creator 6000000000000002 5 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 102
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creation Region 6000000000000002 2 2 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 103
+[0 - 2aab44008700] {3}{legion_spy}: Instance Specialized Constraint 6000000000000002 1 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Memory Constraint 6000000000000002 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 104
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint 6000000000000002 1 1 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 105
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000002 105
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint 6000000000000002 1 4
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 106
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000002 0
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 107
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000002 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 108
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000002 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000002 3
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 9 1 109
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 5 0 104 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 5 1 105 6000000000000002
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 7 10
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 14 10 __binary_int32_int32_+
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 8 11
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 7 11 rhs
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 11 0 1 2 2 2 1 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 11 0 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 11 1 1 2 2 2 7 0 0 2
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 5 20
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 11 1 105
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 5 0
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 9 12
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 4 12 SolveZLU
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 12 0 1 2 2 2 7 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 12 1 1 1 1 1 1 0 0 1
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 101
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 102
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 103
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 104
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 106
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 107
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 108
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 12 1 109
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 10 13
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 14 13 __binary_int32_int32_+
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 5 1d00000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 0 105 6000000000000002
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 101 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 102 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 103 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 104 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 105 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 106 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 107 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 108 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 6 1 109 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 6 17
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 6 0
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 7 29
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 7 0
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 8 0 104 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 8 1 105 6000000000000002
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 8 21
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 8 0
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 0 105 6000000000000002
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 101 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 102 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 103 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 104 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 105 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 106 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 107 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 108 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 9 1 109 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 9 18
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 9 0
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 10 29
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 10 0
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 11 0 104 6000000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 11 1 105 6000000000000002
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 11 22
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 11 0
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 0 105 6000000000000002
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 101 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 102 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 103 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 104 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 105 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 106 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 107 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 108 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 12 1 109 6000000000000000
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 12 19
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 12 0
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 13 29
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 13 0
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 6 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 8 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 7 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 9 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 11 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 10 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 12 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 13 1d00000000000001
+[0 - 2aab44613700] {3}{legion_spy}: Operation Index 1 11 14
+[0 - 2aab44613700] {3}{legion_spy}: Individual Task 1 12 14 get_error_z
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement 14 0 1 2 2 2 1 0 0 2
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 14 0 105
+[0 - 2aab44613700] {3}{legion_spy}: Logical Requirement Field 14 0 108
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance 6000000000000003 1e00000000000000 0
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Region 6000000000000003 2 2 2
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000003 105
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Field 6000000000000003 108
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creator 6000000000000003 14 1d00000000000001
+[0 - 2aab44008700] {3}{legion_spy}: Physical Instance Creation Region 6000000000000003 2 2 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Specialized Constraint 6000000000000003 1 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Memory Constraint 6000000000000003 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint 6000000000000003 1 1 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000003 105
+[0 - 2aab44008700] {3}{legion_spy}: Instance Field Constraint Field 6000000000000003 108
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint 6000000000000003 1 4
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000003 0
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000003 1
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000003 2
+[0 - 2aab44008700] {3}{legion_spy}: Instance Ordering Constraint Dimension 6000000000000003 3
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 14 0 105 6000000000000003
+[0 - 2aab44008700] {3}{legion_spy}: Mapping Decision 14 0 108 6000000000000003
+[0 - 2aab44008700] {3}{legion_spy}: Variant Decision 14 27
+[0 - 2aab44008700] {3}{legion_spy}: Task Priority 14 0
+[0 - 2aab44613700] {3}{legion_spy}: Task Processor 14 1d00000000000001

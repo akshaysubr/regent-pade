@@ -1,0 +1,16 @@
+op_id	operation
+0	Operation <0>
+1	main <1>
+2	Task Operation <2>
+3	get_LU_decomposition <3>
+4	initialize <4>
+5	rhs <5>
+6	SolveXLU <6>
+7	__binary_int32_int32_ <7>
+8	rhs <8>
+9	SolveYLU <9>
+10	__binary_int32_int32_ <10>
+11	rhs <11>
+12	SolveZLU <12>
+13	__binary_int32_int32_ <13>
+14	get_error_z <14>
