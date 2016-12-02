@@ -15,9 +15,14 @@ local DZ = LL / NN
 local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
-local a10d1 = (17.0/12.0)/2.0
+
+local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
-local c10d1 = (1.0/100.0)/6.0
+local c10d1 = (  1.0/100.0)/6.0
+
+local a10d2 = (1065.0/1798.0)/1.0
+local b10d2 = (1038.0/ 899.0)/4.0
+local c10d2 = (  79.0/1798.0)/9.0
 
 fspace coordinates {
   x   : double,
@@ -268,76 +273,101 @@ local function poff(i, x, y, z, N)
   return rexpr int3d { x = (i.x + x + N)%N, y = (i.y + y + N)%N, z = (i.z + z + N)%N } end
 end
 
-local function make_stencil_pattern(points, index, a10, b10, c10, N, onebydx, dir)
+local function make_stencil_pattern(points, index, a10, b10, c10, N, onebydx, dir, der)
   local value
 
   if dir == 0 then      -- x direction stencil
-    value = rexpr       - c10*points[ [poff(index, -3, 0, 0, N)] ].f end
-    value = rexpr value - b10*points[ [poff(index, -2, 0, 0, N)] ].f end
-    value = rexpr value - a10*points[ [poff(index, -1, 0, 0, N)] ].f end
-    value = rexpr value + a10*points[ [poff(index,  1, 0, 0, N)] ].f end
-    value = rexpr value + b10*points[ [poff(index,  2, 0, 0, N)] ].f end
-    value = rexpr value + c10*points[ [poff(index,  3, 0, 0, N)] ].f end
-    value = rexpr onebydx * ( value ) end
+    if der == 1 then
+      value = rexpr       - c10*points[ [poff(index, -3, 0, 0, N)] ].f end
+      value = rexpr value - b10*points[ [poff(index, -2, 0, 0, N)] ].f end
+      value = rexpr value - a10*points[ [poff(index, -1, 0, 0, N)] ].f end
+      value = rexpr value + a10*points[ [poff(index,  1, 0, 0, N)] ].f end
+      value = rexpr value + b10*points[ [poff(index,  2, 0, 0, N)] ].f end
+      value = rexpr value + c10*points[ [poff(index,  3, 0, 0, N)] ].f end
+      value = rexpr onebydx * ( value ) end
+    elseif der == 2 then
+      value = rexpr a10*( points[ [poff(index, -1, 0, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 1, 0, 0, N)] ].f ) end
+      value = rexpr value + b10*( points[ [poff(index, -2, 0, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 2, 0, 0, N)] ].f ) end
+      value = rexpr value + c10*( points[ [poff(index, -3, 0, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 3, 0, 0, N)] ].f ) end
+      value = rexpr onebydx*onebydx * (value) end
+    end
   elseif dir == 1 then  -- y direction stencil
-    value = rexpr       - c10*points[ [poff(index, 0, -3, 0, N)] ].f end
-    value = rexpr value - b10*points[ [poff(index, 0, -2, 0, N)] ].f end
-    value = rexpr value - a10*points[ [poff(index, 0, -1, 0, N)] ].f end
-    value = rexpr value + a10*points[ [poff(index, 0,  1, 0, N)] ].f end
-    value = rexpr value + b10*points[ [poff(index, 0,  2, 0, N)] ].f end
-    value = rexpr value + c10*points[ [poff(index, 0,  3, 0, N)] ].f end
-    value = rexpr onebydx * ( value ) end
+    if der == 1 then
+      value = rexpr       - c10*points[ [poff(index, 0, -3, 0, N)] ].f end
+      value = rexpr value - b10*points[ [poff(index, 0, -2, 0, N)] ].f end
+      value = rexpr value - a10*points[ [poff(index, 0, -1, 0, N)] ].f end
+      value = rexpr value + a10*points[ [poff(index, 0,  1, 0, N)] ].f end
+      value = rexpr value + b10*points[ [poff(index, 0,  2, 0, N)] ].f end
+      value = rexpr value + c10*points[ [poff(index, 0,  3, 0, N)] ].f end
+      value = rexpr onebydx * ( value ) end
+    elseif der == 2 then
+      value = rexpr a10*( points[ [poff(index, 0, -1, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 1, 0, N)] ].f ) end
+      value = rexpr value + b10*( points[ [poff(index, 0, -2, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 2, 0, N)] ].f ) end
+      value = rexpr value + c10*( points[ [poff(index, 0, -3, 0, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 3, 0, N)] ].f ) end
+      value = rexpr onebydx*onebydx * (value) end
+    end
   elseif dir == 2 then  -- z direction stencil
-    value = rexpr       - c10*points[ [poff(index, 0, 0, -3, N)] ].f end
-    value = rexpr value - b10*points[ [poff(index, 0, 0, -2, N)] ].f end
-    value = rexpr value - a10*points[ [poff(index, 0, 0, -1, N)] ].f end
-    value = rexpr value + a10*points[ [poff(index, 0, 0,  1, N)] ].f end
-    value = rexpr value + b10*points[ [poff(index, 0, 0,  2, N)] ].f end
-    value = rexpr value + c10*points[ [poff(index, 0, 0,  3, N)] ].f end
-    value = rexpr onebydx * ( value ) end
+    if der == 1 then
+      value = rexpr       - c10*points[ [poff(index, 0, 0, -3, N)] ].f end
+      value = rexpr value - b10*points[ [poff(index, 0, 0, -2, N)] ].f end
+      value = rexpr value - a10*points[ [poff(index, 0, 0, -1, N)] ].f end
+      value = rexpr value + a10*points[ [poff(index, 0, 0,  1, N)] ].f end
+      value = rexpr value + b10*points[ [poff(index, 0, 0,  2, N)] ].f end
+      value = rexpr value + c10*points[ [poff(index, 0, 0,  3, N)] ].f end
+      value = rexpr onebydx * ( value ) end
+    elseif der == 2 then
+      value = rexpr a10*( points[ [poff(index, 0, 0, -1, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 0, 1, N)] ].f ) end
+      value = rexpr value + b10*( points[ [poff(index, 0, 0, -2, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 0, 2, N)] ].f ) end
+      value = rexpr value + c10*( points[ [poff(index, 0, 0, -3, N)] ].f - 2.0*points[ index ].f + points[ [poff(index, 0, 0, 3, N)] ].f ) end
+      value = rexpr onebydx*onebydx * (value) end
+    end
   end
   return value
 end
 
-local function make_stencil_x(N, onebydx, a10, b10, c10)
+local function make_stencil_x(N, onebydx, a10, b10, c10, der)
   local task rhs_x( points : region(ispace(int3d), point) )
   where
     reads(points.f), writes(points.dfx)
   do
     for i in points do
-      points[i].dfx = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydx, 0)]
+      points[i].dfx = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydx, 0, der)]
     end
   end
   return rhs_x
 end
 
-local function make_stencil_y(N, onebydy, a10, b10, c10)
+local function make_stencil_y(N, onebydy, a10, b10, c10, der)
   local task rhs_y( points : region(ispace(int3d), point) )
   where
     reads(points.f), writes(points.dfy)
   do
     for i in points do
-      points[i].dfy = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydy, 1)]
+      points[i].dfy = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydy, 1, der)]
     end
   end
   return rhs_y
 end
 
-local function make_stencil_z(N, onebydz, a10, b10, c10, dir)
+local function make_stencil_z(N, onebydz, a10, b10, c10, der)
   local task rhs_z( points : region(ispace(int3d), point) )
   where
     reads(points.f), writes(points.dfz)
   do
     for i in points do
-      points[i].dfz = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydz, 2)]
+      points[i].dfz = [make_stencil_pattern(points, i, a10, b10, c10, N, onebydz, 2, der)]
     end
   end
   return rhs_z
 end
 
-local ComputeXRHS = make_stencil_x(NN, ONEBYDX, a10d1, b10d1, c10d1)
-local ComputeYRHS = make_stencil_y(NN, ONEBYDY, a10d1, b10d1, c10d1)
-local ComputeZRHS = make_stencil_z(NN, ONEBYDZ, a10d1, b10d1, c10d1)
+local ComputeXRHS  = make_stencil_x(NN, ONEBYDX, a10d1, b10d1, c10d1, 1)
+local ComputeYRHS  = make_stencil_y(NN, ONEBYDY, a10d1, b10d1, c10d1, 1)
+local ComputeZRHS  = make_stencil_z(NN, ONEBYDZ, a10d1, b10d1, c10d1, 1)
+
+local ComputeX2RHS = make_stencil_x(NN, ONEBYDX, a10d2, b10d2, c10d2, 2)
+local ComputeY2RHS = make_stencil_y(NN, ONEBYDY, a10d2, b10d2, c10d2, 2)
+local ComputeZ2RHS = make_stencil_z(NN, ONEBYDZ, a10d2, b10d2, c10d2, 2)
 
 task ddx( points : region(ispace(int3d), point),
           LU     : region(ispace(int1d), LU_struct) )
@@ -345,6 +375,16 @@ where
   reads(LU, points.f), reads writes(points.dfx)
 do
   ComputeXRHS(points)
+  var token = SolveXLU(points,LU)
+  return token
+end
+
+task d2dx2( points : region(ispace(int3d), point),
+            LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfx)
+do
+  ComputeX2RHS(points)
   var token = SolveXLU(points,LU)
   return token
 end
@@ -359,12 +399,32 @@ do
   return token
 end
 
+task d2dy2( points : region(ispace(int3d), point),
+            LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfy)
+do
+  ComputeY2RHS(points)
+  var token = SolveYLU(points,LU)
+  return token
+end
+
 task ddz( points : region(ispace(int3d), point),
           LU     : region(ispace(int1d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfz)
 do
   ComputeZRHS(points)
+  var token = SolveZLU(points,LU)
+  return token
+end
+
+task d2dz2( points : region(ispace(int3d), point),
+            LU     : region(ispace(int1d), LU_struct) )
+where
+  reads(LU, points.f), reads writes(points.dfz)
+do
+  ComputeZ2RHS(points)
   var token = SolveZLU(points,LU)
   return token
 end
@@ -433,6 +493,17 @@ do
   return err
 end
 
+task get_error_d2( points : region(ispace(int3d), point) )
+where
+  reads(points.f, points.dfx, points.dfy, points.dfz)
+do
+  var err : double = 0.0
+  for i in points do
+    err = max(err, cmath.fabs(points[i].dfx + points[i].dfy + points[i].dfz + points[i].f))
+  end
+  return err
+end
+
 terra wait_for(x : int)
   return x
 end
@@ -453,11 +524,28 @@ task main()
   -- Coefficients for the 10th order 1st derivative
   var alpha10d1 : double = 1.0/2.0
   var beta10d1  : double = 1.0/20.0
+  
+  -- Coefficients for the 10th order 2nd derivative
+  var alpha10d2 : double = 334.0/899.0
+  var beta10d2  : double = 43.0/1798.0
 
   var grid_x = ispace(int1d, N)
   var LU_x   = region(grid_x, LU_struct)
-
   get_LU_decomposition(LU_x, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  var LU_x2  = region(grid_x, LU_struct)
+  get_LU_decomposition(LU_x2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+
+  var grid_y = ispace(int1d, N)
+  var LU_y   = region(grid_y, LU_struct)
+  get_LU_decomposition(LU_y, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  var LU_y2  = region(grid_y, LU_struct)
+  get_LU_decomposition(LU_y2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+
+  var grid_z = ispace(int1d, N)
+  var LU_z   = region(grid_z, LU_struct)
+  get_LU_decomposition(LU_z, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  var LU_z2  = region(grid_z, LU_struct)
+  get_LU_decomposition(LU_z2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
 
   var grid   = ispace(int3d, { x = N, y = N, z = N })
   var coords = region(grid, coordinates)
@@ -470,42 +558,39 @@ task main()
   wait_for(token)
   var ts_start = c.legion_get_current_time_in_micros()
   
-  -- Get df/dx
-  -- ComputeXRHS(points)
-  -- token += SolveXLU(points,LU_x)
+  -- Get df/dx, df/dy, df/dz
   token += ddx(points,LU_x)
-  
-  -- wait_for(token)
-  -- var ts_x = c.legion_get_current_time_in_micros() - ts_start
-  -- wait_for(ts_x)
-  -- ts_start = c.legion_get_current_time_in_micros()
-  
-  -- ComputeYRHS(points)
-  -- token += SolveYLU(points,LU_x)
-  token += ddy(points,LU_x)
-  
-  -- wait_for(token)
-  -- var ts_y = c.legion_get_current_time_in_micros() - ts_start
-  -- wait_for(ts_y)
-  -- ts_start = c.legion_get_current_time_in_micros()
-  
-  -- ComputeZRHS(points)
-  -- token += SolveZLU(points,LU_x)
-  token += ddz(points,LU_x)
+  token += ddy(points,LU_y)
+  token += ddz(points,LU_z)
   
   wait_for(token)
-  var ts_z = c.legion_get_current_time_in_micros() - ts_start
+  var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
   
   var err_x = get_error_x(points,exact) 
   var err_y = get_error_y(points,exact) 
   var err_z = get_error_z(points,exact) 
+  
+  wait_for(err_x)
+  wait_for(err_y)
+  wait_for(err_z)
+  ts_start = c.legion_get_current_time_in_micros()
+  
+  -- Get d2f/dx2, d2f/dy2, d2f/dz2
+  token += d2dx2(points,LU_x2)
+  token += d2dy2(points,LU_y2)
+  token += d2dz2(points,LU_z2)
+  
+  wait_for(token)
+  var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
+  
+  var err_d2 = get_error_d2(points) 
 
-  -- c.printf("Time to get the x derivative: %12.5e\n", (ts_x)*1e-6)
-  c.printf("Maximum error in x = %12.5e\n", err_x)
-  -- c.printf("Time to get the y derivative: %12.5e\n", (ts_y)*1e-6)
-  c.printf("Maximum error in y = %12.5e\n", err_y)
-  c.printf("Time to get the z derivative: %12.5e\n", (ts_z)*1e-6)
-  c.printf("Maximum error in z = %12.5e\n", err_z)
+  c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
+  c.printf("  Maximum error in x = %12.5e\n", err_x)
+  c.printf("  Maximum error in y = %12.5e\n", err_y)
+  c.printf("  Maximum error in z = %12.5e\n", err_z)
+  c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
+  c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
 
 end
 
