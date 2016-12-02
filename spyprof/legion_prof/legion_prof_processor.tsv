@@ -1,4 +1,4 @@
 level	processor
-8	Utility Processor 0x1d00000000000000
+4	Utility Processor 0x1d00000000000000
 11	CPU Processor 0x1d00000000000001
 19	System Memory 0x1e00000000000000
