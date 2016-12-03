@@ -1,5 +1,5 @@
 level	processor
-6	Utility Processor 0x1d00000000000000
-12	CPU Processor 0x1d00000000000001
-16	System Memory 0x1e00000000000000 to System Memory 0x1e00000000000000 Channel
-30	System Memory 0x1e00000000000000
+7	Utility Processor 0x1d00000000000000
+13	CPU Processor 0x1d00000000000001
+17	System Memory 0x1e00000000000000 to System Memory 0x1e00000000000000 Channel
+31	System Memory 0x1e00000000000000

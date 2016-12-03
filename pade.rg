@@ -16,6 +16,8 @@ local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
 
+local parallelism = 4
+
 local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
 local c10d1 = (  1.0/100.0)/6.0
@@ -48,6 +50,159 @@ fspace LU_struct {
   v  : double,
   w  : double,
 }
+
+task factorize(parallelism : int) : int2d
+  var limit = [int](cmath.sqrt([double](parallelism)))
+  var size_x = 1
+  var size_y = parallelism
+  for i = 1, limit + 1 do
+    if parallelism % i == 0 then
+      size_x, size_y = i, parallelism / i
+      if size_x > size_y then
+        size_x, size_y = size_y, size_x
+      end
+    end
+  end
+  return int2d { size_x, size_y }
+end
+
+task make_xpencil( points  : region(ispace(int3d), point),
+                   xpencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = xpencil.bounds.hi.x + 1
+  var pcol = xpencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in xpencil do
+    var lo = int3d { x = 0, y = i.x*(Ny/prow), z = i.y*(Nz/pcol) }
+    var hi = int3d { x = Nx-1, y = (i.x+1)*(Ny/prow)-1, z = (i.y+1)*(Nz/pcol)-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, xpencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
+task make_xpencil_c( points  : region(ispace(int3d), coordinates),
+                     xpencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = xpencil.bounds.hi.x + 1
+  var pcol = xpencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in xpencil do
+    var lo = int3d { x = 0, y = i.x*(Ny/prow), z = i.y*(Nz/pcol) }
+    var hi = int3d { x = Nx-1, y = (i.x+1)*(Ny/prow)-1, z = (i.y+1)*(Nz/pcol)-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, xpencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
+task make_ypencil( points  : region(ispace(int3d), point),
+                   ypencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = ypencil.bounds.hi.x + 1
+  var pcol = ypencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in ypencil do
+    var lo = int3d { x = i.x*(Nx/prow), y = 0, z = i.y*(Nz/pcol) }
+    var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = Ny-1, z = (i.y+1)*(Nz/pcol)-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, ypencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
+task make_ypencil_c( points  : region(ispace(int3d), coordinates),
+                     ypencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = ypencil.bounds.hi.x + 1
+  var pcol = ypencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in ypencil do
+    var lo = int3d { x = i.x*(Nx/prow), y = 0, z = i.y*(Nz/pcol) }
+    var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = Ny-1, z = (i.y+1)*(Nz/pcol)-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, ypencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
+task make_zpencil( points  : region(ispace(int3d), point),
+                   zpencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = zpencil.bounds.hi.x + 1
+  var pcol = zpencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in zpencil do
+    var lo = int3d { x = i.x*(Nx/prow), y = i.y*(Ny/pcol), z = 0 }
+    var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = (i.y+1)*(Ny/pcol)-1, z = Nz-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, zpencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
+task make_zpencil_c( points  : region(ispace(int3d), coordinates),
+                     zpencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = zpencil.bounds.hi.x + 1
+  var pcol = zpencil.bounds.hi.y + 1
+
+  var bounds = points.ispace.bounds
+  var Nx = bounds.hi.x + 1
+  var Ny = bounds.hi.y + 1
+  var Nz = bounds.hi.z + 1
+
+  for i in zpencil do
+    var lo = int3d { x = i.x*(Nx/prow), y = i.y*(Ny/pcol), z = 0 }
+    var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = (i.y+1)*(Ny/pcol)-1, z = Nz-1 }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, points, coloring, zpencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
 
 task get_LU_decomposition(LU : region(ispace(int1d), LU_struct),
                           e  : double,
@@ -551,9 +706,50 @@ task main()
   var coords = region(grid, coordinates)
   var points = region(grid, point)
   var exact  = region(grid, point)
+
+  var prowcol = factorize(parallelism)
+
+  var pencil = ispace(int2d, prowcol)
   
+  var points_x = make_xpencil(points, pencil) -- Partition of x-pencils
+  var points_y = make_ypencil(points, pencil) -- Partition of y-pencils
+  var points_z = make_zpencil(points, pencil) -- Partition of z-pencils
+
+  var exact_x  = make_xpencil(exact,  pencil) -- Partition of x-pencils
+  var exact_y  = make_ypencil(exact,  pencil) -- Partition of y-pencils
+  var exact_z  = make_zpencil(exact,  pencil) -- Partition of z-pencils
+
+  var coords_x = make_xpencil_c(coords, pencil) -- Partition of x-pencils
+  var coords_y = make_ypencil_c(coords, pencil) -- Partition of y-pencils
+  var coords_z = make_zpencil_c(coords, pencil) -- Partition of z-pencils
+
+  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_x[{0,0}].bounds.lo.x, points_x[{0,0}].bounds.lo.y, points_x[{0,0}].bounds.lo.z)
+  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_x[{0,0}].bounds.hi.x, points_x[{0,0}].bounds.hi.y, points_x[{0,0}].bounds.hi.z)
+  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_x[{1,0}].bounds.lo.x, points_x[{1,0}].bounds.lo.y, points_x[{1,0}].bounds.lo.z)
+  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_x[{1,0}].bounds.hi.x, points_x[{1,0}].bounds.hi.y, points_x[{1,0}].bounds.hi.z)
+  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_x[{0,1}].bounds.lo.x, points_x[{0,1}].bounds.lo.y, points_x[{0,1}].bounds.lo.z)
+  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_x[{0,1}].bounds.hi.x, points_x[{0,1}].bounds.hi.y, points_x[{0,1}].bounds.hi.z)
+  -- 
+  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_y[{0,0}].bounds.lo.x, points_y[{0,0}].bounds.lo.y, points_y[{0,0}].bounds.lo.z)
+  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_y[{0,0}].bounds.hi.x, points_y[{0,0}].bounds.hi.y, points_y[{0,0}].bounds.hi.z)
+  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_y[{1,0}].bounds.lo.x, points_y[{1,0}].bounds.lo.y, points_y[{1,0}].bounds.lo.z)
+  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_y[{1,0}].bounds.hi.x, points_y[{1,0}].bounds.hi.y, points_y[{1,0}].bounds.hi.z)
+  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_y[{0,1}].bounds.lo.x, points_y[{0,1}].bounds.lo.y, points_y[{0,1}].bounds.lo.z)
+  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_y[{0,1}].bounds.hi.x, points_y[{0,1}].bounds.hi.y, points_y[{0,1}].bounds.hi.z)
+  -- 
+  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_z[{0,0}].bounds.lo.x, points_z[{0,0}].bounds.lo.y, points_z[{0,0}].bounds.lo.z)
+  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_z[{0,0}].bounds.hi.x, points_z[{0,0}].bounds.hi.y, points_z[{0,0}].bounds.hi.z)
+  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_z[{1,0}].bounds.lo.x, points_z[{1,0}].bounds.lo.y, points_z[{1,0}].bounds.lo.z)
+  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_z[{1,0}].bounds.hi.x, points_z[{1,0}].bounds.hi.y, points_z[{1,0}].bounds.hi.z)
+  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_z[{0,1}].bounds.lo.x, points_z[{0,1}].bounds.lo.y, points_z[{0,1}].bounds.lo.z)
+  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_z[{0,1}].bounds.hi.x, points_z[{0,1}].bounds.hi.y, points_z[{0,1}].bounds.hi.z)
+
+  var token = 0 
+ 
   -- Initialize function f
-  var token = initialize(points, exact, coords, dx, dy, dz)
+  for i in pencil do
+    token += initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
+  end
 
   wait_for(token)
   var ts_start = c.legion_get_current_time_in_micros()

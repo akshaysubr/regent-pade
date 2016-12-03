@@ -8,38 +8,59 @@ op_id	operation
 6	get_LU_decomposition <6>
 7	get_LU_decomposition <7>
 8	get_LU_decomposition <8>
-9	initialize <9>
-10	ddy <10>
-11	__binary_int32_int32_ <11>
-12	ddx <12>
-13	__binary_int32_int32_ <13>
-14	ddz <14>
-15	__binary_int32_int32_ <15>
-16	rhs_y <16>
-17	SolveYLU <17>
-18	rhs_x <18>
-19	SolveXLU <19>
-20	rhs_z <20>
-21	SolveZLU <21>
-22	Virtual Close Operation <22>
-23	Virtual Close Operation <23>
-24	Virtual Close Operation <24>
-25	get_error_x <25>
-26	get_error_y <26>
-27	get_error_z <27>
-28	d2dz2 <28>
-29	d2dy2 <29>
+9	factorize <9>
+10	make_xpencil <10>
+11	make_ypencil <11>
+12	make_zpencil <12>
+13	make_xpencil <13>
+14	make_ypencil <14>
+15	make_zpencil <15>
+16	make_xpencil_c <16>
+17	make_ypencil_c <17>
+18	make_zpencil_c <18>
+19	initialize <19>
+20	__binary_int32_int32_ <20>
+21	initialize <21>
+22	__binary_int32_int32_ <22>
+23	initialize <23>
+24	__binary_int32_int32_ <24>
+25	initialize <25>
+26	__binary_int32_int32_ <26>
+27	ddx <27>
+28	ddy <28>
+29	__binary_int32_int32_ <29>
 30	__binary_int32_int32_ <30>
-31	__binary_int32_int32_ <31>
-32	d2dx2 <32>
-33	__binary_int32_int32_ <33>
-34	rhs_z <34>
-35	SolveZLU <35>
+31	ddz <31>
+32	__binary_int32_int32_ <32>
+33	Inter Close Operation <33>
+34	rhs_x <34>
+35	SolveXLU <35>
 36	rhs_y <36>
 37	SolveYLU <37>
-38	rhs_x <38>
-39	SolveXLU <39>
+38	rhs_z <38>
+39	SolveZLU <39>
 40	Virtual Close Operation <40>
 41	Virtual Close Operation <41>
 42	Virtual Close Operation <42>
-43	get_error_d2 <43>
+43	get_error_x <43>
+44	get_error_y <44>
+45	get_error_z <45>
+46	Inter Close Operation <46>
+47	Inter Close Operation <47>
+48	Inter Close Operation <48>
+49	d2dy2 <49>
+50	__binary_int32_int32_ <50>
+51	d2dx2 <51>
+52	__binary_int32_int32_ <52>
+53	d2dz2 <53>
+54	__binary_int32_int32_ <54>
+55	rhs_y <55>
+56	SolveYLU <56>
+57	rhs_x <57>
+58	SolveXLU <58>
+59	rhs_z <59>
+60	SolveZLU <60>
+61	Virtual Close Operation <61>
+62	Virtual Close Operation <62>
+63	Virtual Close Operation <63>
+64	get_error_d2 <64>
