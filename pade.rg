@@ -66,6 +66,27 @@ task factorize(parallelism : int) : int2d
   return int2d { size_x, size_y }
 end
 
+task partitionLU( LU     : region(ispace(int3d), LU_struct),
+                  pencil : ispace(int2d) )
+  var coloring = c.legion_domain_point_coloring_create()
+
+  var prow = pencil.bounds.hi.x + 1
+  var pcol = pencil.bounds.hi.y + 1
+
+  var bounds = LU.ispace.bounds
+  var N = bounds.hi.x + 1
+
+  for i in pencil do
+    var lo = int3d { x = 0,   y = i.x, z = i.y }
+    var hi = int3d { x = N-1, y = i.x, z = i.y }
+    var rect = rect3d { lo = lo, hi = hi }
+    c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+  end
+  var p = partition(disjoint, LU, coloring, pencil)
+  c.legion_domain_point_coloring_destroy(coloring)
+  return p
+end
+
 task make_xpencil( points  : region(ispace(int3d), point),
                    xpencil : ispace(int2d) )
   var coloring = c.legion_domain_point_coloring_create()
@@ -591,7 +612,7 @@ task initialize( points : region(ispace(int3d), point),
                  dy     : double,
                  dz     : double )
 where
-  reads writes(coords.x, coords.y, coords.z, points.f, exact.dfx, exact.dfy, exact.dfz)
+  reads writes(coords.x, coords.y, coords.z, points.f, exact.f, exact.dfx, exact.dfy, exact.dfz)
 do
   var bounds = points.ispace.bounds
 
@@ -603,6 +624,7 @@ do
         coords[e].y   = j*dy
         coords[e].z   = k*dz
         points[e].f   = cmath.sin(coords[e].x) + cmath.sin(coords[e].y) + cmath.sin(coords[e].z)
+        exact [e].f   = cmath.sin(coords[e].x) + cmath.sin(coords[e].y) + cmath.sin(coords[e].z)
         exact [e].dfx = cmath.cos(coords[e].x)
         exact [e].dfy = cmath.cos(coords[e].y)
         exact [e].dfz = cmath.cos(coords[e].z)
@@ -663,6 +685,116 @@ terra wait_for(x : int)
   return x
 end
 
+task run_main( points   : region(ispace(int3d), point),
+               exact    : region(ispace(int3d), point),
+               coords   : region(ispace(int3d), coordinates),
+               LU_x     : region(ispace(int1d), LU_struct),
+               LU_x2    : region(ispace(int1d), LU_struct),
+               LU_y     : region(ispace(int1d), LU_struct),
+               LU_y2    : region(ispace(int1d), LU_struct),
+               LU_z     : region(ispace(int1d), LU_struct),
+               LU_z2    : region(ispace(int1d), LU_struct),
+               pencil   : ispace(int2d),
+               points_x : partition(disjoint, points, ispace(int2d)),
+               points_y : partition(disjoint, points, ispace(int2d)),
+               points_z : partition(disjoint, points, ispace(int2d)),
+               exact_x  : partition(disjoint, exact,  ispace(int2d)),
+               exact_y  : partition(disjoint, exact,  ispace(int2d)),
+               exact_z  : partition(disjoint, exact,  ispace(int2d)),
+               coords_x : partition(disjoint, coords, ispace(int2d)),
+               coords_y : partition(disjoint, coords, ispace(int2d)),
+               coords_z : partition(disjoint, coords, ispace(int2d)),
+               dx       : double,
+               dy       : double,
+               dz       : double )
+where
+  reads writes simultaneous(LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2), reads(coords, exact), reads writes (points)
+do
+  -- acquire(LU_x )
+  -- acquire(LU_x2)
+  -- acquire(LU_y )
+  -- acquire(LU_y2)
+  -- acquire(LU_z )
+  -- acquire(LU_z2)
+
+  var token = 0 
+ 
+  wait_for(token)
+  var ts_start = c.legion_get_current_time_in_micros()
+  
+  -- Get df/dx, df/dy, df/dz
+  __demand(__spmd)
+  for i in pencil do
+    token += ddx(points_x[i],LU_x)
+  end
+
+  __demand(__spmd)
+  for i in pencil do
+    token += ddy(points_y[i],LU_y)
+  end
+
+  __demand(__spmd)
+  for i in pencil do
+    token += ddz(points_z[i],LU_z)
+  end
+  
+  wait_for(token)
+  var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
+  
+  var err_x = 0.0
+  for i in pencil do
+    err_x += get_error_x(points_x[i],exact_x[i])
+  end
+
+  var err_y = 0.0
+  for i in pencil do
+    err_y += get_error_y(points_x[i],exact_x[i]) 
+  end
+
+  var err_z = 0.0
+  for i in pencil do
+    err_z += get_error_z(points_x[i],exact_x[i]) 
+  end
+  
+  wait_for(err_x)
+  wait_for(err_y)
+  wait_for(err_z)
+  ts_start = c.legion_get_current_time_in_micros()
+  
+  -- Get d2f/dx2, d2f/dy2, d2f/dz2
+  for i in pencil do
+    token += d2dx2(points_x[i],LU_x2)
+  end
+  for i in pencil do
+    token += d2dy2(points_y[i],LU_y2)
+  end
+  for i in pencil do
+    token += d2dz2(points_z[i],LU_z2)
+  end
+  
+  wait_for(token)
+  var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
+  
+  var err_d2 = 0.0
+  for i in pencil do
+    err_d2 += get_error_d2(points_x[i])
+  end
+
+  c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
+  c.printf("  Maximum error in x = %12.5e\n", err_x)
+  c.printf("  Maximum error in y = %12.5e\n", err_y)
+  c.printf("  Maximum error in z = %12.5e\n", err_z)
+  c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
+  c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
+  
+  -- release(LU_x )
+  -- release(LU_x2)
+  -- release(LU_y )
+  -- release(LU_y2)
+  -- release(LU_z )
+  -- release(LU_z2)
+end
+
 task main()
   var L  : double = LL      -- Domain length
   var N  : int64  = NN      -- Grid size
@@ -684,6 +816,9 @@ task main()
   var alpha10d2 : double = 334.0/899.0
   var beta10d2  : double = 43.0/1798.0
 
+  var prowcol = factorize(parallelism)
+  var pencil = ispace(int2d, prowcol)
+  
   var grid_x = ispace(int1d, N)
   var LU_x   = region(grid_x, LU_struct)
   get_LU_decomposition(LU_x, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
@@ -707,10 +842,6 @@ task main()
   var points = region(grid, point)
   var exact  = region(grid, point)
 
-  var prowcol = factorize(parallelism)
-
-  var pencil = ispace(int2d, prowcol)
-  
   var points_x = make_xpencil(points, pencil) -- Partition of x-pencils
   var points_y = make_ypencil(points, pencil) -- Partition of y-pencils
   var points_z = make_zpencil(points, pencil) -- Partition of z-pencils
@@ -722,72 +853,17 @@ task main()
   var coords_x = make_xpencil_c(coords, pencil) -- Partition of x-pencils
   var coords_y = make_ypencil_c(coords, pencil) -- Partition of y-pencils
   var coords_z = make_zpencil_c(coords, pencil) -- Partition of z-pencils
-
-  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_x[{0,0}].bounds.lo.x, points_x[{0,0}].bounds.lo.y, points_x[{0,0}].bounds.lo.z)
-  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_x[{0,0}].bounds.hi.x, points_x[{0,0}].bounds.hi.y, points_x[{0,0}].bounds.hi.z)
-  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_x[{1,0}].bounds.lo.x, points_x[{1,0}].bounds.lo.y, points_x[{1,0}].bounds.lo.z)
-  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_x[{1,0}].bounds.hi.x, points_x[{1,0}].bounds.hi.y, points_x[{1,0}].bounds.hi.z)
-  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_x[{0,1}].bounds.lo.x, points_x[{0,1}].bounds.lo.y, points_x[{0,1}].bounds.lo.z)
-  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_x[{0,1}].bounds.hi.x, points_x[{0,1}].bounds.hi.y, points_x[{0,1}].bounds.hi.z)
-  -- 
-  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_y[{0,0}].bounds.lo.x, points_y[{0,0}].bounds.lo.y, points_y[{0,0}].bounds.lo.z)
-  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_y[{0,0}].bounds.hi.x, points_y[{0,0}].bounds.hi.y, points_y[{0,0}].bounds.hi.z)
-  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_y[{1,0}].bounds.lo.x, points_y[{1,0}].bounds.lo.y, points_y[{1,0}].bounds.lo.z)
-  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_y[{1,0}].bounds.hi.x, points_y[{1,0}].bounds.hi.y, points_y[{1,0}].bounds.hi.z)
-  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_y[{0,1}].bounds.lo.x, points_y[{0,1}].bounds.lo.y, points_y[{0,1}].bounds.lo.z)
-  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_y[{0,1}].bounds.hi.x, points_y[{0,1}].bounds.hi.y, points_y[{0,1}].bounds.hi.z)
-  -- 
-  -- c.printf("proc 0,0 lo: {%d, %d, %d}\n", points_z[{0,0}].bounds.lo.x, points_z[{0,0}].bounds.lo.y, points_z[{0,0}].bounds.lo.z)
-  -- c.printf("proc 0,0 hi: {%d, %d, %d}\n", points_z[{0,0}].bounds.hi.x, points_z[{0,0}].bounds.hi.y, points_z[{0,0}].bounds.hi.z)
-  -- c.printf("proc 1,0 lo: {%d, %d, %d}\n", points_z[{1,0}].bounds.lo.x, points_z[{1,0}].bounds.lo.y, points_z[{1,0}].bounds.lo.z)
-  -- c.printf("proc 1,0 hi: {%d, %d, %d}\n", points_z[{1,0}].bounds.hi.x, points_z[{1,0}].bounds.hi.y, points_z[{1,0}].bounds.hi.z)
-  -- c.printf("proc 0,1 lo: {%d, %d, %d}\n", points_z[{0,1}].bounds.lo.x, points_z[{0,1}].bounds.lo.y, points_z[{0,1}].bounds.lo.z)
-  -- c.printf("proc 0,1 hi: {%d, %d, %d}\n", points_z[{0,1}].bounds.hi.x, points_z[{0,1}].bounds.hi.y, points_z[{0,1}].bounds.hi.z)
-
-  var token = 0 
  
+  var token = 0 
   -- Initialize function f
   for i in pencil do
     token += initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
   end
-
   wait_for(token)
-  var ts_start = c.legion_get_current_time_in_micros()
-  
-  -- Get df/dx, df/dy, df/dz
-  token += ddx(points,LU_x)
-  token += ddy(points,LU_y)
-  token += ddz(points,LU_z)
-  
-  wait_for(token)
-  var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
-  
-  var err_x = get_error_x(points,exact) 
-  var err_y = get_error_y(points,exact) 
-  var err_z = get_error_z(points,exact) 
-  
-  wait_for(err_x)
-  wait_for(err_y)
-  wait_for(err_z)
-  ts_start = c.legion_get_current_time_in_micros()
-  
-  -- Get d2f/dx2, d2f/dy2, d2f/dz2
-  token += d2dx2(points,LU_x2)
-  token += d2dy2(points,LU_y2)
-  token += d2dz2(points,LU_z2)
-  
-  wait_for(token)
-  var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
-  
-  var err_d2 = get_error_d2(points) 
 
-  c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
-  c.printf("  Maximum error in x = %12.5e\n", err_x)
-  c.printf("  Maximum error in y = %12.5e\n", err_y)
-  c.printf("  Maximum error in z = %12.5e\n", err_z)
-  c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
-  c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
-
+  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
+            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
+            coords_x, coords_y, coords_z, dx, dy, dz )
 end
 
 regentlib.start(main)
