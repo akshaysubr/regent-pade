@@ -7,7 +7,7 @@ local PI    = cmath.M_PI
 local max = regentlib.fmax
 
 -- Some problem parameters
-local NN = 256
+local NN = 512
 local LL = 2.0*math.pi
 local DX = LL / NN
 local DY = LL / NN
@@ -16,7 +16,7 @@ local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
 
-local parallelism = 4
+local parallelism = 16
 
 local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
@@ -769,25 +769,23 @@ do
     token += ddz(points_z[i],pLU_z[i])
   end
   
-  -- __demand(__spmd)
-  -- for i in pencil do
-  --   token += gradient(points_x[i], points_y[i], points_z[i], pLU_x[i], pLU_y[i], pLU_z[i])
-  -- end
-  
   wait_for(token)
   var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
   
   var err_x = 0.0
+  __demand(__spmd)
   for i in pencil do
     err_x += get_error_x(points_x[i],exact_x[i])
   end
 
   var err_y = 0.0
+  __demand(__spmd)
   for i in pencil do
     err_y += get_error_y(points_x[i],exact_x[i]) 
   end
 
   var err_z = 0.0
+  __demand(__spmd)
   for i in pencil do
     err_z += get_error_z(points_x[i],exact_x[i]) 
   end
@@ -798,12 +796,17 @@ do
   ts_start = c.legion_get_current_time_in_micros()
   
   -- Get d2f/dx2, d2f/dy2, d2f/dz2
+  __demand(__spmd)
   for i in pencil do
     token += d2dx2(points_x[i],pLU_x2[i])
   end
+
+  __demand(__spmd)
   for i in pencil do
     token += d2dy2(points_y[i],pLU_y2[i])
   end
+
+  __demand(__spmd)
   for i in pencil do
     token += d2dz2(points_z[i],pLU_z2[i])
   end
@@ -812,6 +815,7 @@ do
   var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
   
   var err_d2 = 0.0
+  __demand(__spmd)
   for i in pencil do
     err_d2 += get_error_d2(points_x[i])
   end
