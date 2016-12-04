@@ -225,7 +225,7 @@ task make_zpencil_c( points  : region(ispace(int3d), coordinates),
   return p
 end
 
-task get_LU_decomposition(LU : region(ispace(int1d), LU_struct),
+task get_LU_decomposition(LU : region(ispace(int3d), LU_struct),
                           e  : double,
                           a  : double,
                           d  : double,
@@ -235,87 +235,89 @@ where
   reads writes( LU )
 do
 
-  var N : int64 = LU.ispace.bounds.hi + 1
+  var N : int64 = LU.ispace.bounds.hi.x + 1
+  var pr = LU.ispace.bounds.hi.y
+  var pc = LU.ispace.bounds.hi.z
 
   -- Step 1
-  LU[0].g = d
-  LU[1].b = a/LU[0].g
-  LU[0].h = cc
-  LU[0].k = f/LU[0].g
-  LU[0].w = a
-  LU[0].v = e
-  LU[0].l = cc/LU[0].g
+  LU[{0,pr,pc}].g = d
+  LU[{1,pr,pc}].b = a/LU[{0,pr,pc}].g
+  LU[{0,pr,pc}].h = cc
+  LU[{0,pr,pc}].k = f/LU[{0,pr,pc}].g
+  LU[{0,pr,pc}].w = a
+  LU[{0,pr,pc}].v = e
+  LU[{0,pr,pc}].l = cc/LU[{0,pr,pc}].g
   
-  LU[1].g = d - LU[1].b*LU[0].h
-  LU[1].k = -LU[0].k*LU[0].h/LU[1].g
-  LU[1].w = e - LU[1].b*LU[0].w
-  LU[1].v = -LU[1].b*LU[0].v
-  LU[1].l = (f - LU[0].l*LU[0].h) / LU[1].g
-  LU[1].h = cc - LU[1].b*f
+  LU[{1,pr,pc}].g = d - LU[{1,pr,pc}].b*LU[{0,pr,pc}].h
+  LU[{1,pr,pc}].k = -LU[{0,pr,pc}].k*LU[{0,pr,pc}].h/LU[{1,pr,pc}].g
+  LU[{1,pr,pc}].w = e - LU[{1,pr,pc}].b*LU[{0,pr,pc}].w
+  LU[{1,pr,pc}].v = -LU[{1,pr,pc}].b*LU[{0,pr,pc}].v
+  LU[{1,pr,pc}].l = (f - LU[{0,pr,pc}].l*LU[{0,pr,pc}].h) / LU[{1,pr,pc}].g
+  LU[{1,pr,pc}].h = cc - LU[{1,pr,pc}].b*f
 
   -- Step 2
   for i = 2,N-3 do
-    LU[{i}].b = ( a - ( e/LU[{i-2}].g )*LU[{i-2}].h ) / LU[{i-1}].g
-    LU[{i}].h = cc - LU[{i}].b*f
-    LU[{i}].g = d - ( e/LU[{i-2}].g )*f - LU[{i}].b*LU[{i-1}].h
+    LU[{i,pr,pc}].b = ( a - ( e/LU[{i-2,pr,pc}].g )*LU[{i-2,pr,pc}].h ) / LU[{i-1,pr,pc}].g
+    LU[{i,pr,pc}].h = cc - LU[{i,pr,pc}].b*f
+    LU[{i,pr,pc}].g = d - ( e/LU[{i-2,pr,pc}].g )*f - LU[{i,pr,pc}].b*LU[{i-1,pr,pc}].h
   end
 
   -- Step 3
-  LU[N-3].b = ( a - ( e/LU[N-5].g )*LU[N-5].h ) / LU[N-4].g
-  LU[N-3].g = d - ( e/LU[N-5].g )*f - LU[N-3].b*LU[N-4].h
+  LU[{N-3,pr,pc}].b = ( a - ( e/LU[{N-5,pr,pc}].g )*LU[{N-5,pr,pc}].h ) / LU[{N-4,pr,pc}].g
+  LU[{N-3,pr,pc}].g = d - ( e/LU[{N-5,pr,pc}].g )*f - LU[{N-3,pr,pc}].b*LU[{N-4,pr,pc}].h
 
   -- Step 4
   for i = 2,N-4 do
-    LU[i].k = -( LU[i-2].k*f + LU[i-1].k*LU[i-1].h ) / LU[i].g
-    LU[i].v = -( e/LU[i-2].g )*LU[i-2].v - LU[i].b*LU[i-1].v
+    LU[{i,pr,pc}].k = -( LU[{i-2,pr,pc}].k*f + LU[{i-1,pr,pc}].k*LU[{i-1,pr,pc}].h ) / LU[{i,pr,pc}].g
+    LU[{i,pr,pc}].v = -( e/LU[{i-2,pr,pc}].g )*LU[{i-2,pr,pc}].v - LU[{i,pr,pc}].b*LU[{i-1,pr,pc}].v
   end
 
   -- Step 5
-  LU[N-4].k = ( e - LU[N-6].k*f - LU[N-5].k*LU[N-5].h ) / LU[N-4].g
-  LU[N-3].k = ( a - LU[N-5].k*f - LU[N-4].k*LU[N-4].h ) / LU[N-3].g
-  LU[N-4].v = f  - ( e/LU[N-6].g )*LU[N-6].v - LU[N-4].b*LU[N-5].v
-  LU[N-3].v = cc - ( e/LU[N-5].g )*LU[N-5].v - LU[N-3].b*LU[N-4].v
-  LU[N-2].g = d
+  LU[{N-4,pr,pc}].k = ( e - LU[{N-6,pr,pc}].k*f - LU[{N-5,pr,pc}].k*LU[{N-5,pr,pc}].h ) / LU[{N-4,pr,pc}].g
+  LU[{N-3,pr,pc}].k = ( a - LU[{N-5,pr,pc}].k*f - LU[{N-4,pr,pc}].k*LU[{N-4,pr,pc}].h ) / LU[{N-3,pr,pc}].g
+  LU[{N-4,pr,pc}].v = f  - ( e/LU[{N-6,pr,pc}].g )*LU[{N-6,pr,pc}].v - LU[{N-4,pr,pc}].b*LU[{N-5,pr,pc}].v
+  LU[{N-3,pr,pc}].v = cc - ( e/LU[{N-5,pr,pc}].g )*LU[{N-5,pr,pc}].v - LU[{N-3,pr,pc}].b*LU[{N-4,pr,pc}].v
+  LU[{N-2,pr,pc}].g = d
   for i = 0,N-2 do
-    LU[N-2].g -= LU[i].k*LU[i].v
+    LU[{N-2,pr,pc}].g -= LU[{i,pr,pc}].k*LU[{i,pr,pc}].v
   end
 
   -- Step 6
   for i = 2,N-3 do
-    LU[i].w = -( e/LU[i-2].g )*LU[i-2].w - LU[i].b*LU[i-1].w
-    LU[i].l = -( LU[i-2].l*f + LU[i-1].l*LU[i-1].h ) / LU[i].g
+    LU[{i,pr,pc}].w = -( e/LU[{i-2,pr,pc}].g )*LU[{i-2,pr,pc}].w - LU[{i,pr,pc}].b*LU[{i-1,pr,pc}].w
+    LU[{i,pr,pc}].l = -( LU[{i-2,pr,pc}].l*f + LU[{i-1,pr,pc}].l*LU[{i-1,pr,pc}].h ) / LU[{i,pr,pc}].g
   end
 
   -- Step 7
-  LU[N-3].w = f - ( e/LU[N-5].g )*LU[N-5].w - LU[N-3].b*LU[N-4].w
-  LU[N-2].w = cc
+  LU[{N-3,pr,pc}].w = f - ( e/LU[{N-5,pr,pc}].g )*LU[{N-5,pr,pc}].w - LU[{N-3,pr,pc}].b*LU[{N-4,pr,pc}].w
+  LU[{N-2,pr,pc}].w = cc
   for i = 0,N-2 do
-    LU[N-2].w -= LU[i].k*LU[i].w
+    LU[{N-2,pr,pc}].w -= LU[{i,pr,pc}].k*LU[{i,pr,pc}].w
   end
-  LU[N-3].l = ( e - LU[N-5].l*f - LU[N-4].l*LU[N-4].h ) / LU[N-3].g
-  LU[N-2].l = a
+  LU[{N-3,pr,pc}].l = ( e - LU[{N-5,pr,pc}].l*f - LU[{N-4,pr,pc}].l*LU[{N-4,pr,pc}].h ) / LU[{N-3,pr,pc}].g
+  LU[{N-2,pr,pc}].l = a
   for i = 0,N-2 do
-    LU[N-2].l -= LU[i].l*LU[i].v
+    LU[{N-2,pr,pc}].l -= LU[{i,pr,pc}].l*LU[{i,pr,pc}].v
   end
-  LU[N-2].l = LU[N-2].l / LU[N-2].g
-  LU[N-1].g = d
+  LU[{N-2,pr,pc}].l = LU[{N-2,pr,pc}].l / LU[{N-2,pr,pc}].g
+  LU[{N-1,pr,pc}].g = d
   for i = 0,N-1 do
-    LU[N-1].g -= LU[i].l*LU[i].w
+    LU[{N-1,pr,pc}].g -= LU[{i,pr,pc}].l*LU[{i,pr,pc}].w
   end
 
   -- Set eg = e/g
   for i = 2,N-2 do
-    LU[i].eg = e/LU[i-2].g
+    LU[{i,pr,pc}].eg = e/LU[{i-2,pr,pc}].g
   end
 
   -- Set ff = f
   for i = 0,N-4 do
-    LU[i].ff = f
+    LU[{i,pr,pc}].ff = f
   end
 
   -- Set g = 1/g
   for i = 0,N do
-    LU[i].g = 1.0/LU[i].g
+    LU[{i,pr,pc}].g = 1.0/LU[{i,pr,pc}].g
   end
 
   -- c.printf("LU decomposition:\n")
@@ -326,38 +328,40 @@ do
 end
 
 task SolveXLU( points : region(ispace(int3d), point),
-               LU     : region(ispace(int1d), LU_struct) )
+               LU     : region(ispace(int3d), LU_struct) )
 where
   reads writes(points.dfx), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.x + 1
+  var pr = LU.ispace.bounds.hi.y
+  var pc = LU.ispace.bounds.hi.z
 
   for j = bounds.lo.y, bounds.hi.y+1 do
     for k = bounds.lo.z, bounds.hi.z+1 do
 
       -- Step 8
-      points[{1,j,k}].dfx = points[{1,j,k}].dfx - LU[1].b*points[{0,j,k}].dfx
-      var sum1 : double = LU[0].k*points[{0,j,k}].dfx + LU[1].k*points[{1,j,k}].dfx
-      var sum2 : double = LU[0].l*points[{0,j,k}].dfx + LU[1].l*points[{1,j,k}].dfx
+      points[{1,j,k}].dfx = points[{1,j,k}].dfx - LU[{1,pr,pc}].b*points[{0,j,k}].dfx
+      var sum1 : double = LU[{0,pr,pc}].k*points[{0,j,k}].dfx + LU[{1,pr,pc}].k*points[{1,j,k}].dfx
+      var sum2 : double = LU[{0,pr,pc}].l*points[{0,j,k}].dfx + LU[{1,pr,pc}].l*points[{1,j,k}].dfx
 
       -- Step 9
       for i = 2,N-2 do
-        points[{i,j,k}].dfx = points[{i,j,k}].dfx - LU[i].b*points[{i-1,j,k}].dfx - LU[i].eg*points[{i-2,j,k}].dfx
-        sum1 += LU[i].k*points[{i,j,k}].dfx
-        sum2 += LU[i].l*points[{i,j,k}].dfx
+        points[{i,j,k}].dfx = points[{i,j,k}].dfx - LU[{i,pr,pc}].b*points[{i-1,j,k}].dfx - LU[{i,pr,pc}].eg*points[{i-2,j,k}].dfx
+        sum1 += LU[{i,pr,pc}].k*points[{i,j,k}].dfx
+        sum2 += LU[{i,pr,pc}].l*points[{i,j,k}].dfx
       end
 
       -- Step 10
       points[{N-2,j,k}].dfx = points[{N-2,j,k}].dfx - sum1
-      points[{N-1,j,k}].dfx = ( points[{N-1,j,k}].dfx - sum2 - LU[N-2].l*points[{N-2,j,k}].dfx )*LU[N-1].g
+      points[{N-1,j,k}].dfx = ( points[{N-1,j,k}].dfx - sum2 - LU[{N-2,pr,pc}].l*points[{N-2,j,k}].dfx )*LU[{N-1,pr,pc}].g
 
       -- Step 11
-      points[{N-2,j,k}].dfx = ( points[{N-2,j,k}].dfx - LU[N-2].w*points[{N-1,j,k}].dfx )*LU[N-2].g
-      points[{N-3,j,k}].dfx = ( points[{N-3,j,k}].dfx - LU[N-3].v*points[{N-2,j,k}].dfx - LU[N-3].w*points[{N-1,j,k}].dfx )*LU[N-3].g
-      points[{N-4,j,k}].dfx = ( points[{N-4,j,k}].dfx - LU[N-4].h*points[{N-3,j,k}].dfx - LU[N-4].v*points[{N-2,j,k}].dfx - LU[N-4].w*points[{N-1,j,k}].dfx )*LU[N-4].g
+      points[{N-2,j,k}].dfx = ( points[{N-2,j,k}].dfx - LU[{N-2,pr,pc}].w*points[{N-1,j,k}].dfx )*LU[{N-2,pr,pc}].g
+      points[{N-3,j,k}].dfx = ( points[{N-3,j,k}].dfx - LU[{N-3,pr,pc}].v*points[{N-2,j,k}].dfx - LU[{N-3,pr,pc}].w*points[{N-1,j,k}].dfx )*LU[{N-3,pr,pc}].g
+      points[{N-4,j,k}].dfx = ( points[{N-4,j,k}].dfx - LU[{N-4,pr,pc}].h*points[{N-3,j,k}].dfx - LU[{N-4,pr,pc}].v*points[{N-2,j,k}].dfx - LU[{N-4,pr,pc}].w*points[{N-1,j,k}].dfx )*LU[{N-4,pr,pc}].g
       for i = N-5,-1,-1 do
-        points[{i,j,k}].dfx = ( points[{i,j,k}].dfx - LU[i].h*points[{i+1,j,k}].dfx - LU[i].ff*points[{i+2,j,k}].dfx - LU[i].v*points[{N-2,j,k}].dfx - LU[i].w*points[{N-1,j,k}].dfx )*LU[i].g
+        points[{i,j,k}].dfx = ( points[{i,j,k}].dfx - LU[{i,pr,pc}].h*points[{i+1,j,k}].dfx - LU[{i,pr,pc}].ff*points[{i+2,j,k}].dfx - LU[{i,pr,pc}].v*points[{N-2,j,k}].dfx - LU[{i,pr,pc}].w*points[{N-1,j,k}].dfx )*LU[{i,pr,pc}].g
       end
 
     end
@@ -366,38 +370,40 @@ do
 end
 
 task SolveYLU( points : region(ispace(int3d), point),
-               LU     : region(ispace(int1d), LU_struct) )
+               LU     : region(ispace(int3d), LU_struct) )
 where
   reads writes(points.dfy), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.y + 1
+  var pr = LU.ispace.bounds.hi.y
+  var pc = LU.ispace.bounds.hi.z
 
   for i = bounds.lo.x, bounds.hi.x+1 do
     for k = bounds.lo.z, bounds.hi.z+1 do
 
       -- Step 8
-      points[{i,1,k}].dfy = points[{i,1,k}].dfy - LU[1].b*points[{i,0,k}].dfy
-      var sum1 : double = LU[0].k*points[{i,0,k}].dfy + LU[1].k*points[{i,1,k}].dfy
-      var sum2 : double = LU[0].l*points[{i,0,k}].dfy + LU[1].l*points[{i,1,k}].dfy
+      points[{i,1,k}].dfy = points[{i,1,k}].dfy - LU[{1,pr,pc}].b*points[{i,0,k}].dfy
+      var sum1 : double = LU[{0,pr,pc}].k*points[{i,0,k}].dfy + LU[{1,pr,pc}].k*points[{i,1,k}].dfy
+      var sum2 : double = LU[{0,pr,pc}].l*points[{i,0,k}].dfy + LU[{1,pr,pc}].l*points[{i,1,k}].dfy
 
       -- Step 9
       for j = 2,N-2 do
-        points[{i,j,k}].dfy = points[{i,j,k}].dfy - LU[j].b*points[{i,j-1,k}].dfy - LU[j].eg*points[{i,j-2,k}].dfy
-        sum1 += LU[j].k*points[{i,j,k}].dfy
-        sum2 += LU[j].l*points[{i,j,k}].dfy
+        points[{i,j,k}].dfy = points[{i,j,k}].dfy - LU[{j,pr,pc}].b*points[{i,j-1,k}].dfy - LU[{j,pr,pc}].eg*points[{i,j-2,k}].dfy
+        sum1 += LU[{j,pr,pc}].k*points[{i,j,k}].dfy
+        sum2 += LU[{j,pr,pc}].l*points[{i,j,k}].dfy
       end
 
       -- Step 10
       points[{i,N-2,k}].dfy = points[{i,N-2,k}].dfy - sum1
-      points[{i,N-1,k}].dfy = ( points[{i,N-1,k}].dfy - sum2 - LU[N-2].l*points[{i,N-2,k}].dfy )*LU[N-1].g
+      points[{i,N-1,k}].dfy = ( points[{i,N-1,k}].dfy - sum2 - LU[{N-2,pr,pc}].l*points[{i,N-2,k}].dfy )*LU[{N-1,pr,pc}].g
 
       -- Step 11
-      points[{i,N-2,k}].dfy = ( points[{i,N-2,k}].dfy - LU[N-2].w*points[{i,N-1,k}].dfy )*LU[N-2].g
-      points[{i,N-3,k}].dfy = ( points[{i,N-3,k}].dfy - LU[N-3].v*points[{i,N-2,k}].dfy - LU[N-3].w*points[{i,N-1,k}].dfy )*LU[N-3].g
-      points[{i,N-4,k}].dfy = ( points[{i,N-4,k}].dfy - LU[N-4].h*points[{i,N-3,k}].dfy - LU[N-4].v*points[{i,N-2,k}].dfy - LU[N-4].w*points[{i,N-1,k}].dfy )*LU[N-4].g
+      points[{i,N-2,k}].dfy = ( points[{i,N-2,k}].dfy - LU[{N-2,pr,pc}].w*points[{i,N-1,k}].dfy )*LU[{N-2,pr,pc}].g
+      points[{i,N-3,k}].dfy = ( points[{i,N-3,k}].dfy - LU[{N-3,pr,pc}].v*points[{i,N-2,k}].dfy - LU[{N-3,pr,pc}].w*points[{i,N-1,k}].dfy )*LU[{N-3,pr,pc}].g
+      points[{i,N-4,k}].dfy = ( points[{i,N-4,k}].dfy - LU[{N-4,pr,pc}].h*points[{i,N-3,k}].dfy - LU[{N-4,pr,pc}].v*points[{i,N-2,k}].dfy - LU[{N-4,pr,pc}].w*points[{i,N-1,k}].dfy )*LU[{N-4,pr,pc}].g
       for j = N-5,-1,-1 do
-        points[{i,j,k}].dfy = ( points[{i,j,k}].dfy - LU[j].h*points[{i,j+1,k}].dfy - LU[j].ff*points[{i,j+2,k}].dfy - LU[j].v*points[{i,N-2,k}].dfy - LU[j].w*points[{i,N-1,k}].dfy )*LU[j].g
+        points[{i,j,k}].dfy = ( points[{i,j,k}].dfy - LU[{j,pr,pc}].h*points[{i,j+1,k}].dfy - LU[{j,pr,pc}].ff*points[{i,j+2,k}].dfy - LU[{j,pr,pc}].v*points[{i,N-2,k}].dfy - LU[{j,pr,pc}].w*points[{i,N-1,k}].dfy )*LU[{j,pr,pc}].g
       end
 
     end
@@ -406,38 +412,40 @@ do
 end
 
 task SolveZLU( points : region(ispace(int3d), point),
-               LU     : region(ispace(int1d), LU_struct) )
+               LU     : region(ispace(int3d), LU_struct) )
 where
   reads writes(points.dfz), reads(LU)
 do
   var bounds = points.ispace.bounds
   var N = bounds.hi.z + 1
+  var pr = LU.ispace.bounds.hi.y
+  var pc = LU.ispace.bounds.hi.z
 
   for i = bounds.lo.x, bounds.hi.x+1 do
     for j = bounds.lo.y, bounds.hi.y+1 do
 
       -- Step 8
-      points[{i,j,1}].dfz = points[{i,j,1}].dfz - LU[1].b*points[{i,j,0}].dfz
-      var sum1 : double = LU[0].k*points[{i,j,0}].dfz + LU[1].k*points[{i,j,1}].dfz
-      var sum2 : double = LU[0].l*points[{i,j,0}].dfz + LU[1].l*points[{i,j,1}].dfz
+      points[{i,j,1}].dfz = points[{i,j,1}].dfz - LU[{1,pr,pc}].b*points[{i,j,0}].dfz
+      var sum1 : double = LU[{0,pr,pc}].k*points[{i,j,0}].dfz + LU[{1,pr,pc}].k*points[{i,j,1}].dfz
+      var sum2 : double = LU[{0,pr,pc}].l*points[{i,j,0}].dfz + LU[{1,pr,pc}].l*points[{i,j,1}].dfz
 
       -- Step 9
       for k = 2,N-2 do
-        points[{i,j,k}].dfz = points[{i,j,k}].dfz - LU[k].b*points[{i,j,k-1}].dfz - LU[k].eg*points[{i,j,k-2}].dfz
-        sum1 += LU[k].k*points[{i,j,k}].dfz
-        sum2 += LU[k].l*points[{i,j,k}].dfz
+        points[{i,j,k}].dfz = points[{i,j,k}].dfz - LU[{k,pr,pc}].b*points[{i,j,k-1}].dfz - LU[{k,pr,pc}].eg*points[{i,j,k-2}].dfz
+        sum1 += LU[{k,pr,pc}].k*points[{i,j,k}].dfz
+        sum2 += LU[{k,pr,pc}].l*points[{i,j,k}].dfz
       end
 
       -- Step 10
       points[{i,j,N-2}].dfz = points[{i,j,N-2}].dfz - sum1
-      points[{i,j,N-1}].dfz = ( points[{i,j,N-1}].dfz - sum2 - LU[N-2].l*points[{i,j,N-2}].dfz )*LU[N-1].g
+      points[{i,j,N-1}].dfz = ( points[{i,j,N-1}].dfz - sum2 - LU[{N-2,pr,pc}].l*points[{i,j,N-2}].dfz )*LU[{N-1,pr,pc}].g
 
       -- Step 11
-      points[{i,j,N-2}].dfz = ( points[{i,j,N-2}].dfz - LU[N-2].w*points[{i,j,N-1}].dfz )*LU[N-2].g
-      points[{i,j,N-3}].dfz = ( points[{i,j,N-3}].dfz - LU[N-3].v*points[{i,j,N-2}].dfz - LU[N-3].w*points[{i,j,N-1}].dfz )*LU[N-3].g
-      points[{i,j,N-4}].dfz = ( points[{i,j,N-4}].dfz - LU[N-4].h*points[{i,j,N-3}].dfz - LU[N-4].v*points[{i,j,N-2}].dfz - LU[N-4].w*points[{i,j,N-1}].dfz )*LU[N-4].g
+      points[{i,j,N-2}].dfz = ( points[{i,j,N-2}].dfz - LU[{N-2,pr,pc}].w*points[{i,j,N-1}].dfz )*LU[{N-2,pr,pc}].g
+      points[{i,j,N-3}].dfz = ( points[{i,j,N-3}].dfz - LU[{N-3,pr,pc}].v*points[{i,j,N-2}].dfz - LU[{N-3,pr,pc}].w*points[{i,j,N-1}].dfz )*LU[{N-3,pr,pc}].g
+      points[{i,j,N-4}].dfz = ( points[{i,j,N-4}].dfz - LU[{N-4,pr,pc}].h*points[{i,j,N-3}].dfz - LU[{N-4,pr,pc}].v*points[{i,j,N-2}].dfz - LU[{N-4,pr,pc}].w*points[{i,j,N-1}].dfz )*LU[{N-4,pr,pc}].g
       for k = N-5,-1,-1 do
-        points[{i,j,k}].dfz = ( points[{i,j,k}].dfz - LU[k].h*points[{i,j,k+1}].dfz - LU[k].ff*points[{i,j,k+2}].dfz - LU[k].v*points[{i,j,N-2}].dfz - LU[k].w*points[{i,j,N-1}].dfz )*LU[k].g
+        points[{i,j,k}].dfz = ( points[{i,j,k}].dfz - LU[{k,pr,pc}].h*points[{i,j,k+1}].dfz - LU[{k,pr,pc}].ff*points[{i,j,k+2}].dfz - LU[{k,pr,pc}].v*points[{i,j,N-2}].dfz - LU[{k,pr,pc}].w*points[{i,j,N-1}].dfz )*LU[{k,pr,pc}].g
       end
 
     end
@@ -546,7 +554,7 @@ local ComputeY2RHS = make_stencil_y(NN, ONEBYDY, a10d2, b10d2, c10d2, 2)
 local ComputeZ2RHS = make_stencil_z(NN, ONEBYDZ, a10d2, b10d2, c10d2, 2)
 
 task ddx( points : region(ispace(int3d), point),
-          LU     : region(ispace(int1d), LU_struct) )
+          LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfx)
 do
@@ -556,7 +564,7 @@ do
 end
 
 task d2dx2( points : region(ispace(int3d), point),
-            LU     : region(ispace(int1d), LU_struct) )
+            LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfx)
 do
@@ -566,7 +574,7 @@ do
 end
 
 task ddy( points : region(ispace(int3d), point),
-          LU     : region(ispace(int1d), LU_struct) )
+          LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfy)
 do
@@ -576,7 +584,7 @@ do
 end
 
 task d2dy2( points : region(ispace(int3d), point),
-            LU     : region(ispace(int1d), LU_struct) )
+            LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfy)
 do
@@ -586,7 +594,7 @@ do
 end
 
 task ddz( points : region(ispace(int3d), point),
-          LU     : region(ispace(int1d), LU_struct) )
+          LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfz)
 do
@@ -596,12 +604,29 @@ do
 end
 
 task d2dz2( points : region(ispace(int3d), point),
-            LU     : region(ispace(int1d), LU_struct) )
+            LU     : region(ispace(int3d), LU_struct) )
 where
   reads(LU, points.f), reads writes(points.dfz)
 do
   ComputeZ2RHS(points)
   var token = SolveZLU(points,LU)
+  return token
+end
+
+task gradient( points_x : region(ispace(int3d), point),
+               points_y : region(ispace(int3d), point),
+               points_z : region(ispace(int3d), point),
+               LU_x     : region(ispace(int3d), LU_struct),
+               LU_y     : region(ispace(int3d), LU_struct),
+               LU_z     : region(ispace(int3d), LU_struct) )
+where
+  reads(LU_x, LU_y, LU_z), reads(points_x.f, points_y.f, points_z.f),
+  reads writes(points_x.dfx, points_y.dfy, points_z.dfz)
+do 
+  var token = 0
+  token += ddx(points_x,LU_x)
+  token += ddy(points_y,LU_y)
+  token += ddz(points_z,LU_z)
   return token
 end
 
@@ -688,12 +713,12 @@ end
 task run_main( points   : region(ispace(int3d), point),
                exact    : region(ispace(int3d), point),
                coords   : region(ispace(int3d), coordinates),
-               LU_x     : region(ispace(int1d), LU_struct),
-               LU_x2    : region(ispace(int1d), LU_struct),
-               LU_y     : region(ispace(int1d), LU_struct),
-               LU_y2    : region(ispace(int1d), LU_struct),
-               LU_z     : region(ispace(int1d), LU_struct),
-               LU_z2    : region(ispace(int1d), LU_struct),
+               LU_x     : region(ispace(int3d), LU_struct),
+               LU_x2    : region(ispace(int3d), LU_struct),
+               LU_y     : region(ispace(int3d), LU_struct),
+               LU_y2    : region(ispace(int3d), LU_struct),
+               LU_z     : region(ispace(int3d), LU_struct),
+               LU_z2    : region(ispace(int3d), LU_struct),
                pencil   : ispace(int2d),
                points_x : partition(disjoint, points, ispace(int2d)),
                points_y : partition(disjoint, points, ispace(int2d)),
@@ -704,11 +729,17 @@ task run_main( points   : region(ispace(int3d), point),
                coords_x : partition(disjoint, coords, ispace(int2d)),
                coords_y : partition(disjoint, coords, ispace(int2d)),
                coords_z : partition(disjoint, coords, ispace(int2d)),
+               pLU_x    : partition(disjoint, LU_x,   ispace(int2d)),
+               pLU_x2   : partition(disjoint, LU_x2,  ispace(int2d)),
+               pLU_y    : partition(disjoint, LU_y,   ispace(int2d)),
+               pLU_y2   : partition(disjoint, LU_y2,  ispace(int2d)),
+               pLU_z    : partition(disjoint, LU_z,   ispace(int2d)),
+               pLU_z2   : partition(disjoint, LU_z2,  ispace(int2d)),
                dx       : double,
                dy       : double,
                dz       : double )
 where
-  reads writes simultaneous(LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2), reads(coords, exact), reads writes (points)
+  reads(LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2), reads(coords, exact), reads writes (points)
 do
   -- acquire(LU_x )
   -- acquire(LU_x2)
@@ -725,18 +756,23 @@ do
   -- Get df/dx, df/dy, df/dz
   __demand(__spmd)
   for i in pencil do
-    token += ddx(points_x[i],LU_x)
+    token += ddx(points_x[i],pLU_x[i])
   end
 
   __demand(__spmd)
   for i in pencil do
-    token += ddy(points_y[i],LU_y)
+    token += ddy(points_y[i],pLU_y[i])
   end
 
   __demand(__spmd)
   for i in pencil do
-    token += ddz(points_z[i],LU_z)
+    token += ddz(points_z[i],pLU_z[i])
   end
+  
+  -- __demand(__spmd)
+  -- for i in pencil do
+  --   token += gradient(points_x[i], points_y[i], points_z[i], pLU_x[i], pLU_y[i], pLU_z[i])
+  -- end
   
   wait_for(token)
   var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
@@ -763,13 +799,13 @@ do
   
   -- Get d2f/dx2, d2f/dy2, d2f/dz2
   for i in pencil do
-    token += d2dx2(points_x[i],LU_x2)
+    token += d2dx2(points_x[i],pLU_x2[i])
   end
   for i in pencil do
-    token += d2dy2(points_y[i],LU_y2)
+    token += d2dy2(points_y[i],pLU_y2[i])
   end
   for i in pencil do
-    token += d2dz2(points_z[i],LU_z2)
+    token += d2dz2(points_z[i],pLU_z2[i])
   end
   
   wait_for(token)
@@ -819,23 +855,44 @@ task main()
   var prowcol = factorize(parallelism)
   var pencil = ispace(int2d, prowcol)
   
-  var grid_x = ispace(int1d, N)
+  var grid_x = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
   var LU_x   = region(grid_x, LU_struct)
-  get_LU_decomposition(LU_x, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
   var LU_x2  = region(grid_x, LU_struct)
-  get_LU_decomposition(LU_x2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  
+  var pLU_x  = partitionLU(LU_x,  pencil)
+  var pLU_x2 = partitionLU(LU_x2, pencil)
+  for i in pencil do
+    get_LU_decomposition(pLU_x [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  end
+  for i in pencil do
+    get_LU_decomposition(pLU_x2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  end
 
-  var grid_y = ispace(int1d, N)
+  var grid_y = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
   var LU_y   = region(grid_y, LU_struct)
-  get_LU_decomposition(LU_y, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
   var LU_y2  = region(grid_y, LU_struct)
-  get_LU_decomposition(LU_y2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
 
-  var grid_z = ispace(int1d, N)
+  var pLU_y  = partitionLU(LU_y,  pencil)
+  var pLU_y2 = partitionLU(LU_y2, pencil)
+  for i in pencil do
+    get_LU_decomposition(pLU_y [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  end
+  for i in pencil do
+    get_LU_decomposition(pLU_y2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  end
+
+  var grid_z = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
   var LU_z   = region(grid_z, LU_struct)
-  get_LU_decomposition(LU_z, beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
   var LU_z2  = region(grid_z, LU_struct)
-  get_LU_decomposition(LU_z2, beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+
+  var pLU_z  = partitionLU(LU_z,  pencil)
+  var pLU_z2 = partitionLU(LU_z2, pencil)  
+  for i in pencil do
+    get_LU_decomposition(pLU_z [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  end
+  for i in pencil do
+    get_LU_decomposition(pLU_z2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  end
 
   var grid   = ispace(int3d, { x = N, y = N, z = N })
   var coords = region(grid, coordinates)
@@ -863,7 +920,8 @@ task main()
 
   run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
             pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
-            coords_x, coords_y, coords_z, dx, dy, dz )
+            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
+            dx, dy, dz )
 end
 
 regentlib.start(main)
