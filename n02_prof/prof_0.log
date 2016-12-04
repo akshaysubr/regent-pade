@@ -1,0 +1,268 @@
+[0 - 2b9016469200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 0 Scheduler
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 1 Post-Task Execution
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 2 Deferred Mapping Trigger
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 3 Deferred Resolution Trigger
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 4 Deferred Execution Trigger
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 5 Deferred Commit Trigger
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 6 Deferred Post Mapped
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 7 Deferred Execute
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 8 Deferred Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 9 Deferred Commit
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 10 Reclaim Local Field
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 11 Garbage Collection
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 12 Logical Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 13 Trigger Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 14 Operation Physical Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 15 Task Physical Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 16 Deferred Recycle
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 17 Deferred Slice
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 18 Must Individual Task Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 19 Must Index Task Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 20 Must Task Physical Dependence Analysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 21 Must Task Distribution
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 22 Must Task Launch
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 23 Deferred Future Set
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 24 Deferred Future Map Set
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 25 Resolve Future Predicate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 26 Contribute Collective
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 27 State Analaysis
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 28 Mapper Task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 29 Disjointness Test
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 30 Partition Independence Test
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 31 Index Space Independence Test
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 32 Remove Pending Child
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 33 Decrement Pending Task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 34 Send Version State
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 35 Add to Dependence Queue
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 36 Window Wait
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 37 Issue Frame
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 38 Legion Continuation
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 39 Mapper Continuation
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 40 Finish Mapper Continuation
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 41 Task Impl Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 42 Index Space Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 43 Index Partition Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 44 Field Space Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 45 Field Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 46 Region Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 47 Partition Semantic Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 48 Select Tunable
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 49 Deferred Task Enqueue
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 50 Deferred Composite Handle
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 51 Deferred Composite Node Ref
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 52 Deferred Composite View Creation
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 53 Deferred Mapper Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 54 Update View References for Version State
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 55 Deferred Remove Version State Valid Ref
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 56 Deferred Restricted Manager GC Ref
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 57 Remote View Creation
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 58 Remote Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Meta Desc 59 Retry Shutdown
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 0 Mapping
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 1 Copy
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 2 Fence
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 3 Frame
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 4 Deletion
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 5 Inter Close
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 6 Read Close
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 7 Post Close
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 8 Virtual Close
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 9 Acquire
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 10 Release
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 11 Dynamic Collective
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 12 Future Predicate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 13 Not Predicate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 14 And Predicate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 15 Or Predicate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 16 Must Epoch
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 17 Pending Partition
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 18 Dependent Partition
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 19 Fill
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 20 Attach
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 21 Detach
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 22 Timing
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 23 Trace Capture
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 24 Trace Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Op Desc 25 Task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00000000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00000000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00010000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00010000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00020000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00020000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00030000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00030000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00040000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00040000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00050000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00050000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00060000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00060000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00070000000000 3
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Proc Desc 1d00070000000001 2
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00000000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00000000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00000000000fff 0 2147483648
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00010000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00010000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00020000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00020000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00030000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00030000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00040000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00040000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00050000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00050000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00060000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00060000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00070000000000 1 34359738368
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mem Desc 1e00070000000001 8 0
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 0 Task Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 1 Steal Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 2 Advertisement Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 3 Send Index Space Node
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 4 Send Index Space Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 5 Send Index Space Return
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 6 Send Index Space Child Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 7 Send Index Space Child Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 8 Send Index Space Colors Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 9 Send Index Space Colors Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 10 Send Index Partition Notification
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 11 Send Index Partition Node
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 12 Send Index Partition Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 13 Send Index Partition Return
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 14 Send Index Partition Child Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 15 Send Index Partition Child Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 16 Send Field Space Node
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 17 Send Field Space Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 18 Send Field Space Return
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 19 Send Field Alloc Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 20 Send Field Alloc Notification
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 21 Send Field Space Top Alloc
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 22 Send Field Free
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 23 Send Top Level Region Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 24 Send Top Level Region Return
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 25 Send Logical Region Node
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 26 Index Space Destruction
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 27 Index Partition Destruction
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 28 Field Space Destruction
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 29 Logical Region Destruction
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 30 Logical Partition Destruction
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 31 Individual Remote Mapped
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 32 Individual Remote Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 33 Individual Remote Commit
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 34 Slice Remote Mapped
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 35 Slice Remote Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 36 Slice Remote Commit
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 37 Distributed Remote Registration
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 38 Distributed Valid Update
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 39 Distributed GC Update
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 40 Distributed Resource Update
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 41 Distributed Create Add
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 42 Distributed Create Remove
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 43 Distributed Unregister
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 44 Send Atomic Reservation Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 45 Send Atomic Reservation Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 46 Send Materialized View
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 47 Send Composite View
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 48 Send Fill View
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 49 Send Reduction View
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 50 Send Instance Manager
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 51 Send Reduction Manager
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 52 Send Create Top View Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 53 Send Create Top View Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 54 Send Subview DID Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 55 Send Subview DID Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 56 Send View Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 57 Send View Update Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 58 Send View Update Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 59 Send View Remote Update
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 60 Send View Remote Invalidate
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 61 Send Manager Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 62 Send Future Result
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 63 Send Future Subscription
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 64 Send Mapper Message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 65 Send Mapper Broadcast
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 66 Send Task Impl Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 67 Send Index Space Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 68 Send Index Partition Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 69 Send Field Space Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 70 Send Field Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 71 Send Logical Region Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 72 Send Logical Partition Semantic Req
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 73 Send Task Impl Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 74 Send Index Space Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 75 Send Index Partition Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 76 Send Field Space Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 77 Send Field Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 78 Send Logical Region Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 79 Send Logical Partition Semantic Info
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 80 Send Remote Context Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 81 Send Remote Context Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 82 Send Remote Context Free
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 83 Send Remote Convert Virtual Instances
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 84 Send Version State Path
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 85 Send Version State Init
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 86 Send Version State Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 87 Send Version State Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 88 Send Instance Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 89 Send Instance Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 90 Send GC Priority Update
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 91 Send Never GC Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 92 Send Acquire Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 93 Send Acquire Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 94 Send Back Logical State
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 95 Send Task Variant Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 96 Send Task Variant Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 97 Send Constraint Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 98 Send Constraint Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 99 Send Constraint Release
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 100 Send Constraint Removal
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 101 Top Level Task Request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 102 Top Level Task Complete
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 103 Send MPI Rank Exchange
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 104 Send Shutdown Notification
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Message Desc 105 Send Shutdown Response
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 0 get_mapper_name
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 1 get_mapper_sync_model
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 2 select_task_options
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 3 premap_task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 4 slice_task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 5 map_task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 6 select_task_variant
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 7 postmap_task
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 8 select_task_sources
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 9 create task temporary
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 10 speculate (for task)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 11 report profiling (for task)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 12 map_inline
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 13 select_inline_sources
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 14 inline create temporary
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 15 report profiling (for inline)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 16 map_copy
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 17 select_copy_sources
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 18 copy create temporary
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 19 speculate (for copy)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 20 report_profiling (for copy)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 21 map_close
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 22 select_close_sources
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 23 close create temporary
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 24 report_profiling (for close)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 25 map_acquire
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 26 speculate (for acquire)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 27 report_profiling (for acquire)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 28 map_release
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 29 select_release_sources
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 30 release create temporary
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 31 speculate (for release)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 32 report_profiling (for release)
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 33 configure_context
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 34 select_tunable_value
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 35 map_must_epoch
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 36 map_dataflow_graph
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 37 select_tasks_to_map
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 38 select_steal_targets
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 39 permit_steal_request
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 40 handle_message
+[0 - 2ab6c4618700] {3}{legion_prof}: Prof Mapper Call Desc 41 handle_task_result

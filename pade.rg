@@ -16,7 +16,7 @@ local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
 
-local parallelism = 16
+local parallelism = 1
 
 local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
@@ -408,6 +408,7 @@ do
 
     end
   end
+
   return 1
 end
 
@@ -580,6 +581,11 @@ where
 do
   ComputeYRHS(points)
   var token = SolveYLU(points,LU)
+  --for p in points do
+  --  if p.x == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
+  --  end
+  --end
   return token
 end
 
@@ -679,6 +685,9 @@ do
   var err : double = 0.0
   for i in points do
     err = max(err, cmath.fabs(points[i].dfy - exact[i].dfy))
+    --if i.x == 0 and i.z == 0 then
+    --  c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",i.x,i.y,i.z,points[i].dfy,exact[i].dfy)
+    --end
   end
   return err
 end
@@ -754,38 +763,44 @@ do
   var ts_start = c.legion_get_current_time_in_micros()
   
   -- Get df/dx, df/dy, df/dz
-  __demand(__spmd)
-  for i in pencil do
-    token += ddx(points_x[i],pLU_x[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddx(points_x[i],pLU_x[i])
+    end
+  --end
 
-  __demand(__spmd)
-  for i in pencil do
-    token += ddy(points_y[i],pLU_y[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddy(points_y[i],pLU_y[i])
+    end
+  --end
 
-  __demand(__spmd)
-  for i in pencil do
-    token += ddz(points_z[i],pLU_z[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddz(points_z[i],pLU_z[i])
+    end
+  --end
   
   wait_for(token)
   var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
   
   var err_x = 0.0
-  __demand(__spmd)
+  __demand(__parallel)
   for i in pencil do
     err_x += get_error_x(points_x[i],exact_x[i])
   end
 
   var err_y = 0.0
-  __demand(__spmd)
+  __demand(__parallel)
   for i in pencil do
     err_y += get_error_y(points_x[i],exact_x[i]) 
   end
 
   var err_z = 0.0
-  __demand(__spmd)
+  __demand(__parallel)
   for i in pencil do
     err_z += get_error_z(points_x[i],exact_x[i]) 
   end
@@ -796,26 +811,32 @@ do
   ts_start = c.legion_get_current_time_in_micros()
   
   -- Get d2f/dx2, d2f/dy2, d2f/dz2
-  __demand(__spmd)
-  for i in pencil do
-    token += d2dx2(points_x[i],pLU_x2[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dx2(points_x[i],pLU_x2[i])
+    end
+  --end
 
-  __demand(__spmd)
-  for i in pencil do
-    token += d2dy2(points_y[i],pLU_y2[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dy2(points_y[i],pLU_y2[i])
+    end
+  --end
 
-  __demand(__spmd)
-  for i in pencil do
-    token += d2dz2(points_z[i],pLU_z2[i])
-  end
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dz2(points_z[i],pLU_z2[i])
+    end
+  --end
   
   wait_for(token)
   var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
   
   var err_d2 = 0.0
-  __demand(__spmd)
+  __demand(__parallel)
   for i in pencil do
     err_d2 += get_error_d2(points_x[i])
   end
@@ -865,11 +886,17 @@ task main()
   
   var pLU_x  = partitionLU(LU_x,  pencil)
   var pLU_x2 = partitionLU(LU_x2, pencil)
-  for i in pencil do
-    get_LU_decomposition(pLU_x [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_x [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+    end
   end
-  for i in pencil do
-    get_LU_decomposition(pLU_x2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_x2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+    end
   end
 
   var grid_y = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
@@ -878,11 +905,17 @@ task main()
 
   var pLU_y  = partitionLU(LU_y,  pencil)
   var pLU_y2 = partitionLU(LU_y2, pencil)
-  for i in pencil do
-    get_LU_decomposition(pLU_y [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_y [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+    end
   end
-  for i in pencil do
-    get_LU_decomposition(pLU_y2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_y2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+    end
   end
 
   var grid_z = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
@@ -891,11 +924,17 @@ task main()
 
   var pLU_z  = partitionLU(LU_z,  pencil)
   var pLU_z2 = partitionLU(LU_z2, pencil)  
-  for i in pencil do
-    get_LU_decomposition(pLU_z [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_z [i], beta10d1, alpha10d1, 1.0, alpha10d1, beta10d1)
+    end
   end
-  for i in pencil do
-    get_LU_decomposition(pLU_z2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      get_LU_decomposition(pLU_z2[i], beta10d2, alpha10d2, 1.0, alpha10d2, beta10d2)
+    end
   end
 
   var grid   = ispace(int3d, { x = N, y = N, z = N })
@@ -917,11 +956,26 @@ task main()
  
   var token = 0 
   -- Initialize function f
-  for i in pencil do
-    token += initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
+  must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
+    end
   end
   wait_for(token)
 
+  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
+            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
+            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
+            dx, dy, dz )
+  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
+            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
+            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
+            dx, dy, dz )
+  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
+            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
+            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
+            dx, dy, dz )
   run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
             pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
             coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
