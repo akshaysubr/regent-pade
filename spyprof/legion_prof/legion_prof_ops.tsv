@@ -13,17 +13,17 @@ op_id	operation
 11	get_LU_decomposition <11> (<-get_LU_decomposition <6>)
 12	get_LU_decomposition <12> (<-get_LU_decomposition <6>)
 13	get_LU_decomposition <13> (<-get_LU_decomposition <6>)
-14	get_LU_decomposition <14> (<-get_LU_decomposition <10> (<-get_LU_decomposition <6>))
+14	get_LU_decomposition <14> (<-get_LU_decomposition <12> (<-get_LU_decomposition <6>))
 15	get_LU_decomposition <15> (<-get_LU_decomposition <7>)
 16	get_LU_decomposition <16> (<-get_LU_decomposition <7>)
 17	get_LU_decomposition <17> (<-get_LU_decomposition <7>)
 18	get_LU_decomposition <18> (<-get_LU_decomposition <7>)
-19	get_LU_decomposition <19> (<-get_LU_decomposition <15> (<-get_LU_decomposition <7>))
-20	get_LU_decomposition <20> (<-get_LU_decomposition <11> (<-get_LU_decomposition <6>))
-21	get_LU_decomposition <21> (<-get_LU_decomposition <12> (<-get_LU_decomposition <6>))
+19	get_LU_decomposition <19> (<-get_LU_decomposition <17> (<-get_LU_decomposition <7>))
+20	get_LU_decomposition <20> (<-get_LU_decomposition <10> (<-get_LU_decomposition <6>))
+21	get_LU_decomposition <21> (<-get_LU_decomposition <11> (<-get_LU_decomposition <6>))
 22	get_LU_decomposition <22> (<-get_LU_decomposition <13> (<-get_LU_decomposition <6>))
-23	get_LU_decomposition <23> (<-get_LU_decomposition <16> (<-get_LU_decomposition <7>))
-24	get_LU_decomposition <24> (<-get_LU_decomposition <17> (<-get_LU_decomposition <7>))
+23	get_LU_decomposition <23> (<-get_LU_decomposition <15> (<-get_LU_decomposition <7>))
+24	get_LU_decomposition <24> (<-get_LU_decomposition <16> (<-get_LU_decomposition <7>))
 25	get_LU_decomposition <25> (<-get_LU_decomposition <18> (<-get_LU_decomposition <7>))
 26	get_LU_decomposition <26>
 27	get_LU_decomposition <27>
@@ -33,44 +33,44 @@ op_id	operation
 31	get_LU_decomposition <31> (<-get_LU_decomposition <26>)
 32	get_LU_decomposition <32> (<-get_LU_decomposition <26>)
 33	get_LU_decomposition <33> (<-get_LU_decomposition <26>)
-34	get_LU_decomposition <34> (<-get_LU_decomposition <30> (<-get_LU_decomposition <26>))
+34	get_LU_decomposition <34> (<-get_LU_decomposition <32> (<-get_LU_decomposition <26>))
 35	get_LU_decomposition <35> (<-get_LU_decomposition <27>)
 36	get_LU_decomposition <36> (<-get_LU_decomposition <27>)
 37	get_LU_decomposition <37> (<-get_LU_decomposition <27>)
 38	get_LU_decomposition <38> (<-get_LU_decomposition <27>)
-39	get_LU_decomposition <39> (<-get_LU_decomposition <35> (<-get_LU_decomposition <27>))
-40	get_LU_decomposition <40> (<-get_LU_decomposition <31> (<-get_LU_decomposition <26>))
-41	get_LU_decomposition <41> (<-get_LU_decomposition <32> (<-get_LU_decomposition <26>))
+39	get_LU_decomposition <39> (<-get_LU_decomposition <37> (<-get_LU_decomposition <27>))
+40	get_LU_decomposition <40> (<-get_LU_decomposition <30> (<-get_LU_decomposition <26>))
+41	get_LU_decomposition <41> (<-get_LU_decomposition <31> (<-get_LU_decomposition <26>))
 42	get_LU_decomposition <42> (<-get_LU_decomposition <33> (<-get_LU_decomposition <26>))
-43	get_LU_decomposition <43> (<-get_LU_decomposition <36> (<-get_LU_decomposition <27>))
-44	get_LU_decomposition <44> (<-get_LU_decomposition <37> (<-get_LU_decomposition <27>))
+43	get_LU_decomposition <43> (<-get_LU_decomposition <35> (<-get_LU_decomposition <27>))
+44	get_LU_decomposition <44> (<-get_LU_decomposition <36> (<-get_LU_decomposition <27>))
 45	get_LU_decomposition <45> (<-get_LU_decomposition <38> (<-get_LU_decomposition <27>))
 46	get_LU_decomposition <46>
 47	get_LU_decomposition <47>
-48	make_xpencil <48>
-49	make_ypencil <49>
-50	make_zpencil <50>
-51	make_xpencil <51>
-52	make_ypencil <52>
-53	make_zpencil <53>
-54	make_xpencil_c <54>
-55	make_ypencil_c <55>
-56	make_zpencil_c <56>
-57	get_LU_decomposition <57> (<-get_LU_decomposition <46>)
-58	get_LU_decomposition <58> (<-get_LU_decomposition <46>)
-59	get_LU_decomposition <59> (<-get_LU_decomposition <46>)
-60	get_LU_decomposition <60> (<-get_LU_decomposition <46>)
-61	get_LU_decomposition <61> (<-get_LU_decomposition <57> (<-get_LU_decomposition <46>))
+48	get_LU_decomposition <48> (<-get_LU_decomposition <46>)
+49	get_LU_decomposition <49> (<-get_LU_decomposition <46>)
+50	get_LU_decomposition <50> (<-get_LU_decomposition <46>)
+51	get_LU_decomposition <51> (<-get_LU_decomposition <46>)
+52	make_xpencil <52>
+53	make_ypencil <53>
+54	make_zpencil <54>
+55	get_LU_decomposition <55> (<-get_LU_decomposition <50> (<-get_LU_decomposition <46>))
+56	make_xpencil <56>
+57	make_ypencil <57>
+58	make_zpencil <58>
+59	make_xpencil_c <59>
+60	make_ypencil_c <60>
+61	make_zpencil_c <61>
 62	get_LU_decomposition <62> (<-get_LU_decomposition <47>)
 63	get_LU_decomposition <63> (<-get_LU_decomposition <47>)
 64	get_LU_decomposition <64> (<-get_LU_decomposition <47>)
 65	get_LU_decomposition <65> (<-get_LU_decomposition <47>)
-66	get_LU_decomposition <66> (<-get_LU_decomposition <62> (<-get_LU_decomposition <47>))
-67	get_LU_decomposition <67> (<-get_LU_decomposition <58> (<-get_LU_decomposition <46>))
-68	get_LU_decomposition <68> (<-get_LU_decomposition <59> (<-get_LU_decomposition <46>))
-69	get_LU_decomposition <69> (<-get_LU_decomposition <60> (<-get_LU_decomposition <46>))
-70	get_LU_decomposition <70> (<-get_LU_decomposition <63> (<-get_LU_decomposition <47>))
-71	get_LU_decomposition <71> (<-get_LU_decomposition <64> (<-get_LU_decomposition <47>))
+66	get_LU_decomposition <66> (<-get_LU_decomposition <64> (<-get_LU_decomposition <47>))
+67	get_LU_decomposition <67> (<-get_LU_decomposition <48> (<-get_LU_decomposition <46>))
+68	get_LU_decomposition <68> (<-get_LU_decomposition <49> (<-get_LU_decomposition <46>))
+69	get_LU_decomposition <69> (<-get_LU_decomposition <51> (<-get_LU_decomposition <46>))
+70	get_LU_decomposition <70> (<-get_LU_decomposition <62> (<-get_LU_decomposition <47>))
+71	get_LU_decomposition <71> (<-get_LU_decomposition <63> (<-get_LU_decomposition <47>))
 72	get_LU_decomposition <72> (<-get_LU_decomposition <65> (<-get_LU_decomposition <47>))
 73	initialize <73>
 74	__binary_int32_int32_ <74>
@@ -131,10 +131,10 @@ op_id	operation
 129	rhs_y <129>
 130	SolveYLU <130>
 131	rhs_z <131>
-132	rhs_z <132>
-133	SolveZLU <133>
-134	SolveZLU <134>
-135	rhs_z <135>
+132	SolveZLU <132>
+133	rhs_z <133>
+134	rhs_z <134>
+135	SolveZLU <135>
 136	SolveZLU <136>
 137	rhs_z <137>
 138	SolveZLU <138>
@@ -199,8 +199,8 @@ op_id	operation
 197	d2dz2 <197>
 198	__binary_int32_int32_ <198>
 199	d2dz2 <199>
-200	__binary_int32_int32_ <200>
-201	Read Close Operation <201>
+200	Read Close Operation <200>
+201	__binary_int32_int32_ <201>
 202	rhs_x <202>
 203	SolveXLU <203>
 204	rhs_x <204>
@@ -209,27 +209,27 @@ op_id	operation
 207	SolveXLU <207>
 208	rhs_x <208>
 209	SolveXLU <209>
-210	rhs_y <210>
+210	Read Close Operation <210>
 211	rhs_y <211>
 212	SolveYLU <212>
-213	Read Close Operation <213>
+213	rhs_y <213>
 214	rhs_y <214>
 215	SolveYLU <215>
-216	rhs_z <216>
-217	SolveZLU <217>
+216	SolveYLU <216>
+217	rhs_y <217>
 218	rhs_z <218>
-219	SolveZLU <219>
-220	Virtual Close Operation <220>
-221	Virtual Close Operation <221>
-222	Virtual Close Operation <222>
-223	Virtual Close Operation <223>
-224	SolveYLU <224>
-225	rhs_y <225>
-226	SolveYLU <226>
-227	rhs_z <227>
-228	SolveZLU <228>
-229	rhs_z <229>
-230	SolveZLU <230>
+219	rhs_z <219>
+220	SolveYLU <220>
+221	SolveZLU <221>
+222	SolveZLU <222>
+223	rhs_z <223>
+224	rhs_z <224>
+225	SolveZLU <225>
+226	SolveZLU <226>
+227	Virtual Close Operation <227>
+228	Virtual Close Operation <228>
+229	Virtual Close Operation <229>
+230	Virtual Close Operation <230>
 231	Virtual Close Operation <231>
 232	Virtual Close Operation <232>
 233	Virtual Close Operation <233>
