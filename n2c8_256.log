@@ -1,0 +1,84 @@
+--------------------------------------------------------------------------
+An MPI process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your MPI job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.  
+
+The process that invoked fork was:
+
+  Local host:          gpu-202-1 (PID 22501)
+  MPI_COMM_WORLD rank: 0
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[0 - 2b00f0878200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+================ Problem parameters ================
+           grid size  = 256 x 256 x 256
+                   L  = 6.283185
+           dx, dy, dz = 0.024544, 0.024544, 0.024544
+          parallelism = 16
+====================================================
+Time to get the 1st derivatives:  3.30024e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  2.20663e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.73601e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.86273e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.94427e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.95281e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.93119e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.97952e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.78344e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.98190e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.95727e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.97145e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.75474e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  2.06059e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.94662e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.79210e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.71500e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.97239e-01
+  Maximum error in laplacian =  8.69785e-12
+Time to get the 1st derivatives:  1.92313e-01
+  Maximum error in x =  8.39866e-14
+  Maximum error in y =  8.29588e-14
+  Maximum error in z =  8.14401e-14
+Time to get the 2nd derivatives:  1.94603e-01
+  Maximum error in laplacian =  8.69785e-12

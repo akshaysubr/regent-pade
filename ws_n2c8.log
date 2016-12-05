@@ -1,0 +1,87 @@
+--------------------------------------------------------------------------
+An MPI process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your MPI job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.  
+
+The process that invoked fork was:
+
+  Local host:          gpu-202-1 (PID 16339)
+  MPI_COMM_WORLD rank: 1
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[0 - 2b506481d200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[1 - 2ac044051200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+================ Problem parameters ================
+           grid size  = 256 x 128 x 128
+                   L  = 6.283185
+           dx, dy, dz = 0.024544, 0.049087, 0.049087
+          parallelism = 16
+====================================================
+Time to get the 1st derivatives:  1.29203e-01
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.13509e+01
+  Maximum error in z =  1.82498e+01
+Time to get the 2nd derivatives:  6.60390e-02
+  Maximum error in laplacian =  6.23382e+02
+Time to get the 1st derivatives:  5.04640e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.29325e+02
+Time to get the 2nd derivatives:  5.85580e-02
+  Maximum error in laplacian =  6.24865e+02
+Time to get the 1st derivatives:  5.64870e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.30070e+02
+Time to get the 2nd derivatives:  5.31280e-02
+  Maximum error in laplacian =  6.42115e+02
+Time to get the 1st derivatives:  5.25150e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.30191e+02
+Time to get the 2nd derivatives:  5.26900e-02
+  Maximum error in laplacian =  6.23895e+02
+Time to get the 1st derivatives:  5.42930e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.24520e+02
+Time to get the 2nd derivatives:  4.81080e-02
+  Maximum error in laplacian =  6.59126e+02
+Time to get the 1st derivatives:  6.20180e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.30113e+02
+Time to get the 2nd derivatives:  4.92590e-02
+  Maximum error in laplacian =  6.22323e+02
+Time to get the 1st derivatives:  4.91370e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.29463e+02
+Time to get the 2nd derivatives:  5.25250e-02
+  Maximum error in laplacian =  6.42115e+02
+Time to get the 1st derivatives:  4.82800e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.29463e+02
+Time to get the 2nd derivatives:  4.92260e-02
+  Maximum error in laplacian =  6.59126e+02
+Time to get the 1st derivatives:  4.97600e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.24520e+02
+Time to get the 2nd derivatives:  5.02390e-02
+  Maximum error in laplacian =  6.59126e+02
+Time to get the 1st derivatives:  4.96830e-02
+  Maximum error in x =  8.28556e-14
+  Maximum error in y =  1.69169e+02
+  Maximum error in z =  1.29463e+02
+Time to get the 2nd derivatives:  4.93530e-02
+  Maximum error in laplacian =  6.42115e+02
+[gpu-202-4.local:31836] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:warn-fork
+[gpu-202-4.local:31836] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

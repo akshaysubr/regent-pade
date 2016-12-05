@@ -7,11 +7,13 @@ local PI    = cmath.M_PI
 local max = regentlib.fmax
 
 -- Some problem parameters
-local NN = 512
+local NX = 256
+local NY = 256
+local NZ = 256
 local LL = 2.0*math.pi
-local DX = LL / NN
-local DY = LL / NN
-local DZ = LL / NN
+local DX = LL / NX
+local DY = LL / NY
+local DZ = LL / NZ
 local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
@@ -99,11 +101,13 @@ task make_xpencil( points  : region(ispace(int3d), point),
   var Ny = bounds.hi.y + 1
   var Nz = bounds.hi.z + 1
 
+  --c.printf("make_xpencil:\n")
   for i in xpencil do
     var lo = int3d { x = 0, y = i.x*(Ny/prow), z = i.y*(Nz/pcol) }
     var hi = int3d { x = Nx-1, y = (i.x+1)*(Ny/prow)-1, z = (i.y+1)*(Nz/pcol)-1 }
     var rect = rect3d { lo = lo, hi = hi }
     c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+    --c.printf("    (%d,%d), lo = %d, %d, %d, hi = %d, %d, %d\n",i.x,i.y,lo.x,lo.y,lo.z,hi.x,hi.y,hi.z)
   end
   var p = partition(disjoint, points, coloring, xpencil)
   c.legion_domain_point_coloring_destroy(coloring)
@@ -145,11 +149,13 @@ task make_ypencil( points  : region(ispace(int3d), point),
   var Ny = bounds.hi.y + 1
   var Nz = bounds.hi.z + 1
 
+  --c.printf("make_ypencil:\n")
   for i in ypencil do
     var lo = int3d { x = i.x*(Nx/prow), y = 0, z = i.y*(Nz/pcol) }
     var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = Ny-1, z = (i.y+1)*(Nz/pcol)-1 }
     var rect = rect3d { lo = lo, hi = hi }
     c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+    --c.printf("    (%d,%d), lo = %d, %d, %d, hi = %d, %d, %d\n",i.x,i.y,lo.x,lo.y,lo.z,hi.x,hi.y,hi.z)
   end
   var p = partition(disjoint, points, coloring, ypencil)
   c.legion_domain_point_coloring_destroy(coloring)
@@ -191,11 +197,13 @@ task make_zpencil( points  : region(ispace(int3d), point),
   var Ny = bounds.hi.y + 1
   var Nz = bounds.hi.z + 1
 
+  --c.printf("make_zpencil:\n")
   for i in zpencil do
     var lo = int3d { x = i.x*(Nx/prow), y = i.y*(Ny/pcol), z = 0 }
     var hi = int3d { x = (i.x+1)*(Nx/prow)-1, y = (i.y+1)*(Ny/pcol)-1, z = Nz-1 }
     var rect = rect3d { lo = lo, hi = hi }
     c.legion_domain_point_coloring_color_domain(coloring, i, rect)
+    --c.printf("    (%d,%d), lo = %d, %d, %d, hi = %d, %d, %d\n",i.x,i.y,lo.x,lo.y,lo.z,hi.x,hi.y,hi.z)
   end
   var p = partition(disjoint, points, coloring, zpencil)
   c.legion_domain_point_coloring_destroy(coloring)
@@ -546,13 +554,13 @@ local function make_stencil_z(N, onebydz, a10, b10, c10, der)
   return rhs_z
 end
 
-local ComputeXRHS  = make_stencil_x(NN, ONEBYDX, a10d1, b10d1, c10d1, 1)
-local ComputeYRHS  = make_stencil_y(NN, ONEBYDY, a10d1, b10d1, c10d1, 1)
-local ComputeZRHS  = make_stencil_z(NN, ONEBYDZ, a10d1, b10d1, c10d1, 1)
+local ComputeXRHS  = make_stencil_x(NX, ONEBYDX, a10d1, b10d1, c10d1, 1)
+local ComputeYRHS  = make_stencil_y(NY, ONEBYDY, a10d1, b10d1, c10d1, 1)
+local ComputeZRHS  = make_stencil_z(NZ, ONEBYDZ, a10d1, b10d1, c10d1, 1)
 
-local ComputeX2RHS = make_stencil_x(NN, ONEBYDX, a10d2, b10d2, c10d2, 2)
-local ComputeY2RHS = make_stencil_y(NN, ONEBYDY, a10d2, b10d2, c10d2, 2)
-local ComputeZ2RHS = make_stencil_z(NN, ONEBYDZ, a10d2, b10d2, c10d2, 2)
+local ComputeX2RHS = make_stencil_x(NX, ONEBYDX, a10d2, b10d2, c10d2, 2)
+local ComputeY2RHS = make_stencil_y(NY, ONEBYDY, a10d2, b10d2, c10d2, 2)
+local ComputeZ2RHS = make_stencil_z(NZ, ONEBYDZ, a10d2, b10d2, c10d2, 2)
 
 task ddx( points : region(ispace(int3d), point),
           LU     : region(ispace(int3d), LU_struct) )
@@ -893,15 +901,18 @@ end
 
 task main()
   var L  : double = LL      -- Domain length
-  var N  : int64  = NN      -- Grid size
+  var Nx : int64  = NX      -- Grid size
+  var Ny : int64  = NY      -- Grid size
+  var Nz : int64  = NZ      -- Grid size
   var dx : double = DX      -- Grid spacing
   var dy : double = DY      -- Grid spacing
   var dz : double = DZ      -- Grid spacing
 
   c.printf("================ Problem parameters ================\n")
-  c.printf("                   N  = %d\n", N )
+  c.printf("           grid size  = %d x %d x %d\n", Nx, Ny, Nz )
   c.printf("                   L  = %f\n", L )
-  c.printf("                   dx = %f\n", dx)
+  c.printf("           dx, dy, dz = %f, %f, %f\n", dx, dy, dz)
+  c.printf("          parallelism = %d\n", parallelism)
   c.printf("====================================================\n")
 
   -- Coefficients for the 10th order 1st derivative
@@ -915,7 +926,7 @@ task main()
   var prowcol = factorize(parallelism)
   var pencil = ispace(int2d, prowcol)
   
-  var grid_x = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
+  var grid_x = ispace(int3d, { x = Nx, y = prowcol.x, z = prowcol.y } )
   var LU_x   = region(grid_x, LU_struct)
   var LU_x2  = region(grid_x, LU_struct)
   
@@ -934,7 +945,7 @@ task main()
     end
   end
 
-  var grid_y = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
+  var grid_y = ispace(int3d, { x = Ny, y = prowcol.x, z = prowcol.y } )
   var LU_y   = region(grid_y, LU_struct)
   var LU_y2  = region(grid_y, LU_struct)
 
@@ -953,7 +964,7 @@ task main()
     end
   end
 
-  var grid_z = ispace(int3d, { x = N, y = prowcol.x, z = prowcol.y } )
+  var grid_z = ispace(int3d, { x = Nz, y = prowcol.x, z = prowcol.y } )
   var LU_z   = region(grid_z, LU_struct)
   var LU_z2  = region(grid_z, LU_struct)
 
@@ -972,7 +983,7 @@ task main()
     end
   end
 
-  var grid   = ispace(int3d, { x = N, y = N, z = N })
+  var grid   = ispace(int3d, { x = Nx, y = Ny, z = Nz })
   var coords = region(grid, coordinates)
   var points = region(grid, point)
   var exact  = region(grid, point)
