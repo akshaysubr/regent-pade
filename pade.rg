@@ -561,12 +561,13 @@ where
 do
   ComputeXRHS(points)
   var token = SolveXLU(points,LU)
-  c.printf("In ddx\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
-    end
-  end
+  --c.printf("In ddx\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfx
   return token
 end
 
@@ -577,12 +578,13 @@ where
 do
   ComputeX2RHS(points)
   var token = SolveXLU(points,LU)
-  c.printf("In d2dx2\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
-    end
-  end
+  --c.printf("In d2dx2\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfx
   return token
 end
 
@@ -593,12 +595,13 @@ where
 do
   ComputeYRHS(points)
   var token = SolveYLU(points,LU)
-  c.printf("In ddy\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
-    end
-  end
+  --c.printf("In ddy\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfy
   return token
 end
 
@@ -609,12 +612,13 @@ where
 do
   ComputeY2RHS(points)
   var token = SolveYLU(points,LU)
-  c.printf("In d2dy2\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
-    end
-  end
+  --c.printf("In d2dy2\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfy
   return token
 end
 
@@ -625,12 +629,13 @@ where
 do
   ComputeZRHS(points)
   var token = SolveZLU(points,LU)
-  c.printf("In ddz\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
-    end
-  end
+  --c.printf("In ddz\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfz
   return token
 end
 
@@ -641,12 +646,13 @@ where
 do
   ComputeZ2RHS(points)
   var token = SolveZLU(points,LU)
-  c.printf("In d2dz2\n")
-  for p in points do
-    if p.x == 0 and p.y == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
-    end
-  end
+  --c.printf("In d2dz2\n")
+  --for p in points do
+  --  if p.x == 0 and p.y == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
+  --  end
+  --end
+  token = points[points.ispace.bounds.lo].dfz
   return token
 end
 
