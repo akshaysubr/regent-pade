@@ -16,7 +16,7 @@ local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
 
-local parallelism = 64
+local parallelism = 8
 
 local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
@@ -561,6 +561,12 @@ where
 do
   ComputeXRHS(points)
   var token = SolveXLU(points,LU)
+  c.printf("In ddx\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
+    end
+  end
   return token
 end
 
@@ -571,6 +577,12 @@ where
 do
   ComputeX2RHS(points)
   var token = SolveXLU(points,LU)
+  c.printf("In d2dx2\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfx)
+    end
+  end
   return token
 end
 
@@ -581,11 +593,12 @@ where
 do
   ComputeYRHS(points)
   var token = SolveYLU(points,LU)
-  --for p in points do
-  --  if p.x == 0 and p.z == 0 then
-  --    c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
-  --  end
-  --end
+  c.printf("In ddy\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
+    end
+  end
   return token
 end
 
@@ -596,6 +609,12 @@ where
 do
   ComputeY2RHS(points)
   var token = SolveYLU(points,LU)
+  c.printf("In d2dy2\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfy)
+    end
+  end
   return token
 end
 
@@ -606,6 +625,12 @@ where
 do
   ComputeZRHS(points)
   var token = SolveZLU(points,LU)
+  c.printf("In ddz\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
+    end
+  end
   return token
 end
 
@@ -616,6 +641,12 @@ where
 do
   ComputeZ2RHS(points)
   var token = SolveZLU(points,LU)
+  c.printf("In d2dz2\n")
+  for p in points do
+    if p.x == 0 and p.y == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f, %8.5f\n",p.x,p.y,p.z,points[p].f,points[p].dfz)
+    end
+  end
   return token
 end
 
@@ -660,6 +691,13 @@ do
         exact [e].dfy = cmath.cos(coords[e].y)
         exact [e].dfz = cmath.cos(coords[e].z)
       end
+    end
+  end
+ 
+  c.printf("In initialize\n")
+  for p in points do
+    if p.x == 0 and p.z == 0 then
+      c.printf("{%d,%d,%d}: %8.5f\n",p.x,p.y,p.z,points[p].f)
     end
   end
   return 0
@@ -763,26 +801,26 @@ do
   var ts_start = c.legion_get_current_time_in_micros()
   
   -- Get df/dx, df/dy, df/dz
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += ddx(points_x[i],pLU_x[i])
+      ddx(points_x[i],pLU_x[i])
     end
-  --end
+  end
 
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += ddy(points_y[i],pLU_y[i])
+      ddy(points_y[i],pLU_y[i])
     end
-  --end
+  end
 
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += ddz(points_z[i],pLU_z[i])
+      ddz(points_z[i],pLU_z[i])
     end
-  --end
+  end
   
   wait_for(token)
   var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
@@ -811,26 +849,26 @@ do
   ts_start = c.legion_get_current_time_in_micros()
   
   -- Get d2f/dx2, d2f/dy2, d2f/dz2
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += d2dx2(points_x[i],pLU_x2[i])
+      d2dx2(points_x[i],pLU_x2[i])
     end
-  --end
+  end
 
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += d2dy2(points_y[i],pLU_y2[i])
+      d2dy2(points_y[i],pLU_y2[i])
     end
-  --end
+  end
 
-  --must_epoch
+  must_epoch
     __demand(__parallel)
     for i in pencil do
-      token += d2dz2(points_z[i],pLU_z2[i])
+      d2dz2(points_z[i],pLU_z2[i])
     end
-  --end
+  end
   
   wait_for(token)
   var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
@@ -956,30 +994,110 @@ task main()
  
   var token = 0 
   -- Initialize function f
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
+      token += initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
     end
-  end
+  --end
   wait_for(token)
 
-  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
-            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
-            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
-            dx, dy, dz )
-  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
-            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
-            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
-            dx, dy, dz )
-  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
-            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
-            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
-            dx, dy, dz )
-  run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
-            pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
-            coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
-            dx, dy, dz )
+  -- run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
+  --           pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
+  --           coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
+  --           dx, dy, dz )
+  var ts_start = c.legion_get_current_time_in_micros()
+  
+  -- Get df/dx, df/dy, df/dz
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddx(points_x[i],pLU_x[i])
+    end
+  --end
+
+  wait_for(token)
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddy(points_y[i],pLU_y[i])
+    end
+  --end
+
+  wait_for(token)
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += ddz(points_z[i],pLU_z[i])
+    end
+  --end
+  
+  wait_for(token)
+  var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
+  
+  var err_x = 0.0
+  __demand(__parallel)
+  for i in pencil do
+    err_x += get_error_x(points_x[i],exact_x[i])
+  end
+
+  var err_y = 0.0
+  __demand(__parallel)
+  for i in pencil do
+    err_y += get_error_y(points_x[i],exact_x[i]) 
+  end
+
+  var err_z = 0.0
+  __demand(__parallel)
+  for i in pencil do
+    err_z += get_error_z(points_x[i],exact_x[i]) 
+  end
+  
+  wait_for(err_x)
+  wait_for(err_y)
+  wait_for(err_z)
+  ts_start = c.legion_get_current_time_in_micros()
+  
+  -- Get d2f/dx2, d2f/dy2, d2f/dz2
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dx2(points_x[i],pLU_x2[i])
+    end
+  --end
+
+  wait_for(token)
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dy2(points_y[i],pLU_y2[i])
+    end
+  --end
+
+  wait_for(token)
+  --must_epoch
+    __demand(__parallel)
+    for i in pencil do
+      token += d2dz2(points_z[i],pLU_z2[i])
+    end
+  --end
+  
+  wait_for(token)
+  var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
+  
+  var err_d2 = 0.0
+  __demand(__parallel)
+  for i in pencil do
+    err_d2 += get_error_d2(points_x[i])
+  end
+
+  c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
+  c.printf("  Maximum error in x = %12.5e\n", err_x)
+  c.printf("  Maximum error in y = %12.5e\n", err_y)
+  c.printf("  Maximum error in z = %12.5e\n", err_z)
+  c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
+  c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
+  
 end
 
 regentlib.start(main)
