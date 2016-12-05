@@ -8,51 +8,25 @@ create child processes) is strongly discouraged.
 
 The process that invoked fork was:
 
-  Local host:          gpu-202-1 (PID 15064)
+  Local host:          gpu-202-1 (PID 17133)
   MPI_COMM_WORLD rank: 1
 
 If you are *absolutely sure* that your application will successfully
 and correctly survive a call to fork(), you may disable this warning
 by setting the mpi_warn_on_fork MCA parameter to 0.
 --------------------------------------------------------------------------
-[0 - 2b41fe93a200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
-[1 - 2b6e38370200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[0 - 2abc9af4a200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[1 - 2b0ce494c200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
 ================ Problem parameters ================
                    N  = 512
                    L  = 6.283185
                    dx = 0.012272
 ====================================================
-[gpu-202-4.local:21386] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:warn-fork
-[gpu-202-4.local:21386] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
-Time to get the 1st derivatives:  7.30655e+00
-  Maximum error in x =  8.06959e-13
-  Maximum error in y =  4.00000e+00
-  Maximum error in z =  4.00000e+00
-Time to get the 2nd derivatives:  6.44107e+00
-  Maximum error in laplacian =  6.00000e+00
-Time to get the 1st derivatives:  6.33398e+00
-  Maximum error in x =  4.24264e+00
-  Maximum error in y =  4.00000e+00
-  Maximum error in z =  4.00000e+00
-Time to get the 2nd derivatives:  6.51640e+00
-  Maximum error in laplacian =  6.00000e+00
-Time to get the 1st derivatives:  6.42045e+00
-  Maximum error in x =  1.41421e+00
-  Maximum error in y =  4.00000e+00
-  Maximum error in z =  4.00000e+00
-Time to get the 2nd derivatives:  6.42569e+00
-  Maximum error in laplacian =  6.00000e+00
-Time to get the 1st derivatives:  6.44691e+00
-  Maximum error in x =  2.82843e+00
-  Maximum error in y =  4.00000e+00
-  Maximum error in z =  4.00000e+00
-Time to get the 2nd derivatives:  6.54661e+00
-  Maximum error in laplacian =  6.00000e+00
-*** Caught a fatal signal: SIGSEGV(11) on node 0/4
-NOTICE: Before reporting bugs, run with GASNET_BACKTRACE=1 in the environment to generate a backtrace. 
-*** Caught a signal: SIGTERM(15) on node 1/4
-*** Caught a signal: SIGTERM(15) on node 2/4
-*** Caught a signal: SIGTERM(15) on node 3/4
---------------------------------------------------------------------------
-mpirun noticed that process rank 0 with PID 21388 on node gpu-202-4 exited on signal 11 (Segmentation fault).
---------------------------------------------------------------------------
+[gpu-202-4.local:24163] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:warn-fork
+[gpu-202-4.local:24163] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Time to get the 1st derivatives:  7.16244e+00
+  Maximum error in x =  2.01740e-13
+  Maximum error in y =  2.02739e-13
+  Maximum error in z =  1.95595e-13
+Time to get the 2nd derivatives:  6.64337e+00
+  Maximum error in laplacian =  4.22931e-11

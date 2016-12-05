@@ -8,40 +8,22 @@ create child processes) is strongly discouraged.
 
 The process that invoked fork was:
 
-  Local host:          gpu-202-4 (PID 23714)
+  Local host:          gpu-202-4 (PID 20057)
   MPI_COMM_WORLD rank: 0
 
 If you are *absolutely sure* that your application will successfully
 and correctly survive a call to fork(), you may disable this warning
 by setting the mpi_warn_on_fork MCA parameter to 0.
 --------------------------------------------------------------------------
-[0 - 2b9ba5027200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
+[0 - 2b768e285200] {4}{gpu}: cuInit(0) returned 100 - module not loaded
 ================ Problem parameters ================
                    N  = 512
                    L  = 6.283185
                    dx = 0.012272
 ====================================================
-Time to get the 1st derivatives:  9.52808e+00
-  Maximum error in x =  1.61121e-12
-  Maximum error in y =  1.61998e-12
-  Maximum error in z =  1.46767e-12
-Time to get the 2nd derivatives:  7.60374e+00
-  Maximum error in laplacian =  3.27826e-10
-Time to get the 1st derivatives:  8.22429e+00
-  Maximum error in x =  1.61121e-12
-  Maximum error in y =  1.61998e-12
-  Maximum error in z =  1.46767e-12
-Time to get the 2nd derivatives:  8.32460e+00
-  Maximum error in laplacian =  3.27826e-10
-Time to get the 1st derivatives:  8.48458e+00
-  Maximum error in x =  1.61121e-12
-  Maximum error in y =  1.61998e-12
-  Maximum error in z =  1.46767e-12
-Time to get the 2nd derivatives:  6.45803e+00
-  Maximum error in laplacian =  3.27826e-10
-Time to get the 1st derivatives:  8.16643e+00
-  Maximum error in x =  1.61121e-12
-  Maximum error in y =  1.61998e-12
-  Maximum error in z =  1.46767e-12
-Time to get the 2nd derivatives:  2.44570e+01
-  Maximum error in laplacian =  3.27826e-10
+Time to get the 1st derivatives:  4.74590e+00
+  Maximum error in x =  2.01401e-13
+  Maximum error in y =  2.02498e-13
+  Maximum error in z =  1.83458e-13
+Time to get the 2nd derivatives:  4.76173e+00
+  Maximum error in laplacian =  4.09782e-11

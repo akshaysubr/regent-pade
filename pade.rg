@@ -7,7 +7,7 @@ local PI    = cmath.M_PI
 local max = regentlib.fmax
 
 -- Some problem parameters
-local NN = 256
+local NN = 512
 local LL = 2.0*math.pi
 local DX = LL / NN
 local DY = LL / NN
@@ -792,41 +792,34 @@ task run_main( points   : region(ispace(int3d), point),
                dy       : double,
                dz       : double )
 where
-  reads(LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2), reads(coords, exact), reads writes (points)
+  reads(LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2), reads(coords, exact, points.f), reads writes (points.dfx, points.dfy, points.dfz)
 do
-  -- acquire(LU_x )
-  -- acquire(LU_x2)
-  -- acquire(LU_y )
-  -- acquire(LU_y2)
-  -- acquire(LU_z )
-  -- acquire(LU_z2)
 
-  var token = 0 
- 
+  var token = 0
   wait_for(token)
   var ts_start = c.legion_get_current_time_in_micros()
   
   -- Get df/dx, df/dy, df/dz
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      ddx(points_x[i],pLU_x[i])
+      token += ddx(points_x[i],pLU_x[i])
     end
-  end
+  --end
 
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      ddy(points_y[i],pLU_y[i])
+      token += ddy(points_y[i],pLU_y[i])
     end
-  end
+  --end
 
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      ddz(points_z[i],pLU_z[i])
+      token += ddz(points_z[i],pLU_z[i])
     end
-  end
+  --end
   
   wait_for(token)
   var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
@@ -836,18 +829,21 @@ do
   for i in pencil do
     err_x += get_error_x(points_x[i],exact_x[i])
   end
+  err_x = err_x / parallelism
 
   var err_y = 0.0
   __demand(__parallel)
   for i in pencil do
     err_y += get_error_y(points_x[i],exact_x[i]) 
   end
+  err_y = err_y / parallelism
 
   var err_z = 0.0
   __demand(__parallel)
   for i in pencil do
     err_z += get_error_z(points_x[i],exact_x[i]) 
   end
+  err_z = err_z / parallelism
   
   wait_for(err_x)
   wait_for(err_y)
@@ -855,26 +851,26 @@ do
   ts_start = c.legion_get_current_time_in_micros()
   
   -- Get d2f/dx2, d2f/dy2, d2f/dz2
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      d2dx2(points_x[i],pLU_x2[i])
+      token += d2dx2(points_x[i],pLU_x2[i])
     end
-  end
+  --end
 
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      d2dy2(points_y[i],pLU_y2[i])
+      token += d2dy2(points_y[i],pLU_y2[i])
     end
-  end
+  --end
 
-  must_epoch
+  --must_epoch
     __demand(__parallel)
     for i in pencil do
-      d2dz2(points_z[i],pLU_z2[i])
+      token += d2dz2(points_z[i],pLU_z2[i])
     end
-  end
+  --end
   
   wait_for(token)
   var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
@@ -884,6 +880,7 @@ do
   for i in pencil do
     err_d2 += get_error_d2(points_x[i])
   end
+  err_d2 = err_d2 / parallelism
 
   c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
   c.printf("  Maximum error in x = %12.5e\n", err_x)
@@ -892,12 +889,6 @@ do
   c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
   c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
   
-  -- release(LU_x )
-  -- release(LU_x2)
-  -- release(LU_y )
-  -- release(LU_y2)
-  -- release(LU_z )
-  -- release(LU_z2)
 end
 
 task main()
@@ -1011,95 +1002,101 @@ task main()
   --           pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
   --           coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
   --           dx, dy, dz )
-  
-  wait_for(token)
-  var ts_start = c.legion_get_current_time_in_micros()
-  
-  -- Get df/dx, df/dy, df/dz
-  --must_epoch
-    __demand(__parallel)
-    for i in pencil do
-      token += ddx(points_x[i],pLU_x[i])
-    end
-  --end
 
-  --must_epoch
-    __demand(__parallel)
-    for i in pencil do
-      token += ddy(points_y[i],pLU_y[i])
-    end
-  --end
+  for iter = 0,10 do  
+    wait_for(token)
+    var ts_start = c.legion_get_current_time_in_micros()
+    
+    -- Get df/dx, df/dy, df/dz
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += ddx(points_x[i],pLU_x[i])
+      end
+    --end
 
-  --must_epoch
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += ddy(points_y[i],pLU_y[i])
+      end
+    --end
+
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += ddz(points_z[i],pLU_z[i])
+      end
+    --end
+    
+    wait_for(token)
+    var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
+    
+    var err_x = 0.0
     __demand(__parallel)
     for i in pencil do
-      token += ddz(points_z[i],pLU_z[i])
+      err_x += get_error_x(points_x[i],exact_x[i])
     end
-  --end
-  
-  wait_for(token)
-  var ts_d1 = c.legion_get_current_time_in_micros() - ts_start
-  
-  var err_x = 0.0
-  __demand(__parallel)
-  for i in pencil do
-    err_x += get_error_x(points_x[i],exact_x[i])
+    err_x = err_x / parallelism
+
+    var err_y = 0.0
+    __demand(__parallel)
+    for i in pencil do
+      err_y += get_error_y(points_x[i],exact_x[i]) 
+    end
+    err_y = err_y / parallelism
+
+    var err_z = 0.0
+    __demand(__parallel)
+    for i in pencil do
+      err_z += get_error_z(points_x[i],exact_x[i]) 
+    end
+    err_z = err_z / parallelism
+    
+    wait_for(err_x)
+    wait_for(err_y)
+    wait_for(err_z)
+    ts_start = c.legion_get_current_time_in_micros()
+    
+    -- Get d2f/dx2, d2f/dy2, d2f/dz2
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += d2dx2(points_x[i],pLU_x2[i])
+      end
+    --end
+
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += d2dy2(points_y[i],pLU_y2[i])
+      end
+    --end
+
+    --must_epoch
+      __demand(__parallel)
+      for i in pencil do
+        token += d2dz2(points_z[i],pLU_z2[i])
+      end
+    --end
+    
+    wait_for(token)
+    var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
+    
+    var err_d2 = 0.0
+    __demand(__parallel)
+    for i in pencil do
+      err_d2 += get_error_d2(points_x[i])
+    end
+    err_d2 = err_d2 / parallelism
+
+    c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
+    c.printf("  Maximum error in x = %12.5e\n", err_x)
+    c.printf("  Maximum error in y = %12.5e\n", err_y)
+    c.printf("  Maximum error in z = %12.5e\n", err_z)
+    c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
+    c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
   end
-
-  var err_y = 0.0
-  __demand(__parallel)
-  for i in pencil do
-    err_y += get_error_y(points_x[i],exact_x[i]) 
-  end
-
-  var err_z = 0.0
-  __demand(__parallel)
-  for i in pencil do
-    err_z += get_error_z(points_x[i],exact_x[i]) 
-  end
-  
-  wait_for(err_x)
-  wait_for(err_y)
-  wait_for(err_z)
-  ts_start = c.legion_get_current_time_in_micros()
-  
-  -- Get d2f/dx2, d2f/dy2, d2f/dz2
-  --must_epoch
-    __demand(__parallel)
-    for i in pencil do
-      token += d2dx2(points_x[i],pLU_x2[i])
-    end
-  --end
-
-  --must_epoch
-    __demand(__parallel)
-    for i in pencil do
-      token += d2dy2(points_y[i],pLU_y2[i])
-    end
-  --end
-
-  --must_epoch
-    __demand(__parallel)
-    for i in pencil do
-      token += d2dz2(points_z[i],pLU_z2[i])
-    end
-  --end
-  
-  wait_for(token)
-  var ts_d2 = c.legion_get_current_time_in_micros() - ts_start
-  
-  var err_d2 = 0.0
-  __demand(__parallel)
-  for i in pencil do
-    err_d2 += get_error_d2(points_x[i])
-  end
-
-  c.printf("Time to get the 1st derivatives: %12.5e\n", (ts_d1)*1e-6)
-  c.printf("  Maximum error in x = %12.5e\n", err_x)
-  c.printf("  Maximum error in y = %12.5e\n", err_y)
-  c.printf("  Maximum error in z = %12.5e\n", err_z)
-  c.printf("Time to get the 2nd derivatives: %12.5e\n", (ts_d2)*1e-6)
-  c.printf("  Maximum error in laplacian = %12.5e\n", err_d2)
   
 end
 
