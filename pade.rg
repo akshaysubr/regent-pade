@@ -16,7 +16,7 @@ local ONEBYDX = 1.0 / (DX)
 local ONEBYDY = 1.0 / (DY)
 local ONEBYDZ = 1.0 / (DZ)
 
-local parallelism = 8
+local parallelism = 64
 
 local a10d1 = ( 17.0/ 12.0)/2.0
 local b10d1 = (101.0/150.0)/4.0
