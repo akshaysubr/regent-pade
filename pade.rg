@@ -700,12 +700,12 @@ do
     end
   end
  
-  c.printf("In initialize\n")
-  for p in points do
-    if p.x == 0 and p.z == 0 then
-      c.printf("{%d,%d,%d}: %8.5f\n",p.x,p.y,p.z,points[p].f)
-    end
-  end
+  --c.printf("In initialize\n")
+  --for p in points do
+  --  if p.x == 0 and p.z == 0 then
+  --    c.printf("{%d,%d,%d}: %8.5f\n",p.x,p.y,p.z,points[p].f)
+  --  end
+  --end
   return 0
 end
 
@@ -1006,12 +1006,13 @@ task main()
       token += initialize(points_x[i], exact_x[i], coords_x[i], dx, dy, dz)
     end
   --end
-  wait_for(token)
 
   -- run_main( points, exact, coords, LU_x, LU_x2, LU_y, LU_y2, LU_z, LU_z2,
   --           pencil, points_x, points_y, points_z, exact_x, exact_y, exact_z,
   --           coords_x, coords_y, coords_z, pLU_x, pLU_x2, pLU_y, pLU_y2, pLU_z, pLU_z2,
   --           dx, dy, dz )
+  
+  wait_for(token)
   var ts_start = c.legion_get_current_time_in_micros()
   
   -- Get df/dx, df/dy, df/dz
@@ -1022,7 +1023,6 @@ task main()
     end
   --end
 
-  wait_for(token)
   --must_epoch
     __demand(__parallel)
     for i in pencil do
@@ -1030,7 +1030,6 @@ task main()
     end
   --end
 
-  wait_for(token)
   --must_epoch
     __demand(__parallel)
     for i in pencil do
@@ -1072,7 +1071,6 @@ task main()
     end
   --end
 
-  wait_for(token)
   --must_epoch
     __demand(__parallel)
     for i in pencil do
@@ -1080,7 +1078,6 @@ task main()
     end
   --end
 
-  wait_for(token)
   --must_epoch
     __demand(__parallel)
     for i in pencil do
